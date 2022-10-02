@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "HZRlbb4YRFf/RG3/D+4VQMHlQH7rlem0jNjwwTuQYAJ3Ld6Or2d0/K6CYDLocRPkInxQFN/e/4kbH7au+e0ZNw==",
+  "success": true,
+  "projectFilePath": "/home/neil/devel/github/Wedding_RSVP/Wedding_RSVP.csproj",
+  "expectedPackageFiles": [
+    "/home/neil/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.9/microsoft.aspnetcore.app.ref.6.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
