@@ -1,0 +1,26 @@
+@{ ViewBag["Title"] = "RSVP"; }
+
+<form asp-controller="Home" asp-action="RSVP" method="post">
+   <table>
+      <!-- TODO: Required may be a tag in the model -->
+      <tr>
+         <td>First Name</td>
+         <td><input type="text" name="FirstName" required></td>
+      </tr>
+      <tr>
+         <td>Last Name</td>
+         <td><input type="text" name="LastName" required></td>
+      </tr>
+      <tr>
+         <td>Email</td>
+         <td><input type="email" name="Email" required></td>
+      </tr>
+      <tr>
+         <td>Number of attendees</td>
+         <td><input type="number" min="1" max="20" name="Attendees" required></td>
+      </tr>
+      <tr>
+         <td><input type="submit" value="Submit" /></td>
+      </tr>
+   </table>
+</form>

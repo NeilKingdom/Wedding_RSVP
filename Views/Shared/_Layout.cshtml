@@ -4,15 +4,13 @@
       <meta charset="utf-8" />
       <title>@ViewBag.Title</title>
       <link rel="stylesheet" href="~/css/StyleSheet.css" />
+      <link rel="stylesheet" href="~/css/ImageCarousel.css" />
    </head>
    <header>
       <!-- Html.ActionLink() -->
    </header>
    <body>
-      <div>
-      <!-- RenderSection (images) -->
-      </div>
-      <div>
+      <div class="container">
          @RenderBody()
       </div>
    </body>
@@ -25,6 +23,19 @@
             <li>Phone: +1(613) 000-0000</li>
             <li>Social Media:</li>
             <!-- Add social media tags -->
+            <table>
+               <tr>
+                  <td>
+                     <img />
+                  </td>
+                  <td>
+                     <img />
+                  </td>
+                  <td>
+                     <img />
+                  </td>
+               </tr>
+            </table>
          </ul>
       </div>
       <div>

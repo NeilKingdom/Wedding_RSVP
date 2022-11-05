@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kbH1phmsQXjvSJhRc37ai2r6TbfHIDp9kQF4iKPgyII=",
+  "Hash": "Cna+KK/y5ROrEF1QaE0Tfm6FF1mw0uyNYCf9rGRHfj8=",
   "Source": "Wedding_RSVP",
   "BasePath": "_content/Wedding_RSVP",
   "Mode": "Default",
@@ -17,6 +17,23 @@
   ],
   "Assets": [
     {
+      "Identity": "/home/neil/devel/github/Wedding_RSVP/wwwroot/css/ImageCarousel.css",
+      "SourceId": "Wedding_RSVP",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/neil/devel/github/Wedding_RSVP/wwwroot/",
+      "BasePath": "_content/Wedding_RSVP",
+      "RelativePath": "css/ImageCarousel.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/ImageCarousel.css"
+    },
+    {
       "Identity": "/home/neil/devel/github/Wedding_RSVP/wwwroot/css/StyleSheet.css",
       "SourceId": "Wedding_RSVP",
       "SourceType": "Discovered",
@@ -32,6 +49,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/StyleSheet.css"
+    },
+    {
+      "Identity": "/home/neil/devel/github/Wedding_RSVP/wwwroot/img/proposal/wedding1.jpg",
+      "SourceId": "Wedding_RSVP",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/neil/devel/github/Wedding_RSVP/wwwroot/",
+      "BasePath": "_content/Wedding_RSVP",
+      "RelativePath": "img/proposal/wedding1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/proposal/wedding1.jpg"
+    },
+    {
+      "Identity": "/home/neil/devel/github/Wedding_RSVP/wwwroot/img/proposal/wedding2.jpg",
+      "SourceId": "Wedding_RSVP",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/neil/devel/github/Wedding_RSVP/wwwroot/",
+      "BasePath": "_content/Wedding_RSVP",
+      "RelativePath": "img/proposal/wedding2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/proposal/wedding2.jpg"
+    },
+    {
+      "Identity": "/home/neil/devel/github/Wedding_RSVP/wwwroot/img/proposal/wedding3.jpg",
+      "SourceId": "Wedding_RSVP",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/neil/devel/github/Wedding_RSVP/wwwroot/",
+      "BasePath": "_content/Wedding_RSVP",
+      "RelativePath": "img/proposal/wedding3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/proposal/wedding3.jpg"
     }
   ]
 }
