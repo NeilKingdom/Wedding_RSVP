@@ -5,11 +5,11 @@ namespace Wedding_RSVP.Data
 {
    public static class DbInitializer
    {
-      public static void Initializer(WeddingDbContext context)
+      public static void Initialize(WeddingDbContext context)
       {
          context.Database.EnsureCreated();
 
-         if (context.User.Any())
+         if (context.Users.Any())
          {
             return; // DB has been seeded
          }
@@ -19,25 +19,15 @@ namespace Wedding_RSVP.Data
          {
             new User { FirstName="John",  LastName="Doe",   Email="john@example.com",  Attendees=1 }
          };
-
-         foreach (User user in users)
-         {
-            context.User.Add(user);
-         }
-
+         users.ForEach(user => context.Users.Add(user));
          context.SaveChanges();
 
          // Add Gifts to DB
-         var gifts = new List<GiftRegistry>
+         var gifts = new List<Gift>
          {
             new Gift { Desc="New Car",    Available=true }
-         }
-
-         foreach (Gift gift in gifts)
-         {
-            context.Gift.Add(gift);
-         }
-
+         };
+         gifts.ForEach(gift => context.Gifts.Add(gift));
          context.SaveChanges();
       }
    }

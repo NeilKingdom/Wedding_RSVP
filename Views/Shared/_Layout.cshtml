@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
    <head>
       <meta charset="utf-8" />
-      <title>@ViewBag.Title</title>
+      <title>@ViewData["Title"]</title>
       <link rel="stylesheet" href="~/css/StyleSheet.css" />
       <link rel="stylesheet" href="~/css/ImageCarousel.css" />
    </head>
    <header>
-      <!-- Html.ActionLink() -->
+      <table>
+         <tr>
+            <td><img /></td>
+            @* arg0=Link Text, arg1=Action, arg2=Controller Name *@
+            <td>@Html.ActionLink("Gift Registry", "GiftRegistry", "Home")</td>
+            <td>@Html.ActionLink("RSVP", "RsvpForm", "Home")</td>
+         </tr>
+      </table>
    </header>
    <body>
       <div class="container">
@@ -42,4 +49,5 @@
          <h5>Neil Kingdom - 2022</h5>
       </div>
    </footer>
+   @await RenderSectionAsync("Scripts", required: false)
 </html>

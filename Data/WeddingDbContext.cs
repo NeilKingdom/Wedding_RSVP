@@ -9,6 +9,13 @@ namespace Wedding_RSVP.Data
       {
       }
 
-      public DbSet<UserInfo> Users { get; set; }
+      public DbSet<User> Users { get; set; }
+      public DbSet<Gift> Gifts { get; set; }
+
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+         modelBuilder.Entity<User>().ToTable("User");
+         modelBuilder.Entity<Gift>().ToTable("Gift");
+      }
    }
 }

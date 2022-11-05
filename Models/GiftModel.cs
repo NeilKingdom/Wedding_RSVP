@@ -10,7 +10,6 @@ namespace Wedding_RSVP.Models
       [StringLength(30)]
       public string Desc { get; set; }
 
-      [DataType(DataType.Bool)]
       public bool Available { get; set; }
    }
 }

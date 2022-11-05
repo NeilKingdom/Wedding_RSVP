@@ -1,0 +1,25 @@
+@{ ViewBag["Title"] = "RSVP"; }
+
+<form asp-controller="Home" asp-action="RsvpForm" method="post">
+   <table>
+      <tr>
+         <td>First Name</td>
+         <td><input name="FirstName" /></td>
+      </tr>
+      <tr>
+         <td>Last Name</td>
+         <td><input name="LastName" /></td>
+      </tr>
+      <tr>
+         <td>Email</td>
+         <td><input name="Email" /></td>
+      </tr>
+      <tr>
+         <td>Number of attendees</td>
+         <td><input name="Attendees" /></td>
+      </tr>
+      <tr>
+         <td><input type="submit" value="Submit" /></td>
+      </tr>
+   </table>
+</form>
