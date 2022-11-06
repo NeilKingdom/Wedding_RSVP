@@ -5,9 +5,7 @@ namespace Wedding_RSVP.Data
 {
    public class WeddingDbContext : DbContext
    {
-      public WeddingDbContext(DbContextOptions<WeddingDbContext> options) : base(options)
-      {
-      }
+      public WeddingDbContext(DbContextOptions<WeddingDbContext> options) : base(options) {}
 
       public DbSet<User> Users { get; set; }
       public DbSet<Gift> Gifts { get; set; }

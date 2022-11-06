@@ -5,7 +5,6 @@
    left: 50%;
    transform: translate(-50%, -50%);
    text-align: center;
-   z-index: 50;
 }
 
 /* ----- Slideshow stylings ----- */
@@ -18,7 +17,6 @@
 
 /* Wrapper which wraps all the slideshow images stylings */
 .slideshow-wrapper {
-   margin-top: 500px;
    display: flex;
    /* We give it width as 300% because we are making a
     * 3 image carousel. If you want to make for example,
@@ -26,7 +24,7 @@
    width: 300%;
    height: 100%;
    position: relative;
-   /* you can change the animation settings from below */
+   margin-top: 0;
    animation: slideshow 15s infinite;
 }
 
@@ -54,22 +52,22 @@
    100% { left: -200%; }
 }
 
-/* ----- Carousel control buttons stylings ----- */
+/* ----- Carousel control button stylings ----- */
 .slide-btn {
-   background-color: #bbb;
+   background-color: gainsboro;
+   /* Creates a circle */
    border-radius: 50%;
-   border: .2rem solid #d38800;
-   width: 1.2rem;
-   height: 1.2rem;
-   outline: none;
-   cursor: pointer;
-   /* stylings for positioning the buttons at
-    * the bottom of the carousel */
+   opacity: 0.5;
+   width: 10rem;
+   height: 10rem;
+   z-index: 50;
+   /* All required to have buttons go on top of images */
    position: absolute;
-   bottom: 3%;
+   top: 50%;
    left: 50%;
-   transform: translateX(-50%);
-   z-index: 70;
+   transform: translate(-50%, -50%);
+   /* Changes cursor to indicate that the element is clickable */
+   cursor: pointer;
 }
 
 /* As we provide position as absolute,
@@ -77,36 +75,13 @@
 * So, we have to place them individually
 * at their correct positions. */
 .slide-btn-1 {
-   left: 45%;
+   left: 10%;
 }
 
 .slide-btn-2 {
-   left: 50%;
+   left: 90%;
 }
 
-.slide-btn-3 {
-   left: 55%;
-}
-
-/* When we focus on the particular button,
- * the animation stops to that particular image
- * to which the button is associated. */
-.slide-btn-1:focus~.slideshow-wrapper {
-   animation: none;
-   left: 0;
-}
-
-.slide-btn-2:focus~.slideshow-wrapper {
-   animation: none;
-   left: -100%;
-}
-
-.slide-btn-3:focus~.slideshow-wrapper {
-   animation: none;
-   left: -200%;
-}
-
-/* When we focus on the button, the background color changes */
-.slide-btn:focus {
-   background-color: #308d46;
+.slide-btn:hover {
+   opacity: 0.75;
 }

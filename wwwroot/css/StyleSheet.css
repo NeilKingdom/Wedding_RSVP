@@ -1,16 +1,61 @@
 html {
-   box-sizing: border-box;
    margin: 0;
    padding: 0;
 }
 
-header {
-   background-color: linen;
-   height: 100px;
-}
-
 body {
    background-color: #f5f5f5;
+}
+
+header {
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: flex-end;
+   align-items: center;
+   background-color: linen;
+   height: 100px;
+   width: 100%;
+   position: fixed;
+   z-index: 100;
+}
+
+.hlink {
+   font-size: 32px;
+   margin: 0 20px 0 20px;
+   padding: 10px 10px 10px 10px;
+}
+
+.logo {
+   display: flex;
+   flex-grow: 3;
+}
+
+.rsvp {
+   border-radius: 10px;
+   background-color: #f4c2c2;
+}
+
+main {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+}
+
+h3 {
+   width: 100%;
+   background-color: linen;
+}
+
+.section {
+   display: flex;
+   justify-content: flex-start;
+   margin: 40px 0 40px 0;
+   font-family: "Calisto MT", serif;
+   font-style: italic;
 }
 
 footer {
@@ -19,16 +64,22 @@ footer {
    position: relative;
 }
 
-.container {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   margin: auto;
-   width: 800px;
-   height: 600px;
+a:link {
+   color: #bc987e;
+   text-decoration: none;
 }
 
-.content {
-   position: relative;
+a:visited {
+   color: #bc987e;
+   text-decoration: none;
+}
+
+a:hover {
+   color: #bc987e;
+   text-decoration: none;
+}
+
+a:active {
+   color: #bc987e;
+   text-decoration: none;
 }

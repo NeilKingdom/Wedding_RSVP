@@ -3,51 +3,57 @@
    <head>
       <meta charset="utf-8" />
       <title>@ViewData["Title"]</title>
+
+      <!-- Bootstrap -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="~/css/bootstrap/css/bootstrap.min.css" />
+
       <link rel="stylesheet" href="~/css/StyleSheet.css" />
       <link rel="stylesheet" href="~/css/ImageCarousel.css" />
    </head>
-   <header>
-      <table>
-         <tr>
-            <td><img /></td>
-            @* arg0=Link Text, arg1=Action, arg2=Controller Name *@
-            <td>@Html.ActionLink("Gift Registry", "GiftRegistry", "Home")</td>
-            <td>@Html.ActionLink("RSVP", "RsvpForm", "Home")</td>
-         </tr>
-      </table>
-   </header>
    <body>
-      <div class="container">
+      <header>
+         <div class="logo">
+            <a class="hlink" asp-controller="Home" asp-action="Index">
+               <img alt="Neil & Madison" src="~/img/logo/Logo.png" height="100px" />
+            </a>
+         </div>
+         <a class="hlink" asp-controller="Home" asp-action="GiftRegistry">Gift Registry</a>
+         <a class="hlink rsvp" asp-controller="Home" asp-action="RsvpForm">RSVP</a>
+      </header>
+      <main>
          @RenderBody()
-      </div>
+      </main>
+      <footer>
+         <div>
+            <h2>Contact Information</h2>
+            <br />
+            <ul>
+               <li>Email: Placeholder@gmail.com</li>
+               <li>Phone: +1(613) 000-0000</li>
+               <li>Social Media:</li>
+               <!-- TODO: Add social media tags -->
+               <table>
+                  <tr>
+                     <td>
+                        <img />
+                     </td>
+                     <td>
+                        <img />
+                     </td>
+                     <td>
+                        <img />
+                     </td>
+                  </tr>
+               </table>
+            </ul>
+         </div>
+         <div>
+            <h5>Neil Kingdom - 2022</h5>
+         </div>
+      </footer>
    </body>
-   <footer>
-      <div>
-         <h2>Contact Information</h2>
-         <br />
-         <ul>
-            <li>Email: Placeholder@gmail.com</li>
-            <li>Phone: +1(613) 000-0000</li>
-            <li>Social Media:</li>
-            <!-- Add social media tags -->
-            <table>
-               <tr>
-                  <td>
-                     <img />
-                  </td>
-                  <td>
-                     <img />
-                  </td>
-                  <td>
-                     <img />
-                  </td>
-               </tr>
-            </table>
-         </ul>
-      </div>
-      <div>
-         <h5>Neil Kingdom - 2022</h5>
-      </div>
-   </footer>
    @await RenderSectionAsync("Scripts", required: false)
 </html>
