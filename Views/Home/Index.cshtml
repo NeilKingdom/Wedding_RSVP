@@ -19,47 +19,83 @@
    <!-- Carousel wrapper contains all images -->
    <div class="carousel-inner" role="listbox">
       <div class="item active">
-         <img src="~/img/proposal/wedding1.jpg" />
+         <img src="~/img/proposal/wedding1.png" width="100%" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding2.jpg" />
+         <img src="~/img/proposal/wedding2.png" width="100%" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding3.jpg" />
+         <img src="~/img/proposal/wedding3.png" width="100%" />
+      </div>
+      <div class="item">
+         <img src="~/img/proposal/wedding4.png" width="100%" />
+      </div>
+      <div class="item">
+         <img src="~/img/proposal/wedding5.png" width="100%" />
+      </div>
+      <div class="item">
+         <img src="~/img/proposal/wedding6.png" width="100%" />
+      </div>
+      <div class="item">
+         <img src="~/img/proposal/wedding7.png" width="100%" />
+      </div>
+      <div class="item">
+         <img src="~/img/proposal/wedding8.png" width="100%" />
+      </div>
+      <div class="item">
+         <img src="~/img/proposal/wedding9.png" width="100%" />
       </div>
    </div>
 
    <!-- Prev/Next buttons -->
-   <a class="left slide-btn slide-btn-1" href="#myCarousel" role="button" data-slide="prev"></a>
-   <a class="right slide-btn slide-btn-2" href="#myCarousel" role="button" data-slide="next"></a>
+   <a class="left slide-btn slide-btn-1" href="#myCarousel" role="button" data-slide="prev">
+      <img src="~/img/icons/chevron_left.png" width="30rem" height="30rem" />
+   </a>
+   <a class="right slide-btn slide-btn-2" href="#myCarousel" role="button" data-slide="next">
+      <img src="~/img/icons/chevron_right.png" width="30rem" height="30rem" />
+   </a>
 </div>
 
 <article>
-   <div class="section">
-      <h3>
-         Our Story
-      </h3>
-      <br />
-      <p>
-         Placeholder text
-      </p>
+   <div class="col-left">
+      <div class="section">
+         <h3>
+            Our Story
+         </h3>
+         <br />
+         <p>
+            Placeholder text
+         </p>
+      </div>
+      <div class="section">
+         <h3>
+            Location
+         </h3>
+         <br />
+         <p>
+            Placeholder text
+            <div class="mapouter">
+               <div class="gmap_canvas">
+                  <iframe width="500" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=century%20weddings&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                  </iframe>
+                  <style>
+                     .mapouter{position:relative;text-align:right;height:350px;width:500px;}
+                     .gmap_canvas {overflow:hidden;background:none!important;height:350px;width:500px;}
+                  </style>
+               </div>
+            </div>
+         </p>
+      </div>
    </div>
-   <div class="section">
-      <h3>
-         Location
-      </h3>
-      <br />
-      <p>
-         Placeholder text
-      </p>
-   </div>
-   <div class="section">
-      <h3>
-         FAQ
-      </h3>
-      <br />
-      <p>
-         Placeholder text
-      </p>
+   <div class="col-right">
+      <div class="section">
+         <h3>
+            FAQ
+         </h3>
+         <br />
+         <p>
+            Placeholder text
+         </p>
+      </div>
    </div>
 </article>

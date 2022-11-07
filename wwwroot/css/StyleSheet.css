@@ -45,23 +45,58 @@ main {
    width: 100%;
 }
 
+article {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-around;
+   align-items: baseline;
+   width: 50%;
+   margin: 5% 0 5% 0;
+}
+
+.col-left .col-right {
+   width: 25%;
+}
+
 h3 {
-   width: 100%;
+   padding: 3px 3px 3px 3px;
    background-color: linen;
 }
 
 .section {
-   display: flex;
-   justify-content: flex-start;
-   margin: 40px 0 40px 0;
    font-family: "Calisto MT", serif;
    font-style: italic;
 }
 
-footer {
-   background-color: mistyrose;
-   height: 300px;
+#map {
+   height: 400px;
+   width: 400px;
+}
+
+.footer {
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: center;
+   align-items: center;
+   background-color: #c19c98;
+   height: 250px;
    position: relative;
+   margin: 0;
+}
+
+.footer-bar {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   background-color: #90686d;
+   height: 50px;
+   width: 100%;
+   margin: 0;
+}
+
+.footer-bar > * {
+   color: #bfc1c2;
+   margin-left: 5%;
 }
 
 a:link {
