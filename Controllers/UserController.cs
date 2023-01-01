@@ -34,7 +34,7 @@ namespace Wedding_RSVP
       public IActionResult Create() => View();
 
       [HttpPost]
-      public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Email,Attendees")] User user)
+      public async Task<IActionResult> Create([Bind("ID, FirstName, LastName, Email, Attendees")] User user)
       {
          if (ModelState.IsValid)
          {
@@ -53,7 +53,7 @@ namespace Wedding_RSVP
       }
 
       [HttpPost]
-      public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,Email,Attendees")] User user)
+      public async Task<IActionResult> Edit(int id, [Bind("FirstName, LastName, Email, Attendees")] User user)
       {
          if (id != user.ID)
          {

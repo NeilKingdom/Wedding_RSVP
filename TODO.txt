@@ -1,0 +1,5 @@
+1.   Add name + date banner above image carousel
+2.   JavaScript files not being sourced properly
+3.   Add parallax scroll via react spring
+4.   Hosting platform + database
+5.   Amazon.ca RESTful API
