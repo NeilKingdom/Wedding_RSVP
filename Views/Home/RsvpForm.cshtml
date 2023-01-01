@@ -1,25 +1,54 @@
-@{ ViewData["Title"] = "RSVP"; }
+@model Wedding_RSVP.Models.User
+@{
+   ViewData["Title"] = "RSVP";
+}
 
-<form asp-controller="Home" asp-action="RsvpForm" method="post">
+<h1>RSVP</h1>
+<form class="form" asp-action="RsvpForm" method="post">
    <table>
       <tr>
-         <td>First Name</td>
-         <td><input name="FirstName" /></td>
+         <td><h2 class="control-label">@Html.DisplayNameFor(model => model.FirstName)</h2></td>
+         <td><input asp-for="FirstName" class="form-control" /></td>
       </tr>
       <tr>
-         <td>Last Name</td>
-         <td><input name="LastName" /></td>
+         <td />
+         <td><span asp-validation-for="FirstName" class="text-danger"></span></td>
       </tr>
       <tr>
-         <td>Email</td>
-         <td><input name="Email" /></td>
+         <td><h2 class="control-label">@Html.DisplayNameFor(model => model.LastName)</h2></td>
+         <td><input asp-for="LastName" class="form-control" /></td>
       </tr>
       <tr>
-         <td>Number of attendees</td>
-         <td><input name="Attendees" /></td>
+         <td />
+         <td><span asp-validation-for="LastName" class="text-danger"></span></td>
       </tr>
       <tr>
-         <td><input type="submit" value="Submit" /></td>
+         <td><h2 class="control-label">@Html.DisplayNameFor(model => model.Email)</h2></td>
+         <td><input asp-for="Email" class="form-control" /></td>
+      </tr>
+      <tr>
+         <td />
+         <td><span asp-validation-for="Email" class="text-danger"></span></td>
+      </tr>
+      <tr>
+         <td><h2 class="control-label">Number of Attendees</h2></td>
+         <td><input id="attendees" type="number" min=0 max=20 asp-for="Attendees" class="form-control" /></td>
+         <td>
+            <button class="inc-dec" onclick="increment()"><i class="fa-solid fa-plus"></i></button>
+            <button class="inc-dec" onclick="decrement()"><i class="fa-solid fa-minus"></i></button>
+         </td>
+      </tr>
+      <tr>
+         <td />
+         <td><span asp-validation-for="Attendees" class="text-danger"></span></td>
+      </tr>
+      <tr>
+         <td><a asp-action="Index">Back</a></td>
+         <td><input type="submit" value="Continue" /></td>
       </tr>
    </table>
 </form>
+
+@section Scripts {
+   @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

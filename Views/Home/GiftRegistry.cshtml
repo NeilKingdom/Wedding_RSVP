@@ -1,5 +1,33 @@
-@{ ViewData["Title"] = "Gift Registry"; }
+@model Wedding_RSVP.Models.ViewModels.UserGiftViewModel
+@{
+   ViewData["Title"] = "Gift Registry";
+}
 
-<h1>Gift Registry</h1>
-
-@* TODO: Get list of gifts from controller and display them *@
+<h1 style="margin-top: 100px">Gift Registry</h1>
+<table>
+   <thead>
+      <tr>
+         <th>Example Image</th>
+         <th>Description</th>
+         <th>Select Item</th>
+      </tr>
+   </thead>
+   <tbody>
+      @if (Model.Gifts != null && Model.Gifts.Count() > 0)
+      {
+         @foreach (var gift in Model.Gifts)
+         {
+            <tr>
+               <th><img src="@gift.Url" width=60 height=20 /></th>
+               <th>@gift.Desc</th>
+               <!-- Add asp-action to handle event and asp-route-id to pass user ID -->
+               <th><input type="checkbox" /></th>
+            </tr>
+         }
+      }
+      else
+      {
+         <p>No Gifts have been added to the registry</p>
+      }
+   </tbody>
+</table>

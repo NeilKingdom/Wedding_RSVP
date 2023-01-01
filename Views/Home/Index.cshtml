@@ -1,58 +1,45 @@
-@{ ViewData["Title"] = "Index"; }
-
-<script>
-   $(document).ready(function(){
-      // Activate Carousel
-      $("#myCarousel").carousel("cycle");
-
-      // Enable Carousel Controls
-      $(".left").click(function(){
-         $("#myCarousel").carousel("prev");
-      });
-      $(".right").click(function(){
-         $("#myCarousel").carousel("next");
-      });
-   });
-</script>
+@{
+   ViewData["Title"] = "Index";
+}
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="false">
    <!-- Carousel wrapper contains all images -->
    <div class="carousel-inner" role="listbox">
       <div class="item active">
-         <img src="~/img/proposal/wedding1.png" width="100%" />
+         <img src="~/img/proposal/wedding1.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding2.png" width="100%" />
+         <img src="~/img/proposal/wedding2.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding3.png" width="100%" />
+         <img src="~/img/proposal/wedding3.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding4.png" width="100%" />
+         <img src="~/img/proposal/wedding4.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding5.png" width="100%" />
+         <img src="~/img/proposal/wedding5.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding6.png" width="100%" />
+         <img src="~/img/proposal/wedding6.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding7.png" width="100%" />
+         <img src="~/img/proposal/wedding7.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding8.png" width="100%" />
+         <img src="~/img/proposal/wedding8.png" />
       </div>
       <div class="item">
-         <img src="~/img/proposal/wedding9.png" width="100%" />
+         <img src="~/img/proposal/wedding9.png" />
       </div>
    </div>
 
    <!-- Prev/Next buttons -->
    <a class="left slide-btn slide-btn-1" href="#myCarousel" role="button" data-slide="prev">
-      <img src="~/img/icons/chevron_left.png" width="30rem" height="30rem" />
+      <i class="chevron fa-3x fa-solid fa-chevron-left"></i>
    </a>
    <a class="right slide-btn slide-btn-2" href="#myCarousel" role="button" data-slide="next">
-      <img src="~/img/icons/chevron_right.png" width="30rem" height="30rem" />
+      <i class="chevron fa-3x fa-solid fa-chevron-right"></i>
    </a>
 </div>
 
@@ -64,7 +51,12 @@
          </h3>
          <br />
          <p>
-            Placeholder text
+            Madison and Neil met at Reedemer Christian High.<br />
+            After a year of getting to know each other, they began<br />
+            dating, and slowly fell in love. After high school, they<br />
+            both took a gap year to save up for College. Now that<br />
+            College is nearly over, Neil and Madison have decided<br />
+            to finally tie the knot after nearly 5 wonderful years.
          </p>
       </div>
       <div class="section">
@@ -73,10 +65,11 @@
          </h3>
          <br />
          <p>
-            Placeholder text
+            The venue will be held at Equinelle Golf Club in Kemptville, Ontario.<br />
+            Please see the map below for directions.
             <div class="mapouter">
                <div class="gmap_canvas">
-                  <iframe width="500" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=century%20weddings&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                  <iframe width="500" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=140%20Equinelle%20Drive%20K0G%201J0%20Kemptville&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                   </iframe>
                   <style>
                      .mapouter{position:relative;text-align:right;height:350px;width:500px;}
@@ -94,7 +87,13 @@
          </h3>
          <br />
          <p>
-            Placeholder text
+            <strong>Q: Are children able to attend</strong><br />
+            A: Unfortunately, children are not invited to the<br />
+            ceremony or reception unless an exception was explicitely<br />
+            granted.<br />
+            <strong>Q: Will people with special dietary needs be accomodated?</strong><br />
+            A: Yes, but please notify us in advance if you have any<br />
+            dietary restrictions that ought to be considered.<br />
          </p>
       </div>
    </div>

@@ -1,1 +1,5 @@
-wwwroot/img/proposal
+appsettings.Development.json
+appsettings.json
+wwwroot/img
+obj
+bin

@@ -9,9 +9,10 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="~/css/bootstrap/css/bootstrap.min.css" />
-
+      <!-- FontAwesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <!-- Personal StyleSheet -->
       <link rel="stylesheet" href="~/css/StyleSheet.css" />
-      <link rel="stylesheet" href="~/css/ImageCarousel.css" />
    </head>
    <body>
       <header>
@@ -20,34 +21,30 @@
                <img alt="Neil & Madison" src="~/img/logo/Logo.png" height="100px" />
             </a>
          </div>
-         <a class="hlink" asp-controller="Home" asp-action="GiftRegistry">Gift Registry</a>
-         <a class="hlink rsvp" asp-controller="Home" asp-action="RsvpForm">RSVP</a>
+         <div class="hlink">@Html.ActionLink("Gift Registry", "GiftRegistry", "Home")</div>
+         <div class="hlink">@Html.ActionLink("RSVP", "RsvpForm", "Home")</div>
       </header>
       <main>
          @RenderBody()
       </main>
       <footer>
          <div class="footer">
-            <h2 style="color: linen;">Contact Information</h2>
-            <ul>
-               <li>Email: thekingdoms@gmail.com</li>
-               <li>Phone: +1(613) 206-3707</li>
-               <li>Social Media:</li>
-               <table>
-                  <tr>
-                     <td>
-                        <a>
-                           <img src="~/img/icons/facebook.png" height="50px" width="50px" alt="facebook" />
-                        </a>
-                     </td>
-                     <td>
-                        <a>
-                           <img src="~/img/icons/instagram.png" width="50px" alt="instagram" />
-                        </a>
-                     </td>
-                  </tr>
-               </table>
-            </ul>
+            <h1 style="color: linen;">Contact Information</h1>
+            <h4 style="background-color: #c19c98;">
+               <ul>
+                  <li>
+                     <i class="fa-regular fa-envelope"></i>
+                     Email: <a href="mailto:neilandmadison@gmail.com">neilandmadison@gmail.com</a>
+                  </li>
+                  <li><i class="fa-solid fa-phone"></i>&nbsp;Phone: (613) 206-3707</li>
+                  <li>
+                     Social Media:
+                     <a href="https://www.facebook.com/madison.mainville.5"><i class="fontawesome fa-lg fa-brands fa-facebook-square"></i></a>
+                     <!-- TODO: Link this to an actual pages -->
+                     <a href=""><i class="fontawesome fa-lg fa-brands fa-instagram"></i></a>
+                  </li>
+               </ul>
+            </h4>
          </div>
          <div class="footer-bar">
             <h5>&commat;Neil Kingdom - 2022</h5>
