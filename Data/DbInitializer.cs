@@ -17,7 +17,7 @@ namespace Wedding_RSVP.Data
          // Add users to DB
          var users = new List<User>
          {
-            new User { FirstName="John",  LastName="Doe",   Email="john@example.com",  Attendees=1 }
+            new User { FirstName="John",  LastName="Doe",   Email="john@example.com",  NumAttendees=1 }
          };
          users.ForEach(user => context.Users.Add(user));
          context.SaveChanges();

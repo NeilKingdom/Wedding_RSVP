@@ -9,18 +9,20 @@ namespace Wedding_RSVP.Data
       {}
 
       public DbSet<User> Users { get; set; }
+      public DbSet<Attendee> Attendees { get; set; }
       public DbSet<Gift> Gifts { get; set; }
 
       protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
          modelBuilder.Entity<User>().ToTable("User");
+         modelBuilder.Entity<Attendee>().ToTable("Attendee");
          modelBuilder.Entity<Gift>().ToTable("Gift");
 
          // Determine the dependent entity for 1:1 relationship
          modelBuilder.Entity<User>()
             .HasOne(a => a.Gift)
             .WithOne(b => b.User)
-            .HasForeignKey<Gift>(b => b.GiftRef);
+            .HasForeignKey<Gift>(b => b.UserID);
       }
    }
 }

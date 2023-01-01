@@ -3,3 +3,7 @@
 3.   Add parallax scroll via react spring
 4.   Hosting platform + database
 5.   Amazon.ca RESTful API
+6.   RESTful API for user count, gift registry mgmnt., attendee mgmnt., etc.
+7.   Make UI mobile friendly
+8.   Encrypt emails
+9.   Multilang support?

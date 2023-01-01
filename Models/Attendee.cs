@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wedding_RSVP.Models
 {
-   public class User
+   public class Attendee
    {
-      [Column("UserID")]
+      [Column("AttendeeID")]
       public int ID { get; set; }
 
       [Required]
@@ -19,16 +19,7 @@ namespace Wedding_RSVP.Models
       [StringLength(20, MinimumLength = 2)]
       public string LastName { get; set; }
 
-      [Required]
-      [EmailAddress]
-      public string Email { get; set; }
-
-      [Required]
-      [Range(1, 15)]
-      public int NumAttendees { get; set; }
-
       // Navigation props
-      public virtual Gift Gift { get; set; }
-      public virtual IList<Attendee> Attendees { get; set; }
+      public virtual User User { get; set; }
    }
 }

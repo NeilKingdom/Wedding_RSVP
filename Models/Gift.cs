@@ -10,7 +10,7 @@ namespace Wedding_RSVP.Models
       public int ID { get; set; }
 
       // Foreign key reference
-      public int GiftRef { get; set; }
+      public int UserID { get; set; }
 
       public string Url { get; set; }
 
