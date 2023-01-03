@@ -60,6 +60,12 @@ header {
    width: 30%;
 }
 
+/* A fixed width/height is required to prevent browser from resizing images */
+.carousel {
+   width: 1920px;
+   height: 1080px;
+}
+
 /* Carousel control buttons */
 .slide-btn {
    background-color: gainsboro;
