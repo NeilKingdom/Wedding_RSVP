@@ -2,6 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Wedding_RSVP.Data;
 using Wedding_RSVP.Models;
 using Wedding_RSVP.Models.ViewModels;
+using HtmlAgilityPack;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.Net;
+using System.Text;
+using System.IO;
 
 namespace Wedding_RSVP.Controllers
 {
@@ -20,12 +27,12 @@ namespace Wedding_RSVP.Controllers
       public IActionResult RsvpForm() => View();
 
       [HttpPost]
-      public IActionResult RsvpForm(User user)
+      public async Task<IActionResult> RsvpForm([Bind("FirstName, LastName, Email, NumAttendees")]User user)
       {
          if (!ModelState.IsValid) return View();
 
-         // TODO: Save user information to DB
-
+         _context.Add(user);
+         await _context.SaveChangesAsync();
          return RedirectToAction(nameof(Success));
       }
 
@@ -33,6 +40,7 @@ namespace Wedding_RSVP.Controllers
       {
          UserGiftViewModel userGift = new()
          {
+            // TODO: Set user to the user matching email in session data
             User = _context.Users.FirstOrDefault(),
             Gifts = _context.Gifts
          };

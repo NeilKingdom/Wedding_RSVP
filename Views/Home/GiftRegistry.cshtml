@@ -3,31 +3,43 @@
    ViewData["Title"] = "Gift Registry";
 }
 
-<h1 style="margin-top: 100px">Gift Registry</h1>
-<table>
-   <thead>
-      <tr>
-         <th>Example Image</th>
-         <th>Description</th>
-         <th>Select Item</th>
-      </tr>
-   </thead>
-   <tbody>
-      @if (Model.Gifts != null && Model.Gifts.Count() > 0)
-      {
-         @foreach (var gift in Model.Gifts)
-         {
+<div class="registry">
+   <h1>Gift Registry</h1>
+   @if (Model.Gifts != null && Model.Gifts.Count() > 0)
+   {
+      <table class="table table-gift">
+         <thead>
             <tr>
-               <th><img src="@gift.Url" width=60 height=20 /></th>
-               <th>@gift.Desc</th>
-               <!-- Add asp-action to handle event and asp-route-id to pass user ID -->
-               <th><input type="checkbox" /></th>
+               <th scope="col">@Html.DisplayNameFor(model => model.Gifts.FirstOrDefault().ImgUrl)</th>
+               <th scope="col">Link</th>
+               <th scope="col">@Html.DisplayNameFor(model => model.Gifts.FirstOrDefault().EstPrice)</th>
+               <th scope="col">@Html.DisplayNameFor(model => model.Gifts.FirstOrDefault().Desc)</th>
+               <th scope="col">Select Item</th>
             </tr>
-         }
-      }
-      else
-      {
-         <p>No Gifts have been added to the registry</p>
-      }
-   </tbody>
-</table>
+         </thead>
+         <tbody>
+            @foreach (var gift in Model.Gifts)
+            {
+               if (gift.Available)
+               {
+                  string imageSrc = Url.Content(gift.ImgUrl);
+                  <tr scope="row">
+                     <th><img src="@imageSrc" width=180 height=100 /></th>
+                     <th><a href="@gift.SiteUrl">Go to Website</a></th>
+                     <th>@string.Format("${0:0.00}", gift.EstPrice)</th>
+                     <th>@gift.Desc</th>
+                     <th>@Html.CheckBoxFor(model => gift.Available)</th>
+                  </tr>
+               }
+            }
+         </tbody>
+      </table>
+   }
+   else
+   {
+      <h5>No Gifts have been added to the registry</h5>
+   }
+
+   <button asp-action="GetPrice">Amazon Price</button>
+   <p>@ViewBag.Price</p>
+</div>

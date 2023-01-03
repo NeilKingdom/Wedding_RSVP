@@ -9,11 +9,20 @@ namespace Wedding_RSVP.Models
       [Column("GiftID")]
       public int ID { get; set; }
 
-      // Foreign key reference
-      public int UserID { get; set; }
+      // Foreign key reference (null if no user relationship exists)
+      public int? UserID { get; set; }
 
-      public string Url { get; set; }
+      [Display(Name = "Example Image")]
+      public string ImgUrl { get; set; }
 
+      public string SiteUrl { get; set; }
+
+      [DataType(DataType.Currency)]
+      [Column(TypeName = "money")]
+      [Display(Name = "Estimated Price")]
+      public double EstPrice { get; set; }
+
+      [Display(Name = "Description")]
       [StringLength(50)]
       public string Desc { get; set; }
 

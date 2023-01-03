@@ -2,75 +2,75 @@
    ViewData["Title"] = "Index";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="false">
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-interval="5000" data-pause="false">
    <!-- Carousel wrapper contains all images -->
-   <div class="carousel-inner" role="listbox">
-      <div class="item active">
-         <img src="~/img/proposal/wedding1.png" />
+   <div class="carousel-inner">
+      <div class="carousel-item active">
+         <img src="~/img/proposal/wedding1.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding2.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding2.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding3.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding3.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding4.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding4.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding5.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding5.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding6.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding6.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding7.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding7.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding8.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding8.png" class="d-block w-100" />
       </div>
-      <div class="item">
-         <img src="~/img/proposal/wedding9.png" />
+      <div class="carousel-item">
+         <img src="~/img/proposal/wedding9.png" class="d-block w-100" />
       </div>
    </div>
 
    <!-- Prev/Next buttons -->
-   <a class="left slide-btn slide-btn-1" href="#myCarousel" role="button" data-slide="prev">
+   <button class="carousel-control-prev slide-btn slide-btn-1" data-bs-target="#myCarousel" data-bs-slide="prev">
       <i class="chevron fa-3x fa-solid fa-chevron-left"></i>
-   </a>
-   <a class="right slide-btn slide-btn-2" href="#myCarousel" role="button" data-slide="next">
+   </button>
+   <button class="carousel-control-next slide-btn slide-btn-2" data-bs-target="#myCarousel" data-bs-slide="next">
       <i class="chevron fa-3x fa-solid fa-chevron-right"></i>
-   </a>
+   </button>
 </div>
 
 <article>
+   <!-- All content will belong in the left-side column -->
    <div class="col-left">
       <div class="section">
-         <h3>
-            Our Story
-         </h3>
+         <h2 class="section-header">
+            <strong>Our Story</strong>
+         </h2>
          <br />
          <p>
-            Madison and Neil met at Reedemer Christian High.<br />
-            After a year of getting to know each other, they began<br />
-            dating, and slowly fell in love. After high school, they<br />
-            both took a gap year to save up for College. Now that<br />
-            College is nearly over, Neil and Madison have decided<br />
-            to finally tie the knot after nearly 5 wonderful years.
+            &emsp;&emsp;
+            Madison and Neil met at Reedemer Christian High.
+            After a year of getting to know each other, they began dating, and slowly fell in love.
+            After high school, they both took a gap year to save up for College.
+            Now that College is nearly over, Neil and Madison have decided to finally tie the knot after nearly 5 wonderful years.
          </p>
       </div>
       <div class="section">
-         <h3>
-            Location
-         </h3>
+         <h2 class="section-header">
+            <strong>Location</strong>
+         </h2>
          <br />
          <p>
-            The venue will be held at Equinelle Golf Club in Kemptville, Ontario.<br />
+            &emsp;&emsp;
+            The venue will be held at Equinelle Golf Club in Kemptville, Ontario.
             Please see the map below for directions.
             <div class="mapouter">
                <div class="gmap_canvas">
-                  <iframe width="500" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=140%20Equinelle%20Drive%20K0G%201J0%20Kemptville&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                  </iframe>
+                  <iframe width="500" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=140%20Equinelle%20Drive%20K0G%201J0%20Kemptville&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                   <style>
                      .mapouter{position:relative;text-align:right;height:350px;width:500px;}
                      .gmap_canvas {overflow:hidden;background:none!important;height:350px;width:500px;}
@@ -80,20 +80,18 @@
          </p>
       </div>
    </div>
+   <!-- All content will belong in the right-side column -->
    <div class="col-right">
       <div class="section">
-         <h3>
-            FAQ
-         </h3>
+         <h2 class="section-header">
+            <strong>FAQ</strong>
+         </h2>
          <br />
          <p>
             <strong>Q: Are children able to attend</strong><br />
-            A: Unfortunately, children are not invited to the<br />
-            ceremony or reception unless an exception was explicitely<br />
-            granted.<br />
+            A: Unfortunately, children are not invited to the ceremony or reception unless an exception was explicitely granted.<br />
             <strong>Q: Will people with special dietary needs be accomodated?</strong><br />
-            A: Yes, but please notify us in advance if you have any<br />
-            dietary restrictions that ought to be considered.<br />
+            A: Yes, but please notify us in advance if you have any dietary restrictions that ought to be considered.
          </p>
       </div>
    </div>

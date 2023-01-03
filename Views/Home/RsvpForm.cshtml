@@ -32,7 +32,7 @@
       </tr>
       <tr>
          <td><h2 class="control-label">Number of Attendees</h2></td>
-         <td><input id="attendees" type="number" min=0 max=20 asp-for="Attendees" class="form-control" /></td>
+         <td><input asp-for="NumAttendees" id="attendees" type="number" min=0 max=20 class="form-control" /></td>
          <td>
             <button class="inc-dec" onclick="increment()"><i class="fa-solid fa-plus"></i></button>
             <button class="inc-dec" onclick="decrement()"><i class="fa-solid fa-minus"></i></button>

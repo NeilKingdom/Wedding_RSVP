@@ -12,7 +12,7 @@ namespace Wedding_RSVP
          // Add services to the container
          builder.Services.AddControllersWithViews();
          var connection = builder.Configuration.GetConnectionString("DefaultConnection");
-         builder.Services.AddDbContext<WeddingDbContext>(options => options.UseSqlServer(connection));
+         builder.Services.AddDbContext<WeddingDbContext>(options => options.UseNpgsql(connection));
 
          builder.Services.AddMvc().AddSessionStateTempDataProvider();
          builder.Services.AddSession();

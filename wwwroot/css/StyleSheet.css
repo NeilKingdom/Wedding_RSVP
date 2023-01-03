@@ -1,110 +1,174 @@
+/* TODO: Split this css file into one CSS file per page */
+
+/* DOM root */
 html {
    margin: 0;
    padding: 0;
+   width: 100%;
+   height: 100%;
+   overflow-x: hidden;
 }
 
+/* Universal background color */
 body {
    background-color: #f5f5f5;
 }
 
+/* Banner at the top of every page */
 header {
+   /* Flex settings */
    display: flex;
    flex-flow: row nowrap;
-   justify-content: flex-end;
+   justify-content: flex-start;
    align-items: center;
+
    background-color: linen;
-   height: 100px;
+   height: 5%;
    width: 100%;
    position: fixed;
+   /*
+      The banner should be above all
+      content since the links to the
+      other pages are top priority
+   */
    z-index: 100;
 }
 
-.hlink {
-   font-size: 32px;
+/* Home page logo */
+.logo {
+   height: 100px;
+}
+
+/* Header links (Gift Registry + RSVP) */
+.hlink,
+.hlink:link,
+.hlink:hover,
+.hlink:active,
+.hlink:visited {
+   color: #bc987e;
+   font-size: 2.5em;
    margin: 0 20px 0 20px;
    padding: 10px 10px 10px 10px;
 }
 
-.logo {
-   display: flex;
-   flex-grow: 3;
+/* Header is split into 2 columns. The logo column occupies 80%, the hlink column occupies 20% */
+.hleft {
+   width: 70%;
 }
 
-/* ----- Carousel control button stylings ----- */
+.hright {
+   width: 30%;
+}
+
+/* Carousel control buttons */
 .slide-btn {
    background-color: gainsboro;
-   /* Creates a circle */
-   border-radius: 50%;
+   border-radius: 50%; /* Creates a circle */
    opacity: 0.5;
    width: 10rem;
    height: 10rem;
-   z-index: 50;
-   /* All required to have buttons go on top of images */
-   position: absolute;
+   z-index: 50; /* Position above images but below header */
+   position: absolute; /* Required to have buttons go on top of images */
+   /* Center buttons within the parent element */
    top: 50%;
    left: 50%;
+   /* Move from center */
    transform: translate(-50%, -50%);
-   /* Changes cursor to indicate that the element is clickable */
-   cursor: pointer;
-}
-
-/*
-   As we provide position as absolute,
-   the buttons places one over the other.
-   So, we have to place them individually
-   at their correct positions.
- */
-.slide-btn-1 {
-   left: 10%;
-}
-
-.slide-btn-2 {
-   left: 90%;
+   cursor: pointer; /* Changes cursor to indicate that the element is clickable */
 }
 
 .slide-btn:hover {
    opacity: 0.75;
 }
 
+/* Left button positioned 10% from left side of screen */
+.slide-btn-1 {
+   left: 10%;
+}
+
+/* Right button positioned 10% from right side of screen */
+.slide-btn-2 {
+   left: 90%;
+}
+
+/* The fontawesome chevron icons for carousel buttons */
 .chevron {
    color: darkgray;
-   position: absolute;
+   position: absolute; /* Required to have chevrons go on top of buttons */
+   /* Center chevrons within parent element (the carousel buttons) */
    top: 50%;
    left: 50%;
+   /* Move from center */
    transform: translate(-50%, -50%);
 }
 
+/* Main page content */
 main {
+   /* Flex settings */
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   margin: 0;
-   padding: 0;
+}
+
+/* Article is primarily used for large text entries on the home page */
+article {
+   /* Flex settings */
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-between; /* We don't need space-around since width is only 50% */
+   align-items: baseline; /* This will align text entries based on the headings */
+
+   width: 60%; /* Leave 20% for column padding (see below) */
+   margin: 5% 0 5% 0; /* Top/bottom margins */
+}
+
+/* Article is split into 2 columns, each occupying 1/5 of the total space */
+.col-left {
+   width: 50%; /* 50% of the 60% in article = 30% */
+   padding-right: 10%;
+}
+
+.col-right {
+   width: 50%; /* 50% of the 60% in article = 30% */
+   padding-left: 10%;
+}
+
+/* Section header */
+.section-header {
+   padding: 3px 3px 3px 30px;
+   background-color: linen;
+}
+
+/* Section = article entry (header + paragraph) */
+.section {
+   font-family: "Calisto MT", serif;
+   font-style: italic;
+   font-size: 2em;
+}
+
+/* The Gift Registry page */
+.registry {
+   margin-top: 7%; /* TODO: Temporary */
+   width: 50%;
+}
+
+/* The list of available gifts in the registry */
+.gift-table {
+   /* Flex settings */
+   display: flex;
+   align-items: center;
+
+   font-size: 2rem;
    width: 100%;
 }
 
-article {
-   display: flex;
-   flex-flow: row wrap;
-   justify-content: space-around;
-   align-items: baseline;
-   width: 50%;
-   margin: 5% 0 5% 0;
-}
-
-.col-left .col-right {
-   width: 25%;
-}
-
-.form {
-   margin: 100px 100px 100px 100px;
-}
-
+/* TODO: What is this? */
 td {
    padding: 25px;
 }
 
+/* Custom increment/decrement buttons */
 .inc-dec {
    color: darkgray;
    background-color: white;
@@ -119,32 +183,32 @@ td {
    background-color: #f2f3f4;
 }
 
-/* TODO: Probably shouldn't apply this to all h3s... */
-h3 {
-   padding: 3px 3px 3px 3px;
-   background-color: linen;
-}
-
-.section {
-   font-family: "Calisto MT", serif;
-   font-style: italic;
-   font-size: large;
+/*
+   Fontawesome icons used in the footer (fb, Insta.)
+   and override for email anchor text
+*/
+.fontawesome,
+.email {
+   color: #90686d;
 }
 
 .fontawesome {
-   color: #90686d;
    margin: 0 2px 0 2px;
 }
 
-.fontawesome:hover {
+.fontawesome:hover,
+.email:hover {
    color: linen;
 }
 
+/* The page footer */
 .footer {
+   /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
    justify-content: center;
    align-items: center;
+
    background-color: #c19c98;
    width: 100%;
    height: 250px;
@@ -152,25 +216,29 @@ h3 {
    position: relative;
 }
 
+/* Bar spanning the very bottom of the footer */
 .footer-bar {
+   /* Flex settings */
    display: flex;
    justify-content: flex-start;
    align-items: center;
+
    background-color: #90686d;
    width: 100%;
    height: 50px;
    margin: 0;
 }
 
+/* All elements within the footer bar */
 .footer-bar > * {
    color: #bfc1c2;
    margin-left: 5%;
 }
 
+/* Default color for links (must override if you want something different for a specific link) */
 a:link,
 a:visited,
 a:hover,
 a:active {
-   color: #bc987e;
-   text-decoration: none;
+   text-decoration: none; /* Remove underlines on hover */
 }
