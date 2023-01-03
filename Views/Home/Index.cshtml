@@ -47,9 +47,9 @@
    <!-- All content will belong in the left-side column -->
    <div class="col-left">
       <div class="section">
-         <h2 class="section-header">
+         <div class="section-header">
             <strong>Our Story</strong>
-         </h2>
+         </div>
          <br />
          <p>
             &emsp;&emsp;
@@ -60,9 +60,9 @@
          </p>
       </div>
       <div class="section">
-         <h2 class="section-header">
+         <div class="section-header">
             <strong>Location</strong>
-         </h2>
+         </div>
          <br />
          <p>
             &emsp;&emsp;
@@ -70,10 +70,20 @@
             Please see the map below for directions.
             <div class="mapouter">
                <div class="gmap_canvas">
-                  <iframe width="500" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=140%20Equinelle%20Drive%20K0G%201J0%20Kemptville&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                  <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=140%20Equinelle%20Drive%20K0G%201J0%20Kemptville&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                   <style>
-                     .mapouter{position:relative;text-align:right;height:350px;width:500px;}
-                     .gmap_canvas {overflow:hidden;background:none!important;height:350px;width:500px;}
+                     .mapouter {
+                        position: relative;
+                        text-align: right;
+                        width: 20vw;
+                        padding-top: 75%; /* Maintain 4:3 aspect ratio */
+                     }
+                     .gmap_canvas {
+                        overflow: hidden;
+                        background: none !important;
+                        width: 20vw;
+                        padding-top: 75%; /* Maintain 4:3 aspect ratio */
+                     }
                   </style>
                </div>
             </div>
@@ -83,9 +93,9 @@
    <!-- All content will belong in the right-side column -->
    <div class="col-right">
       <div class="section">
-         <h2 class="section-header">
+         <div class="section-header">
             <strong>FAQ</strong>
-         </h2>
+         </div>
          <br />
          <p>
             <strong>Q: Are children able to attend</strong><br />

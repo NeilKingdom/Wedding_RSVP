@@ -23,7 +23,7 @@ header {
    align-items: center;
 
    background-color: linen;
-   height: 5%;
+   height: 5vh;
    width: 100%;
    position: fixed;
    /*
@@ -36,7 +36,7 @@ header {
 
 /* Home page logo */
 .logo {
-   height: 100px;
+   height: 5vh;
 }
 
 /* Header links (Gift Registry + RSVP) */
@@ -46,10 +46,21 @@ header {
 .hlink:active,
 .hlink:visited {
    color: #bc987e;
-   font-size: 2.5em;
+   font-size: 2vh;
    margin: 0 20px 0 20px;
    padding: 10px 10px 10px 10px;
 }
+
+/* Hacky way of setting max font size since there is no such CSS property (works on MOST browsers) */
+/*@media screen and (min-width: 320px) {
+   .hlink,
+   .hlink:link,
+   .hlink:hover,
+   .hlink:active,
+   .hlink:visited {
+      font-size: 34px;
+   }
+}*/
 
 /* Header is split into 2 columns. The logo column occupies 80%, the hlink column occupies 20% */
 .hleft {
@@ -62,8 +73,7 @@ header {
 
 /* A fixed width/height is required to prevent browser from resizing images */
 .carousel {
-   /*width: 60%;
-   padding-top: 56.25%; Maintain aspect ratio of the image (16:9) */
+   padding-top: 7vh;
    width: 60vw;
    height: 40vw;
 }
@@ -91,14 +101,14 @@ header {
    opacity: 0.75;
 }
 
-/* Left button positioned 10% from left side of screen */
+/* Left button positioning. Have to account for the width of the parent element. */
 .slide-btn-1 {
-   left: 10%;
+   left: -10%; /* Negative because of parent width */
 }
 
-/* Right button positioned 10% from right side of screen */
+/* Right button positioning. Have to account for the width of the parent element. */
 .slide-btn-2 {
-   left: 90%;
+   left: 110%; /* Greater than 100% because of parent width */
 }
 
 /* The fontawesome chevron icons for carousel buttons */
@@ -148,18 +158,18 @@ article {
 .section-header {
    padding: 3px 3px 3px 30px;
    background-color: linen;
+   font-size: 1.5vw;
 }
 
 /* Section = article entry (header + paragraph) */
 .section {
    font-family: "Calisto MT", serif;
    font-style: italic;
-   font-size: 2em;
+   font-size: 1.2vw;
 }
 
 /* The Gift Registry page */
 .registry {
-   margin-top: 7%; /* TODO: Temporary */
    width: 50%;
 }
 
@@ -235,8 +245,7 @@ td {
 
    background-color: #90686d;
    width: 100%;
-   height: 50px;
-   margin: 0;
+   padding: 5px 0 5px 0;
 }
 
 /* All elements within the footer bar */
