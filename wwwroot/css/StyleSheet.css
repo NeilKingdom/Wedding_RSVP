@@ -23,7 +23,7 @@ header {
    align-items: center;
 
    background-color: linen;
-   height: 5vh;
+   height: 4vw;
    width: 100%;
    position: fixed;
    /*
@@ -36,7 +36,7 @@ header {
 
 /* Home page logo */
 .logo {
-   height: 5vh;
+   height: 4vw;
 }
 
 /* Header links (Gift Registry + RSVP) */
@@ -46,21 +46,10 @@ header {
 .hlink:active,
 .hlink:visited {
    color: #bc987e;
-   font-size: 2vh;
+   font-size: 2vw;
    margin: 0 20px 0 20px;
    padding: 10px 10px 10px 10px;
 }
-
-/* Hacky way of setting max font size since there is no such CSS property (works on MOST browsers) */
-/*@media screen and (min-width: 320px) {
-   .hlink,
-   .hlink:link,
-   .hlink:hover,
-   .hlink:active,
-   .hlink:visited {
-      font-size: 34px;
-   }
-}*/
 
 /* Header is split into 2 columns. The logo column occupies 80%, the hlink column occupies 20% */
 .hleft {
@@ -73,7 +62,7 @@ header {
 
 /* A fixed width/height is required to prevent browser from resizing images */
 .carousel {
-   padding-top: 7vh;
+   padding-top: 5vw;
    width: 60vw;
    height: 40vw;
 }
@@ -136,11 +125,23 @@ article {
    /* Flex settings */
    display: flex;
    flex-flow: row wrap;
-   justify-content: space-between; /* We don't need space-around since width is only 50% */
+   justify-content: space-between; /* We don't need space-around since width is only 60% */
    align-items: baseline; /* This will align text entries based on the headings */
 
    width: 60%; /* Leave 20% for column padding (see below) */
    margin: 5% 0 5% 0; /* Top/bottom margins */
+}
+
+/* Change to one column on mobile */
+@media only screen and (max-width: 400px) {
+   article {
+      /* Flex settings */
+      display: flex;
+      flex-flow: column nowrap;
+
+      width: 60%;
+      margin: 5% 0 5% 0; /* Top/bottom margins */
+   }
 }
 
 /* Article is split into 2 columns, each occupying 1/5 of the total space */
@@ -149,9 +150,23 @@ article {
    padding-right: 10%;
 }
 
+/* For mobile, display left columns first (by making width 100%), then right columns after */
+@media only screen and (max-width: 400px) {
+   .col-left {
+      width: 100%;
+   }
+}
+
 .col-right {
    width: 50%; /* 50% of the 60% in article = 30% */
    padding-left: 10%;
+}
+
+/* Right columns will go after left columns */
+@media only screen and (max-width: 400px) {
+   .col-right {
+      width: 100%;
+   }
 }
 
 /* Section header */
@@ -166,6 +181,22 @@ article {
    font-family: "Calisto MT", serif;
    font-style: italic;
    font-size: 1.2vw;
+}
+
+/* Map styling */
+.map-responsive {
+   overflow: hidden;
+   padding-bottom: 56.25%;
+   position: relative;
+   height: 0;
+}
+
+.map-responsive iframe {
+   left: 0;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   position: absolute;
 }
 
 /* The Gift Registry page */
@@ -222,7 +253,7 @@ td {
 }
 
 /* The page footer */
-.footer {
+.myfooter {
    /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
@@ -231,9 +262,14 @@ td {
 
    background-color: #c19c98;
    width: 100%;
-   height: 250px;
-   margin: 0;
-   position: relative;
+   height: 10;
+   padding-top: 30px;
+   font-size: 1.3vw;
+}
+
+/* Scale h1 within footer */
+.myfooter > h1 {
+   font-size: 2vw;
 }
 
 /* Bar spanning the very bottom of the footer */
@@ -243,18 +279,21 @@ td {
    justify-content: flex-start;
    align-items: center;
 
+   position: relative;
    background-color: #90686d;
    width: 100%;
-   padding: 5px 0 5px 0;
+   height: 1.5vw;
+   padding: 20px 0 20px 0;
 }
 
 /* All elements within the footer bar */
 .footer-bar > * {
    color: #bfc1c2;
    margin-left: 5%;
+   font-size: 1vw;
 }
 
-/* Default color for links (must override if you want something different for a specific link) */
+/* Global settings for links (must override if you want something different for a specific link) */
 a:link,
 a:visited,
 a:hover,
