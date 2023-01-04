@@ -30,6 +30,24 @@ namespace Wedding_RSVP.Data
                SiteUrl="",
                Desc="New Car",
                Available=true
+            },
+            new Gift {
+               ImgUrl="~/img/thumbnails/car.jpg",
+               SiteUrl="",
+               Desc="New Car",
+               Available=true
+            },
+            new Gift {
+               ImgUrl="~/img/thumbnails/car.jpg",
+               SiteUrl="",
+               Desc="New Car",
+               Available=true
+            },
+            new Gift {
+               ImgUrl="~/img/thumbnails/car.jpg",
+               SiteUrl="",
+               Desc="New Car",
+               Available=true
             }
          };
          gifts.ForEach(gift => context.Gifts.Add(gift));

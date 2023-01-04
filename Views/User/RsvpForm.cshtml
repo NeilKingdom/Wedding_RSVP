@@ -1,0 +1,64 @@
+@model Wedding_RSVP.Models.User
+@{
+   ViewData["Title"] = "RSVP";
+}
+
+<div class="rsvp">
+   <h1>RSVP</h1>
+   <form class="form" asp-action="RsvpForm" method="post">
+      <table class="table">
+         <tr>
+            <td>@Html.DisplayNameFor(model => model.FirstName)</td>
+            <td><input asp-for="FirstName" /></td>
+         </tr>
+         <tr>
+            <td />
+            <td><span asp-validation-for="FirstName" class="text-danger"></span></td>
+         </tr>
+         <tr>
+            <td>@Html.DisplayNameFor(model => model.LastName)</td>
+            <td><input asp-for="LastName" /></td>
+         </tr>
+         <tr>
+            <td />
+            <td><span asp-validation-for="LastName" class="text-danger"></span></td>
+         </tr>
+         <tr>
+            <td>@Html.DisplayNameFor(model => model.Email)</td>
+            <td><input asp-for="Email" /></td>
+         </tr>
+         <tr>
+            <td />
+            <td><span asp-validation-for="Email" class="text-danger"></span></td>
+         </tr>
+         <tr>
+            <td>Number of Attendees (Max of 15)</td>
+            <td>
+               <!-- Using TextBoxFor forces ASP.NET to use a text input instead of a number input -->
+               @Html.TextBoxFor(model => model.NumAttendees)
+               <button id="inc" class="inc-dec">
+                  <i class="fa-solid fa-plus"></i>
+               </button>
+               <button id="dec" class="inc-dec">
+                  <i class="fa-solid fa-minus"></i>
+               </button>
+            </td>
+         </tr>
+         <tr>
+            <td />
+            <td><span asp-validation-for="NumAttendees" class="text-danger"></span></td>
+         </tr>
+         <tr>
+            <td><a asp-action="Index">Back</a></td>
+            <td><input type="submit" value="Continue" /></td>
+         </tr>
+      </table>
+   </form>
+</div>
+
+@section Scripts {
+   <!-- JQuery 1.8.3, recieved from Google CDN -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+   <script src="~/js/attendees-incdec.js"></script>
+   @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

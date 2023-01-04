@@ -19,87 +19,18 @@ namespace Wedding_RSVP
          _context = context;
       }
 
-      public async Task<IActionResult> Index()
-      {
-         return View(await _context.Users.ToListAsync());
-      }
-
-      public async Task<IActionResult> Details(int id)
-      {
-         User user = await _context.Users.FindAsync(id);
-         if (user == null) return NotFound();
-         return View(user);
-      }
-
-      public IActionResult Create() => View();
+      public IActionResult RsvpForm() => View();
 
       [HttpPost]
-      public async Task<IActionResult> Create([Bind("ID, FirstName, LastName, Email, Attendees")] User user)
+      public async Task<IActionResult> RsvpForm([Bind("FirstName, LastName, Email, NumAttendees")]User user)
       {
-         if (ModelState.IsValid)
-         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-         }
-         return View(user);
-      }
+         if (!ModelState.IsValid) return View();
 
-      public async Task<IActionResult> Edit(int id)
-      {
-         User user = await _context.Users.FindAsync(id);
-         if (user == null) return NotFound();
-         return View(user);
-      }
-
-      [HttpPost]
-      public async Task<IActionResult> Edit(int id, [Bind("FirstName, LastName, Email, Attendees")] User user)
-      {
-         if (id != user.ID)
-         {
-            return NotFound();
-         }
-
-         if (ModelState.IsValid)
-         {
-            try
-            {
-               _context.Users.Update(user);
-               await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-               if (await _context.Users.FindAsync(id) == null)
-               {
-                  return NotFound();
-               }
-               else
-               {
-                  throw;
-               }
-            }
-            return RedirectToAction(nameof(Index));
-         }
-         return View(user);
-      }
-
-      public async Task<IActionResult> Delete(int id)
-      {
-         User user = await _context.Users.FindAsync(id);
-         if (user == null) return NotFound();
-         return View(user);
-      }
-
-      [HttpPost]
-      public async Task<IActionResult> DeleteConfirmed(int id)
-      {
-         User user = await _context.Users.FindAsync(id);
-         if (user == null) return NotFound();
-
-         // Remove user from the db
-         _context.Users.Remove(user);
+         _context.Add(user);
          await _context.SaveChangesAsync();
-         return RedirectToAction(nameof(Index));
+         return RedirectToAction(nameof(Success));
       }
+
+      public IActionResult Success() => View();
    }
 }

@@ -201,6 +201,7 @@ article {
 
 /* The Gift Registry page */
 .registry {
+   padding-top: 7vw;
    width: 50%;
 }
 
@@ -210,13 +211,38 @@ article {
    display: flex;
    align-items: center;
 
-   font-size: 2rem;
+   font-size: 2vw;
    width: 100%;
 }
 
-/* TODO: What is this? */
-td {
-   padding: 25px;
+/* Override the ugly look of radio buttons */
+input[type="radio"] {
+	box-sizing: border-box;
+	appearance: none;
+	background: white;
+	outline: 2px solid #000333;
+	border: 3px solid white;
+	width: 16px;
+	height: 16px;
+}
+
+input[type="radio"]:checked {
+   background: #000333;
+}
+
+/* RSVP page */
+.rsvp {
+   padding-top: 7vw;
+   width: 50%;
+}
+
+.rsvp-table {
+   /* Flex setting */
+   display: flex;
+   align-items: center;
+
+   font-size: 2vw;
+   width: 100%;
 }
 
 /* Custom increment/decrement buttons */

@@ -24,7 +24,7 @@ namespace Wedding_RSVP.Models
       public string Email { get; set; }
 
       [Required]
-      [Range(1, 15)]
+      [Range(0, 15)]
       public int NumAttendees { get; set; }
 
       // Navigation props
