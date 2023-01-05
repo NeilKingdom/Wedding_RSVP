@@ -24,11 +24,11 @@ namespace Wedding_RSVP.Models
       public string Email { get; set; }
 
       [Required]
-      [Range(0, 15)]
+      [Range(0, 5)]
       public int NumAttendees { get; set; }
 
       // Navigation props
-      public virtual Gift Gift { get; set; }
+      public virtual IList<Gift> Gifts { get; set; }
       public virtual IList<Attendee> Attendees { get; set; }
    }
 }

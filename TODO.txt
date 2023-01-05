@@ -1,9 +1,10 @@
 1.   Add name + date banner above image carousel
-2.   JavaScript files not being sourced properly
 3.   Add parallax scroll via react spring !!! LEAST PRIORITY !!!
 4.   Hosting platform + database
-5.   Web scraping on Amazon.ca
 6.   RESTful API for user count, gift registry mgmnt., attendee mgmnt., etc.
 7.   Make UI mobile friendly
 8.   Encrypt emails
 9.   Multilang support?
+10.  Store email in session. Check if other users exist with that email
+11.  Don't allow checkout of gifts if the user has not RSVPd
+12.  Display item selected and undo button once confirmed

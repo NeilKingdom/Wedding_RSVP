@@ -215,8 +215,17 @@ article {
    width: 100%;
 }
 
-/* Override the ugly look of radio buttons */
-input[type="radio"] {
+/* Thumbnail properties for gift registry table */
+.thumbnail {
+}
+
+/* Used by JQuery to toggle thumbnail opacity */
+.img-opaque {
+   opacity: 0.4;
+}
+
+/* Override the ugly look of checkboxes */
+.sel-item {
 	box-sizing: border-box;
 	appearance: none;
 	background: white;
@@ -226,7 +235,7 @@ input[type="radio"] {
 	height: 16px;
 }
 
-input[type="radio"]:checked {
+.sel-item:checked {
    background: #000333;
 }
 
@@ -245,6 +254,11 @@ input[type="radio"]:checked {
    width: 100%;
 }
 
+/* For hiding attendee fields */
+.attendee-hidden {
+   display: none !important;
+}
+
 /* Custom increment/decrement buttons */
 .inc-dec {
    color: darkgray;
@@ -258,6 +272,11 @@ input[type="radio"]:checked {
 .inc-dec:hover {
    color: #353839;
    background-color: #f2f3f4;
+}
+
+.rsvp-success {
+   padding-top: 7vw;
+   width: 50%;
 }
 
 /*
@@ -296,6 +315,10 @@ input[type="radio"]:checked {
 /* Scale h1 within footer */
 .myfooter > h1 {
    font-size: 2vw;
+}
+
+.myfooter > table {
+   margin-bottom: 30px;
 }
 
 /* Bar spanning the very bottom of the footer */

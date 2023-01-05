@@ -9,9 +9,6 @@ namespace Wedding_RSVP.Models
       [Column("GiftID")]
       public int ID { get; set; }
 
-      // Foreign key reference (null if no user relationship exists)
-      public int? UserID { get; set; }
-
       [Display(Name = "Example Image")]
       public string ImgUrl { get; set; }
 

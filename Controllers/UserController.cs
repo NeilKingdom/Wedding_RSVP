@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Wedding_RSVP.Data;
 using Wedding_RSVP.Models;
+using Wedding_RSVP.Models.ViewModels;
 
-namespace Wedding_RSVP
+namespace Wedding_RSVP.Controllers
 {
    public class UserController : Controller
    {
@@ -19,16 +20,36 @@ namespace Wedding_RSVP
          _context = context;
       }
 
-      public IActionResult RsvpForm() => View();
+      public IActionResult RsvpForm()
+      {
+         var userAttendeesViewModel = new UserAttendeesViewModel();
+         userAttendeesViewModel.Attendees = new List<Attendee>();
+         for (int i = 0; i < 5; i++)
+            userAttendeesViewModel.Attendees.Add(new Attendee());
+
+         return View(userAttendeesViewModel);
+      }
 
       [HttpPost]
-      public async Task<IActionResult> RsvpForm([Bind("FirstName, LastName, Email, NumAttendees")]User user)
+      public async Task<IActionResult> RsvpForm(UserAttendeesViewModel userAttendeesViewModel)
       {
          if (!ModelState.IsValid) return View();
 
-         _context.Add(user);
+         _context.Users.Add(userAttendeesViewModel.User);
+         // TODO: Add attendees as well
+         foreach (var attendee in userAttendeesViewModel.Attendees)
+            _context.Attendees.Add(attendee);
+
          await _context.SaveChangesAsync();
          return RedirectToAction(nameof(Success));
+      }
+
+      public IActionResult RegisteredList()
+      {
+         var usersViewModel = new UsersViewModel();
+         usersViewModel.Users = _context.Users;
+
+         return View(usersViewModel);
       }
 
       public IActionResult Success() => View();

@@ -9,15 +9,19 @@ namespace Wedding_RSVP.Models
       [Column("AttendeeID")]
       public int ID { get; set; }
 
-      [Required]
-      [DisplayName("First Name")]
-      [StringLength(20, MinimumLength = 2)]
       public string FirstName { get; set; }
 
-      [Required]
-      [DisplayName("Last Name")]
-      [StringLength(20, MinimumLength = 2)]
       public string LastName { get; set; }
+
+      [RegularExpression(@"[a-zA-Z]{2, 20} [a-zA-z]{2, 20}")]
+      public string FullName {
+         get => $"{FirstName} {LastName}";
+         set {
+            string[] split = value.Split(" ");
+            FirstName = split[0];
+            LastName = split[1];
+         }
+      }
 
       // Navigation props
       public virtual User User { get; set; }

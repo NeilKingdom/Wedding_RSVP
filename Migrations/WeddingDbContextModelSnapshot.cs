@@ -32,14 +32,13 @@ namespace WeddingRSVP.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("text");
 
                     b.Property<int?>("UserID")
                         .HasColumnType("integer");
@@ -81,8 +80,7 @@ namespace WeddingRSVP.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UserID")
-                        .IsUnique();
+                    b.HasIndex("UserID");
 
                     b.ToTable("Gift", (string)null);
                 });
@@ -130,8 +128,8 @@ namespace WeddingRSVP.Migrations
             modelBuilder.Entity("Wedding_RSVP.Models.Gift", b =>
                 {
                     b.HasOne("Wedding_RSVP.Models.User", "User")
-                        .WithOne("Gift")
-                        .HasForeignKey("Wedding_RSVP.Models.Gift", "UserID");
+                        .WithMany("Gifts")
+                        .HasForeignKey("UserID");
 
                     b.Navigation("User");
                 });
@@ -140,7 +138,7 @@ namespace WeddingRSVP.Migrations
                 {
                     b.Navigation("Attendees");
 
-                    b.Navigation("Gift");
+                    b.Navigation("Gifts");
                 });
 #pragma warning restore 612, 618
         }

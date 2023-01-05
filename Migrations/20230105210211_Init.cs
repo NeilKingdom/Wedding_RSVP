@@ -33,8 +33,9 @@ namespace WeddingRSVP.Migrations
                 {
                     AttendeeID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    FullName = table.Column<string>(type: "text", nullable: true),
                     UserID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -53,12 +54,12 @@ namespace WeddingRSVP.Migrations
                 {
                     GiftID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserID = table.Column<int>(type: "integer", nullable: true),
                     ImgUrl = table.Column<string>(type: "text", nullable: true),
                     SiteUrl = table.Column<string>(type: "text", nullable: true),
                     EstPrice = table.Column<decimal>(type: "money", nullable: false),
                     Desc = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    Available = table.Column<bool>(type: "boolean", nullable: false)
+                    Available = table.Column<bool>(type: "boolean", nullable: false),
+                    UserID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,8 +79,7 @@ namespace WeddingRSVP.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Gift_UserID",
                 table: "Gift",
-                column: "UserID",
-                unique: true);
+                column: "UserID");
         }
 
         /// <inheritdoc />

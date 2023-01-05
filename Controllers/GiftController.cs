@@ -16,7 +16,7 @@ using System.Text;
 using System.IO;
 using Wedding_RSVP.Models.ViewModels;
 
-namespace Wedding_RSVP
+namespace Wedding_RSVP.Controllers
 {
    public class GiftController : Controller
    {
