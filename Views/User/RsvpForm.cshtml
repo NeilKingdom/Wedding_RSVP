@@ -11,51 +11,56 @@
       <table class="table">
          <tr>
             <td>@Html.DisplayNameFor(model => model.User.FirstName)</td>
-            <td><input asp-for="@Model.User.FirstName" /></td>
-         </tr>
-         <tr>
-            <td />
-            <td><span asp-validation-for="@Model.User.FirstName" class="text-danger"></span></td>
+            <td>
+               <input asp-for="@Model.User.FirstName" /><br />
+               <span asp-validation-for="@Model.User.FirstName" class="text-danger"></span>
+            </td>
          </tr>
          <tr>
             <td>@Html.DisplayNameFor(model => model.User.LastName)</td>
-            <td><input asp-for="@Model.User.LastName" /></td>
-         </tr>
-         <tr>
-            <td />
-            <td><span asp-validation-for="@Model.User.LastName" class="text-danger"></span></td>
+            <td>
+               <input asp-for="@Model.User.LastName" /><br />
+               <span asp-validation-for="@Model.User.LastName" class="text-danger"></span>
+            </td>
          </tr>
          <tr>
             <td>@Html.DisplayNameFor(model => model.User.Email)</td>
-            <td><input asp-for="@Model.User.Email" /></td>
+            <td>
+               <input asp-for="@Model.User.Email" /><br />
+               <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
+            </td>
          </tr>
          <tr>
-            <td />
-            <td><span asp-validation-for="@Model.User.Email" class="text-danger"></span></td>
-         </tr>
-         <tr>
-            <td>Number of Attendees (max of 5)</td>
+            <td>Number of Attendees (Max of 5)</td>
             <td>
                <!-- Using TextBoxFor forces ASP.NET to use a text input instead of a number input -->
-               @Html.TextBoxFor(model => model.User.NumAttendees)
+               @Html.TextBoxFor(model => model.User.NumAttendees, new { @readonly=true })
                <button id="inc" class="inc-dec">
                   <i class="fa-solid fa-plus"></i>
                </button>
                <button id="dec" class="inc-dec">
                   <i class="fa-solid fa-minus"></i>
                </button>
+               <br />
+               <span asp-validation-for="@Model.User.NumAttendees" class="text-danger"></span>
             </td>
          </tr>
-         <tr>
-            <td />
-            <td><span asp-validation-for="@Model.User.NumAttendees" class="text-danger"></span></td>
-         </tr>
-         <!-- JQuery inserts/removes the HTML within this tr when the corresponding buttons are clicked -->
-         <div id="attendees"></div>
-         <div class="target"></div>
+         <!--
+         @for (var i = 0; i < 5; i++)
+         {
+            @* NOTE: You must surround i in brackets here, otherwise Razor will think its an email address *@
+            <tr id="attendee@(i+1)" class="attendee-hidden">
+               <td>Full Name for Attendee @(i+1)</td>
+               <td>
+                  @Html.TextBoxFor(model => model.Attendees[i].FullName)<br />
+                  <span asp-validation-for="@Model.Attendees[i].FullName" class="text-danger"></span>
+               </td>
+            </tr>
+         }
+         -->
          <tr>
             <td><a href="javascript:history.back()">Back</a></td>
-            <td><input type="submit" value="Continue" /></td>
+            <td><input id="submit" type="submit" value="Continue" /></td>
          </tr>
       </table>
    </form>
@@ -64,47 +69,6 @@
 @section Scripts {
    <!-- JQuery 1.8.3, recieved from Google CDN -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-   <!--script src="~/js/attendees-incdec.js"></script-->
-   <script>
-      // JQuery functions for incrementing/decrementing form field using custom buttons
-      $(document).ready(function() {
-         $("#inc").click(function(e) {
-            e.preventDefault(); // Prevent page reload
-            // Increment number of attendees and display in text field
-            var numAttendees = $("#NumAttendees").val();
-            if (numAttendees < 5)
-            {
-               numAttendees++;
-               // Add a new text field for attendee
-               var index = parseInt($("#NumAttendees").val());
-               index = (isNaN(index)) ? 1 : index + 1;
-               var newField = "<tr>";
-               newField    += "<td>Attendee " + index + ". (Full name): </td>";
-               newField    += "<td><input asp-for='@Model.Attendees[" + (index-1) + "].FullName' /></td>";
-               newField    += "</tr>";
-               newField    += "<tr>";
-               newField    += "<td />";
-               newField    += "<td><span asp-validation-for='@Model.Attendees[" + (index-1) + "].FullName' class='text-danger'></span></td>";
-               newField    += "</tr>";
-               $(".table tr:last").before(newField); // Insert at end of table, but before back/continue buttons
-            }
-
-            $("#NumAttendees").val(numAttendees);
-         });
-
-         $("#dec").click(function(e) {
-            e.preventDefault(); // Prevent page reload
-            // Decrement number of attendees and display in text field
-            var numAttendees = $("#NumAttendees").val();
-            if (numAttendees > 0)
-            {
-               numAttendees--;
-               // Remove the latest row (before back/continue buttons)
-               $(".table tr:last").prev().remove();
-            }
-            $("#NumAttendees").val(numAttendees);
-         });
-      });
-   </script>
+   <script src="~/js/attendees-incdec.js"></script>
    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

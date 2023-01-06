@@ -35,6 +35,7 @@ namespace WeddingRSVP.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
@@ -110,6 +111,9 @@ namespace WeddingRSVP.Migrations
 
                     b.Property<int>("NumAttendees")
                         .HasColumnType("integer");
+
+                    b.Property<bool>("Rsvpd")
+                        .HasColumnType("boolean");
 
                     b.HasKey("ID");
 

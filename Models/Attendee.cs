@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Wedding_RSVP.Models
 {
@@ -13,7 +14,10 @@ namespace Wedding_RSVP.Models
 
       public string LastName { get; set; }
 
-      [RegularExpression(@"[a-zA-Z]{2, 20} [a-zA-z]{2, 20}")]
+      [Required]
+      [BindProperty]
+      [RegularExpression(@"^([a-zA-Z]*)\s+([a-zA-Z]*)$",
+       ErrorMessage = "Please enter the attendee's first and last name")]
       public string FullName {
          get => $"{FirstName} {LastName}";
          set {

@@ -20,15 +20,7 @@ namespace Wedding_RSVP.Controllers
          _context = context;
       }
 
-      public IActionResult RsvpForm()
-      {
-         var userAttendeesViewModel = new UserAttendeesViewModel();
-         userAttendeesViewModel.Attendees = new List<Attendee>();
-         for (int i = 0; i < 5; i++)
-            userAttendeesViewModel.Attendees.Add(new Attendee());
-
-         return View(userAttendeesViewModel);
-      }
+      public IActionResult RsvpForm() => View();
 
       [HttpPost]
       public async Task<IActionResult> RsvpForm(UserAttendeesViewModel userAttendeesViewModel)
@@ -36,9 +28,11 @@ namespace Wedding_RSVP.Controllers
          if (!ModelState.IsValid) return View();
 
          _context.Users.Add(userAttendeesViewModel.User);
-         // TODO: Add attendees as well
          foreach (var attendee in userAttendeesViewModel.Attendees)
+         {
+            attendee.User = userAttendeesViewModel.User;
             _context.Attendees.Add(attendee);
+         }
 
          await _context.SaveChangesAsync();
          return RedirectToAction(nameof(Success));
