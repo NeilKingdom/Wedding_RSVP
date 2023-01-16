@@ -21,7 +21,8 @@ namespace WeddingRSVP.Migrations
                     LastName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     NumAttendees = table.Column<int>(type: "integer", nullable: false),
-                    Rsvpd = table.Column<bool>(type: "boolean", nullable: false)
+                    SongRequest = table.Column<string>(type: "text", nullable: true),
+                    OtherInfo = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

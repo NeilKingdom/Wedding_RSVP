@@ -4,9 +4,9 @@
 html {
    margin: 0;
    padding: 0;
+   overflow-x: hidden;
    width: 100%;
    height: 100%;
-   overflow-x: hidden;
 }
 
 /* Universal background color */
@@ -23,7 +23,6 @@ header {
    align-items: center;
 
    background-color: linen;
-   height: 4vw;
    width: 100%;
    position: fixed;
    /*
@@ -46,18 +45,18 @@ header {
 .hlink:active,
 .hlink:visited {
    color: #bc987e;
-   font-size: 2vw;
-   margin: 0 20px 0 20px;
-   padding: 10px 10px 10px 10px;
+   font-size: 1.75vw;
+   margin: 0 1.5vw 0 1.5vw;
+   padding: 1vw;
 }
 
-/* Header is split into 2 columns. The logo column occupies 80%, the hlink column occupies 20% */
+/* Header is split into 2 columns. The logo column occupies 75%, the hlink column occupies 25% */
 .hleft {
-   width: 70%;
+   width: 75%;
 }
 
 .hright {
-   width: 30%;
+   width: 25%;
 }
 
 /* A fixed width/height is required to prevent browser from resizing images */
@@ -154,6 +153,7 @@ article {
 @media only screen and (max-width: 400px) {
    .col-left {
       width: 100%;
+      padding-right: 0;
    }
 }
 
@@ -166,6 +166,7 @@ article {
 @media only screen and (max-width: 400px) {
    .col-right {
       width: 100%;
+      padding-left: 0;
    }
 }
 
@@ -186,9 +187,9 @@ article {
 /* Map styling */
 .map-responsive {
    overflow: hidden;
-   padding-bottom: 56.25%;
+   padding-bottom: 56.25%; /* Maintain 4:3 aspect ratio */
    position: relative;
-   height: 0;
+   /*height: 0;*/
 }
 
 .map-responsive iframe {
@@ -202,21 +203,72 @@ article {
 /* The Gift Registry page */
 .registry {
    padding-top: 7vw;
-   width: 50%;
+   width: 90%;
 }
 
-/* The list of available gifts in the registry */
-.gift-table {
+/* Layout for gift info containers */
+.gifts-list {
    /* Flex settings */
    display: flex;
+   flex-flow: row wrap;
+   justify-content: flex-start;
    align-items: center;
+   align-content: flex-start;
+}
 
-   font-size: 2vw;
-   width: 100%;
+/* Container for gift info */
+.gift-container {
+   /* Flex settings */
+   display: flex;
+   flex-flow: column nowrap;
+   align-items: flex-start;
+
+   background-color: white;
+   font-size: 1vw;
+   padding: 0.5vw;
+   margin: 1vw;
+   width: 15vw;
+   height: 21vw;
+   border-radius: 7.5px;
+   filter: drop-shadow(-5px 7px 5px #C0C0C0); /* (x, y, diffusion, rgb) */
+}
+
+/* Thumbnail container (encapsulates enlarge text) */
+.tn-container {
+   position: relative;
+   text-align: center;
 }
 
 /* Thumbnail properties for gift registry table */
-.thumbnail {
+img.thumbnail {
+   width: 14vw;
+   height: 14vw;
+}
+
+/* Used for the text element that appears over thumbnails on hover */
+.enlarge-text {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   padding: 0.5vw;
+   font-size: 1vw;
+   transform: translate(-50%, -50%);
+   padding: 2px;
+   color: gray;
+   border-style: solid;
+   border-width: 4px;
+   border-color: gray;
+}
+
+.enlarge-text:hover {
+   color: black;
+   border-color: black;
+   cursor: pointer;
+}
+
+/* Used by jQuery to make "enlarge image" text hidden by default */
+.enlarge-text-hidden {
+   display: none;
 }
 
 /* Used by JQuery to toggle thumbnail opacity */
@@ -241,8 +293,9 @@ article {
 
 /* RSVP page */
 .rsvp {
-   padding-top: 7vw;
    width: 50%;
+   font-size: 1vw;
+   padding-top: 7vw;
 }
 
 .rsvp-table {
@@ -254,19 +307,14 @@ article {
    width: 100%;
 }
 
-/* For hiding attendee fields */
-.attendee-hidden {
-   display: none !important;
-}
-
 /* Custom increment/decrement buttons */
 .inc-dec {
    color: darkgray;
    background-color: white;
    border-style: none;
    border-radius: 3px;
-   width: 25px;
-   height: 25px;
+   width: 1.75vw;
+   height: 1.75vw;
 }
 
 .inc-dec:hover {
@@ -274,9 +322,19 @@ article {
    background-color: #f2f3f4;
 }
 
+/* Submission success page */
 .rsvp-success {
-   padding-top: 7vw;
    width: 50%;
+   padding-top: 7vw;
+   font-size: 1.5vw;
+}
+
+/* List of users already registered */
+.registered-users {
+   width: 50%;
+   padding-top: 7vw;
+   font-size: 1.5vw;
+   text-align: left;
 }
 
 /*

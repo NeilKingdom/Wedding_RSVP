@@ -27,13 +27,16 @@ namespace Wedding_RSVP.Controllers
       {
          if (!ModelState.IsValid) return View();
 
-         userAttendeesViewModel.User.Rsvpd = true; // If the logged in via this form then they are RSVPd
          _context.Users.Add(userAttendeesViewModel.User);
          // Add attendees to DB as well
-         foreach (var attendee in userAttendeesViewModel.Attendees)
+         if (userAttendeesViewModel.Attendees != null
+               && userAttendeesViewModel.Attendees.Count() > 0)
          {
-            attendee.User = userAttendeesViewModel.User;
-            _context.Attendees.Add(attendee);
+            foreach (var attendee in userAttendeesViewModel.Attendees)
+            {
+               attendee.User = userAttendeesViewModel.User;
+               _context.Attendees.Add(attendee);
+            }
          }
 
          await _context.SaveChangesAsync();
@@ -43,7 +46,7 @@ namespace Wedding_RSVP.Controllers
       public IActionResult RegisteredList()
       {
          var usersViewModel = new UsersViewModel();
-         usersViewModel.Users = _context.Users;
+         usersViewModel.Users = _context.Users.OrderBy(user => user.FirstName);
 
          return View(usersViewModel);
       }

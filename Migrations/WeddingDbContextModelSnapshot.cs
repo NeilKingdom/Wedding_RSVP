@@ -112,8 +112,11 @@ namespace WeddingRSVP.Migrations
                     b.Property<int>("NumAttendees")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("Rsvpd")
-                        .HasColumnType("boolean");
+                    b.Property<string>("OtherInfo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SongRequest")
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 

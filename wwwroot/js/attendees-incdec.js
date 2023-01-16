@@ -46,7 +46,7 @@ $(document).ready(function() {
 			newField		+= '<span asp-validation-for="Attendees[' + (index-1) + '].FullName" class="text-danger"></span>';
 			newField		+= '</td>';
 			newField		+= '</tr>';
-			$(".table tr:last").before(newField); // Insert at end of table, but before back/continue buttons
+			$("#after-attendees").before(newField); // Insert before element with id #after-attendees
 		}
 
 		$("#User_NumAttendees").val(numAttendees);
@@ -61,7 +61,7 @@ $(document).ready(function() {
 		{
 			numAttendees--;
 			// Remove the latest row (before back/continue buttons)
-			$(".table tr:last").prev().remove();
+			$("#after-attendees").prev().remove();
 		}
 
 		$("#User_NumAttendees").val(numAttendees);

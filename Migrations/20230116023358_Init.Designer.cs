@@ -12,7 +12,7 @@ using Wedding_RSVP.Data;
 namespace WeddingRSVP.Migrations
 {
     [DbContext(typeof(WeddingDbContext))]
-    [Migration("20230106150230_Init")]
+    [Migration("20230116023358_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -115,8 +115,11 @@ namespace WeddingRSVP.Migrations
                     b.Property<int>("NumAttendees")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("Rsvpd")
-                        .HasColumnType("boolean");
+                    b.Property<string>("OtherInfo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SongRequest")
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 

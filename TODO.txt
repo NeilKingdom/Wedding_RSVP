@@ -6,5 +6,7 @@
 8.   Encrypt emails
 9.   Multilang support?
 10.  Store email in session. Check if other users exist with that email
-11.  Don't allow checkout of gifts if the user has not RSVPd
+11.  Prompt for email when user goes to Gift Registry and data is not cached
 12.  Display item selected and undo button once confirmed
+13.  Fix map panning issue
+14.  Bring back checkboxes in the Gift registry. Make them look like fontawesome x or v/ (bottom left corner)

@@ -8,7 +8,7 @@
    <h6>See list of people already registered <a asp-action="RegisteredList"><u>here</u></a></h6>
    <br />
    <form class="form" asp-action="RsvpForm" method="post">
-      <table class="table">
+      <table class="table" style="width: 50vw;">
          <tr>
             <td>@Html.DisplayNameFor(model => model.User.FirstName)</td>
             <td>
@@ -45,9 +45,17 @@
                <span asp-validation-for="@Model.User.NumAttendees" class="text-danger"></span>
             </td>
          </tr>
+         <tr id="after-attendees">
+            <td>Song Request (Optional)</td>
+            <td><input asp-for="@Model.User.SongRequest" type="text" /></td>
+         </tr>
+         <tr>
+            <td>Anything You'd Like us to Know (Optional)</td>
+            <td><textarea asp-for="@Model.User.OtherInfo" rows="4" cols="35"></textarea></td>
+         </tr>
          <tr>
             <td><a href="javascript:history.back()">Back</a></td>
-            <td><input id="submit" type="submit" value="Continue" /></td>
+            <td><input id="submit" class="btn btn-primary" type="submit" value="Continue" /></td>
          </tr>
       </table>
    </form>

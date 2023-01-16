@@ -32,7 +32,11 @@ namespace Wedding_RSVP.Models
       [Range(0, 5)]
       public int NumAttendees { get; set; }
 
-      public bool Rsvpd { get; set; } = false;
+      [BindProperty]
+      public string? SongRequest { get; set; }
+
+      [BindProperty]
+      public string? OtherInfo { get; set; }
 
       // Navigation props
       public virtual IList<Gift> Gifts { get; set; }
