@@ -233,7 +233,7 @@ article {
    filter: drop-shadow(-5px 7px 5px #C0C0C0); /* (x, y, diffusion, rgb) */
 }
 
-/* Thumbnail container (encapsulates enlarge text) */
+/* Thumbnail container (encapsulates thumbnail + enlarge text) */
 .tn-container {
    position: relative;
    text-align: center;
@@ -276,19 +276,9 @@ img.thumbnail {
    opacity: 0.4;
 }
 
-/* Override the ugly look of checkboxes */
-.sel-item {
-	box-sizing: border-box;
-	appearance: none;
-	background: white;
-	outline: 2px solid #000333;
-	border: 3px solid white;
-	width: 16px;
-	height: 16px;
-}
-
-.sel-item:checked {
-   background: #000333;
+/* Hide default checkbox. Replaced with fontawesome icon using jquery. */
+.cbox-item {
+   display: none;
 }
 
 /* RSVP page */

@@ -1,7 +1,0 @@
-/home/neil/devel/github/Wedding_RSVP/bin/Debug/net6.0/publish/Wedding_RSVP
-/home/neil/devel/github/Wedding_RSVP/bin/Debug/net6.0/publish/appsettings.Development.json
-/home/neil/devel/github/Wedding_RSVP/bin/Debug/net6.0/publish/appsettings.json
-/home/neil/devel/github/Wedding_RSVP/bin/Debug/net6.0/publish/Wedding_RSVP.dll
-/home/neil/devel/github/Wedding_RSVP/bin/Debug/net6.0/publish/Wedding_RSVP.deps.json
-/home/neil/devel/github/Wedding_RSVP/bin/Debug/net6.0/publish/Wedding_RSVP.runtimeconfig.json
-/home/neil/devel/github/Wedding_RSVP/bin/Debug/net6.0/publish/Wedding_RSVP.pdb
