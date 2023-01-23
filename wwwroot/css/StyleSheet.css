@@ -245,6 +245,15 @@ img.thumbnail {
    height: 14vw;
 }
 
+/* Used by JQuery to toggle thumbnail opacity */
+.img-opaque {
+   opacity: 0.4;
+   /* Give it a bit of a fade to match button rotation animation */
+   transition-property: opacity;
+   transition-duration: 0.09s;
+   transition-timing-function: linear;
+}
+
 /* Used for the text element that appears over thumbnails on hover */
 .enlarge-text {
    position: absolute;
@@ -271,14 +280,77 @@ img.thumbnail {
    display: none;
 }
 
-/* Used by JQuery to toggle thumbnail opacity */
-.img-opaque {
-   opacity: 0.4;
+/* The background circle for checkboxes */
+.cbox {
+   /* Flex settings */
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+
+   border-radius: 50%; /* Creates a circle */
+   width: 2.5vw;
+   height: 2.5vw;
+   position: absolute;
+   bottom: 0.5vw;
+   right: 0.5vw;
+   z-index: 50; /* Position above the gift-container but below plus icon */
+   cursor: pointer; /* Changes cursor to indicate that the element is clickable */
+
+   /* Off-screen gradient */
+   background-image: linear-gradient(135deg, #00ab66, #ffffff, #00ae6f);
+   background-size: 300% 300%;
+   background-position: right bottom;
 }
 
-/* Hide default checkbox. Replaced with fontawesome icon using jquery. */
-.cbox-item {
-   display: none;
+/* Gradient transition for sheen effect on hover */
+.cbox:hover {
+   transition: background-position 0.3s;
+   background-position: left top;
+}
+
+/* Shared icon attributes */
+.cbox > i {
+   color: white;
+   z-index: 100;
+   /*
+      The fontawesome font I chose is originally an x, because the plus
+      symbols are not symetrical and appear skewed when rotated. This
+      icon is semetrical, but it's starting position must be offset by
+      45 degrees.
+   */
+   transform: rotate(45deg);
+}
+
+@keyframes rotate-cbox-frwrd {
+   0% {
+      transform: rotate(0deg);
+      background-image: linear-gradient(135deg, #00ab66, #ffffff, #00ae6f);
+   }
+   100% {
+      transform: rotate(-135deg);
+      background-image: linear-gradient(0, #da2c43, #da2c43);
+   }
+}
+
+@keyframes rotate-cbox-bkwrd {
+   0% {
+      transform: rotate(-135deg);
+      background-image: linear-gradient(0, #da2c43, #da2c43);
+   }
+   100% {
+      transform: rotate(0deg);
+      background-image: linear-gradient(135deg, #00ab66, #ffffff, #00ae6f);
+   }
+}
+
+.cbox-icon-plus {
+   animation: rotate-cbox-bkwrd 0.09s ease-in forwards;
+}
+
+.cbox-icon-x {
+   animation: rotate-cbox-frwrd 0.09s ease-in forwards;
 }
 
 /* RSVP page */

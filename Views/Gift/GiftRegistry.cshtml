@@ -25,15 +25,14 @@
                   </div>
                   <a href="@gift.SiteUrl">Go to Website</a>
                   @gift.Desc<br />
-                  <div class="gc-bottom-row">
-                     @string.Format("${0:0.00}", gift.EstPrice)
-                     <label>
-                        <input asp-for="@gift.Available" class="cbox-item" type="checkbox" />
-                        <span class="item-checked-icon">
-                           <i class="fa-solid fa-check"></i>
-                        </span>
-                     </label>
-                  </div>
+                  @string.Format("${0:0.00}", gift.EstPrice)
+                  <label>
+                     <!-- Hidden checkbox. Replaced by icon in the span -->
+                     <input asp-for="@gift.Available" style="display: none;" type="checkbox" />
+                     <span class="cbox">
+                        <i class="fa-solid fa-xmark"></i>
+                     </span>
+                  </label>
                </div>
             }
          }
@@ -55,51 +54,47 @@
          var $giftContainers = $(".gift-container");
          var $tnEnlargeText = $(".enlarge-text");
          var $checkboxes = $("input[type=checkbox]");
-         $checkboxes.prop("checked", false); // Make all checkboxes unchecked by default
+         $checkboxes.prop("checked", false);
 
          // Gray out thumbnail image when mouse enters & undo on mouse exit
          $(".tn-container").hover(function() { // On mouse enter
             $(this).children(".enlarge-text").removeClass("enlarge-text-hidden");
-            $(this).children(".thumbnail").addClass("img-opaque");
+            if (numChecked === 0) {
+               $(this).children(".thumbnail").addClass("img-opaque");
+            }
          }, function() { // On mouse leave
+            $(this).children(".enlarge-text").addClass("enlarge-text-hidden");
             if (numChecked === 0) {
                $(this).children(".thumbnail").removeClass("img-opaque");
             }
-            $(this).children(".enlarge-text").addClass("enlarge-text-hidden");
          });
-
-         // Toggle checkbox icon
-         function toggleCboxIcon(cBox) {
-            $(cBox).siblings().children("i").toggleClass("fa-check", !cBox.checked);
-            $(cBox).siblings().children("i").toggleClass("fa-x", cBox.checked);
-         }
 
          // Resets all gift containers from looking disabled
          function clearDisabled() {
             $giftContainers.each(function() {
-               // Remove disabled classes
                $(this).removeClass("text-muted");
                $(this).find(".thumbnail").removeClass("img-opaque");
             });
          }
 
-         // Alter CSS of non-checked elements to make them appear disabled
+         // Alter CSS of gift containers and various other elements on checkbox click
          $checkboxes.click(function() {
             numChecked = 0;
+            // Toggle rotation animation to make '+' become 'x' and vice versa
+            $(this).siblings(".cbox").toggleClass("cbox-icon-plus", !this.checked);
+            $(this).siblings(".cbox").toggleClass("cbox-icon-x", this.checked);
 
             $checkboxes.each(function() {
-               if (this.checked)
+               if (this.checked) {
                   numChecked++;
+               }
 
-               toggleCboxIcon(this);
-
-               // TODO: Add another class for graying out the gift-container bckgrnd
+               // Make all gift containers have muted text and opaque thumbnail aside from those that are selected
                $(this).closest(".gift-container").toggleClass("text-muted", !this.checked);
                $(this).closest(".gift-container").find(".thumbnail").toggleClass("img-opaque", !this.checked);
             });
 
-            if (numChecked === 0)
-            {
+            if (numChecked === 0) {
                clearDisabled();
             }
          });
