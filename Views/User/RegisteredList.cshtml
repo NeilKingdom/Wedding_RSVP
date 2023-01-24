@@ -4,11 +4,12 @@
 }
 
 <div class="registered-users">
-   <h1>Registered Users</h1>
-   <ul style="list-style-type: circle;">
-      @foreach (var user in Model.Users)
-      {
-         <li>@user.FirstName, @user.LastName</li>
-      }
-   </ul>
+   <div class="users-list">
+      <ul style="list-style-type: none;">
+         @foreach (var user in Model.Users)
+         {
+            <li>@user.FirstName, @user.LastName</li>
+         }
+      </ul>
+   </div>
 </div>

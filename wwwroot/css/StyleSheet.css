@@ -391,12 +391,24 @@ img.thumbnail {
    font-size: 1.5vw;
 }
 
-/* List of users already registered */
+/* Registered users page */
 .registered-users {
-   width: 50%;
-   padding-top: 7vw;
+   width: 100%;
+   padding-top: 100vw;
    font-size: 1.5vw;
    text-align: left;
+   background-image: url("../img/pagebkgrnds/GuestList.png");
+   background-size: 100%;
+}
+
+/* The actual list of names */
+.users-list {
+   /* Flex settings */
+   display: flex;
+   flex-flow: row wrap;
+
+   font-size: 4vw;
+   width: 80%;
 }
 
 /*
