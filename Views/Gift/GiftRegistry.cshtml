@@ -4,8 +4,12 @@
 }
 
 <div class="registry">
-   <h1>Gift Registry</h1>
-   <h6>See the <a href="~/Home/Index/#faq"><u>FAQ</u></a> for more information on the gift registry</h6>
+   <p style="font-size: 3vw;">Gift Registry</p>
+   <p style="font-size: 1vw;">See the
+      <a href="~/Home/Index/#qanda">
+         <u>Q&amp;A</u>
+      </a> for more information on the gift registry
+   </p>
    <br />
    @if (Model.Gifts != null && Model.Gifts.Count() > 0)
    {
@@ -37,8 +41,10 @@
             }
          }
       </div>
-      <a href="javascript:history.back()">Back</a>
-      <input id="submit" class="btn btn-primary" type="submit" value="Continue" />
+      <div class="registry-nav-ctrls">
+         <a href="javascript:history.back()" style="font-size: 1.75vw;">Back</a>
+         <input id="submit" class="mybtn" type="submit" value="Continue" />
+      </div>
    }
    else
    {

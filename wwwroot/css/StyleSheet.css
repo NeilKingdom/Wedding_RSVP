@@ -36,6 +36,7 @@ header {
 /* Home page logo */
 .logo {
    height: 4vw;
+   width: auto;
 }
 
 /* Header links (Gift Registry + RSVP) */
@@ -59,29 +60,28 @@ header {
    width: 25%;
 }
 
-/* A fixed width/height is required to prevent browser from resizing images */
+/* Setting width/height is required to prevent browser from resizing images */
 .carousel {
    padding-top: 5vw;
-   width: 60vw;
-   height: 40vw;
+   width: 80vw;
+   height: 50vw;
 }
 
 /* Carousel control buttons */
 .slide-btn {
    background-color: gainsboro;
-   border-radius: 50%; /* Creates a circle */
    opacity: 0.5;
-   width: 10vw;
-   height: 10vw;
-   max-width: 150px;
-   max-height: 150px;
+   border-radius: 50%; /* Creates a circle */
+   width: 6vw;
+   height: 6vw;
    z-index: 50; /* Position above images but below header */
    position: absolute; /* Required to have buttons go on top of images */
    /* Center buttons within the parent element */
    top: 50%;
    left: 50%;
-   /* Move from center */
+   /* Fixes weird displacement issue */
    transform: translate(-50%, -50%);
+   /* Move from center */
    cursor: pointer; /* Changes cursor to indicate that the element is clickable */
 }
 
@@ -91,22 +91,24 @@ header {
 
 /* Left button positioning. Have to account for the width of the parent element. */
 .slide-btn-1 {
-   left: -10%; /* Negative because of parent width */
+   left: -6%; /* Negative because of parent width */
 }
 
 /* Right button positioning. Have to account for the width of the parent element. */
 .slide-btn-2 {
-   left: 110%; /* Greater than 100% because of parent width */
+   left: 106%; /* Greater than 100% because of parent width */
 }
 
 /* The fontawesome chevron icons for carousel buttons */
 .chevron {
+   font-size: 2.5vw;
    color: darkgray;
+   display: block;
    position: absolute; /* Required to have chevrons go on top of buttons */
    /* Center chevrons within parent element (the carousel buttons) */
    top: 50%;
    left: 50%;
-   /* Move from center */
+   /* Fixes weird displacement issue */
    transform: translate(-50%, -50%);
 }
 
@@ -124,11 +126,10 @@ article {
    /* Flex settings */
    display: flex;
    flex-flow: row wrap;
-   justify-content: space-between; /* We don't need space-around since width is only 60% */
-   align-items: baseline; /* This will align text entries based on the headings */
+   justify-content: space-between; /* Push sections to outer borders */
 
-   width: 60%; /* Leave 20% for column padding (see below) */
-   margin: 5% 0 5% 0; /* Top/bottom margins */
+   width: 80%;
+   margin: 5vw 0 5vw 0;
 }
 
 /* Change to one column on mobile */
@@ -138,35 +139,31 @@ article {
       display: flex;
       flex-flow: column nowrap;
 
-      width: 60%;
-      margin: 5% 0 5% 0; /* Top/bottom margins */
+      width: 80%;
+      margin: 5vw 0 5vw 0;
    }
 }
 
 /* Article is split into 2 columns, each occupying 1/5 of the total space */
 .col-left {
-   width: 50%; /* 50% of the 60% in article = 30% */
-   padding-right: 10%;
+   width: 45%;
 }
 
 /* For mobile, display left columns first (by making width 100%), then right columns after */
 @media only screen and (max-width: 400px) {
    .col-left {
       width: 100%;
-      padding-right: 0;
    }
 }
 
 .col-right {
-   width: 50%; /* 50% of the 60% in article = 30% */
-   padding-left: 10%;
+   width: 45%;
 }
 
 /* Right columns will go after left columns */
 @media only screen and (max-width: 400px) {
    .col-right {
       width: 100%;
-      padding-left: 0;
    }
 }
 
@@ -203,6 +200,7 @@ article {
 /* The Gift Registry page */
 .registry {
    padding-top: 7vw;
+   margin-left: 5%;
    width: 90%;
 }
 
@@ -248,6 +246,7 @@ img.thumbnail {
 /* Used by JQuery to toggle thumbnail opacity */
 .img-opaque {
    opacity: 0.4;
+
    /* Give it a bit of a fade to match button rotation animation */
    transition-property: opacity;
    transition-duration: 0.09s;
@@ -265,7 +264,8 @@ img.thumbnail {
    padding: 2px;
    color: gray;
    border-style: solid;
-   border-width: 4px;
+   border-width: 3px;
+   border-radius: 5px;
    border-color: gray;
 }
 
@@ -323,6 +323,7 @@ img.thumbnail {
    transform: rotate(45deg);
 }
 
+/* Animation for rotating from '+' to 'x' */
 @keyframes rotate-cbox-frwrd {
    0% {
       transform: rotate(0deg);
@@ -334,10 +335,11 @@ img.thumbnail {
    }
 }
 
+/* Animation for rotating from 'x' to '+' */
 @keyframes rotate-cbox-bkwrd {
    0% {
       transform: rotate(-135deg);
-      background-image: linear-gradient(0, #da2c43, #da2c43);
+      background-image: linear-gradient(0deg, #da2c43, #da2c43);
    }
    100% {
       transform: rotate(0deg);
@@ -345,43 +347,64 @@ img.thumbnail {
    }
 }
 
+/* Added by jQuery to animate the button */
 .cbox-icon-plus {
    animation: rotate-cbox-bkwrd 0.09s ease-in forwards;
 }
 
+/* Added by jQuery to animate the button */
 .cbox-icon-x {
    animation: rotate-cbox-frwrd 0.09s ease-in forwards;
 }
 
+.registry-nav-ctrls {
+   /* Flex settings */
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 37.5%; /* Kind of hacky. Just did guess and check till it was centered with footer */
+
+   height: 7vw;
+}
+
 /* RSVP page */
 .rsvp {
-   width: 50%;
-   font-size: 1vw;
    padding-top: 7vw;
 }
 
-.rsvp-table {
-   /* Flex setting */
+.rsvp-form {
+   /* Flex settings */
    display: flex;
+   flex-flow: column nowrap;
+   justify-content: center;
    align-items: center;
+}
 
+/* The table used in RSVP form */
+.rsvp-table {
    font-size: 2vw;
-   width: 100%;
+   width: 75vw;
 }
 
 /* Custom increment/decrement buttons */
 .inc-dec {
    color: darkgray;
    background-color: white;
+   font-size: 2vw;
    border-style: none;
-   border-radius: 3px;
-   width: 1.75vw;
-   height: 1.75vw;
+   border-radius: 5px;
+   width: 2.75vw;
+   height: 2.75vw;
 }
 
 .inc-dec:hover {
-   color: #353839;
-   background-color: #f2f3f4;
+   background-color: #e2e3e4;
+}
+
+/* Prevent top/bottom padding on fontawesome icons due to how browsers render fonts */
+.inc-dec > i {
+   display: block;
 }
 
 /* Submission success page */
@@ -391,33 +414,13 @@ img.thumbnail {
    font-size: 1.5vw;
 }
 
-/* Registered users page */
-.registered-users {
-   width: 100%;
-   padding-top: 100vw;
-   font-size: 1.5vw;
-   text-align: left;
-   background-image: url("../img/pagebkgrnds/GuestList.png");
-   background-size: 100%;
-}
-
-/* The actual list of names */
-.users-list {
-   /* Flex settings */
-   display: flex;
-   flex-flow: row wrap;
-
-   font-size: 4vw;
-   width: 80%;
-}
-
 /*
    Fontawesome icons used in the footer (fb, Insta.)
    and override for email anchor text
 */
 .fontawesome,
 .email {
-   color: #90686d;
+   color: #90686d !important; /* Override default anchor text color */
 }
 
 .fontawesome {
@@ -426,7 +429,7 @@ img.thumbnail {
 
 .fontawesome:hover,
 .email:hover {
-   color: linen;
+   color: linen !important; /* Needs to be same priority as non-hover in order to work */
 }
 
 /* The page footer */
@@ -438,9 +441,7 @@ img.thumbnail {
    align-items: center;
 
    background-color: #c19c98;
-   width: 100%;
-   height: 10;
-   padding-top: 30px;
+   padding-top: 0.75vw;
    font-size: 1.3vw;
 }
 
@@ -449,29 +450,37 @@ img.thumbnail {
    font-size: 2vw;
 }
 
+/* We need this because setting padding-bottom for myfooter extends it past the bar */
 .myfooter > table {
-   margin-bottom: 30px;
+   margin-bottom: 0.75vw;
 }
 
 /* Bar spanning the very bottom of the footer */
 .footer-bar {
    /* Flex settings */
    display: flex;
-   justify-content: flex-start;
    align-items: center;
 
-   position: relative;
+   color: linen;
    background-color: #90686d;
+   font-size: 0.75vw;
+   padding: 0.25vw 0 0 5%; /* The bottom already appears to have padding for some reason? */
    width: 100%;
-   height: 1.5vw;
-   padding: 20px 0 20px 0;
+   position: relative;
 }
 
-/* All elements within the footer bar */
-.footer-bar > * {
-   color: #bfc1c2;
-   margin-left: 5%;
-   font-size: 1vw;
+/* Override default color of bootstrap btn and btn-primary */
+.mybtn {
+   color: white;
+   background: #aadae0;
+   font-size: 2vw;
+   padding: 0.1vw 1vw 0.1vw 1vw;
+   border-radius: 150px;
+   border-style: none;
+}
+
+.mybtn:hover {
+   background: #9acad0;
 }
 
 /* Global settings for links (must override if you want something different for a specific link) */
@@ -479,5 +488,6 @@ a:link,
 a:visited,
 a:hover,
 a:active {
+   color: #75897a;
    text-decoration: none; /* Remove underlines on hover */
 }

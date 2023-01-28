@@ -11,13 +11,14 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <!-- Personal StyleSheets -->
       <link rel="stylesheet" href="~/css/StyleSheet.css" />
-  </head>
-   <body>
+   </head>
+   <body class="d-flex flex-column min-vh-100">
       <header>
          <div class="hleft">
             <a class="hlink" asp-controller="Home" asp-action="Index">
                <img class="logo" src="~/img/logo/Logo.png" alt="Neil & Madison" />
             </a>
+            <a class="hlink" asp-controller="Home" asp-action="SwapDate">@ViewData["Date"]</a>
          </div>
          <div class="hright">
             <!-- Better to use anchor tags here rather than Action Links due to styling issues with the latter -->
@@ -28,7 +29,7 @@
       <main>
          @RenderBody()
       </main>
-      <footer class="myfooter">
+      <footer class="myfooter mt-auto">
          <h1 style="color: linen;">Contact Information</h1>
          <table style="text-align: left;">
             <tr>
