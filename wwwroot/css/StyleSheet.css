@@ -24,6 +24,7 @@ header {
 
    background-color: linen;
    width: 100%;
+   max-height: 4vw;
    position: fixed;
    /*
       The banner should be above all
@@ -35,7 +36,7 @@ header {
 
 /* Home page logo */
 .logo {
-   height: 4vw;
+   max-height: 4vw;
    width: auto;
 }
 
@@ -60,43 +61,50 @@ header {
    width: 25%;
 }
 
-/* Setting width/height is required to prevent browser from resizing images */
 .carousel {
-   padding-top: 5vw;
+   margin-top: 5vw;
    width: 80vw;
-   height: 50vw;
+   height: 45vw;
+}
+
+/* Center images in the carousel. Default behavior is to stick to the left edge. */
+.carousel-item {
+   text-align: center;
+}
+
+/* Resize images while maintaining 16:9 aspect ratio */
+.carousel-img {
+   display: inline-block;
+   min-height: 45vw;
+   max-height: 45vw;
+   width: auto;
+   height: auto;
 }
 
 /* Carousel control buttons */
 .slide-btn {
    background-color: gainsboro;
-   opacity: 0.5;
-   border-radius: 50%; /* Creates a circle */
    width: 6vw;
-   height: 6vw;
+   height: auto;
    z-index: 50; /* Position above images but below header */
    position: absolute; /* Required to have buttons go on top of images */
-   /* Center buttons within the parent element */
-   top: 50%;
-   left: 50%;
-   /* Fixes weird displacement issue */
-   transform: translate(-50%, -50%);
    /* Move from center */
    cursor: pointer; /* Changes cursor to indicate that the element is clickable */
+
+   -webkit-transition: all 1s ease;
+   -moz-transition: all 1s ease;
+   -o-transition: all 1s ease;
+   transition: all 1s ease;
 }
 
-.slide-btn:hover {
-   opacity: 0.75;
-}
-
-/* Left button positioning. Have to account for the width of the parent element. */
+/* Left button positioning */
 .slide-btn-1 {
-   left: -6%; /* Negative because of parent width */
+   left: 0;
 }
 
-/* Right button positioning. Have to account for the width of the parent element. */
+/* Right button positioning */
 .slide-btn-2 {
-   left: 106%; /* Greater than 100% because of parent width */
+   right: 0;
 }
 
 /* The fontawesome chevron icons for carousel buttons */
@@ -104,12 +112,6 @@ header {
    font-size: 2.5vw;
    color: darkgray;
    display: block;
-   position: absolute; /* Required to have chevrons go on top of buttons */
-   /* Center chevrons within parent element (the carousel buttons) */
-   top: 50%;
-   left: 50%;
-   /* Fixes weird displacement issue */
-   transform: translate(-50%, -50%);
 }
 
 /* Main page content */
@@ -169,7 +171,7 @@ article {
 
 /* Section header */
 .section-header {
-   padding: 3px 3px 3px 30px;
+   padding: 0.5vw 0.5vw 0.5vw 2vw;
    background-color: linen;
    font-size: 1.5vw;
 }

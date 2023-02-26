@@ -12,7 +12,7 @@ using Wedding_RSVP.Data;
 namespace WeddingRSVP.Migrations
 {
     [DbContext(typeof(WeddingDbContext))]
-    [Migration("20230116023358_Init")]
+    [Migration("20230225195528_Init")]
     partial class Init
     {
         /// <inheritdoc />

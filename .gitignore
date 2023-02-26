@@ -1,5 +1,6 @@
 appsettings.Development.json
 appsettings.json
 wwwroot/img
+publish
 obj
 bin

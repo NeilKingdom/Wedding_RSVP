@@ -2,44 +2,44 @@
    ViewData["Title"] = "Index";
 }
 
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
+<div id="my-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
    <!-- Carousel wrapper contains all images -->
    <div class="carousel-inner">
-      <div class="carousel-item active">
-         <img src="~/img/proposal/wedding8.png" class="d-block w-100">
+      <div class="carousel-center carousel-item active">
+         <img src="~/img/proposal/wedding8.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding1.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding1.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding2.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding2.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding3.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding3.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding4.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding4.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding5.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding5.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding6.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding6.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding7.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding7.jpg" class="carousel-img" />
       </div>
-      <div class="carousel-item">
-         <img src="~/img/proposal/wedding9.png" class="d-block w-100">
+      <div class="carousel-center carousel-item">
+         <img src="~/img/proposal/wedding9.jpg" class="carousel-img" />
       </div>
    </div>
 
    <!-- Prev/Next buttons -->
-   <button class="carousel-control-prev slide-btn slide-btn-1" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <i class="chevron fa-3x fa-solid fa-chevron-left"></i>
+   <button id="slide-btn-1" class="carousel-control-prev" data-bs-target="#my-carousel" data-bs-slide="prev">
+      <i class="chevron fa-solid fa-chevron-left"></i>
    </button>
-   <button class="carousel-control-next slide-btn slide-btn-2" data-bs-target="#myCarousel" data-bs-slide="next">
-      <i class="chevron fa-3x fa-solid fa-chevron-right"></i>
+   <button id="slide-btn-2" class="carousel-control-next" data-bs-target="#my-carousel" data-bs-slide="next">
+      <i class="chevron fa-solid fa-chevron-right"></i>
    </button>
 </div>
 
@@ -97,4 +97,17 @@
 @section Scripts {
    <!-- Popper bundle for Boostrap (required for carousel), recieved from jsDelivr CDN -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+   <script>
+      $("#my-carousel").hover(function() {
+         $("#slide-btn-1").addClass("slide-btn");
+         $("#slide-btn-2").addClass("slide-btn");
+         $("#slide-btn-1").addClass("slide-btn-1");
+         $("#slide-btn-2").addClass("slide-btn-2");
+      }, function() {
+         $("#slide-btn-1").removeClass("slide-btn");
+         $("#slide-btn-2").removeClass("slide-btn");
+         $("#slide-btn-1").removeClass("slide-btn-1");
+         $("#slide-btn-2").removeClass("slide-btn-2");
+      });
+   </script>
 }

@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Runtime;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Wedding_RSVP.Controllers
 {
