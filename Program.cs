@@ -25,7 +25,7 @@ namespace Wedding_RSVP
 
          // AddDefaultIdentity() sets up token providers and configures authorization to use identity cookies
          builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<WeddingDbContext>();
+            .AddEntityFrameworkStores<WeddingDbContext>().AddDefaultTokenProviders();
 
          // OAuth 2.0 Google authentication
          builder.Services.AddAuthentication().AddGoogle(googleOptions => {
