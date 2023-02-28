@@ -1,0 +1,13 @@
+@using Microsoft.AspNetCore.Identity
+@using Wedding_RSVP.Models
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+   <a class="hlink" asp-controller="Gift" asp-action="DbContainsUser">Gift Registry</a>
+} 
+else
+{
+   <a class="hlink" asp-controller="Gift" asp-action="GiftRegistryLogin">Gift Registry (Login)</a>
+}

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Wedding_RSVP.Data;
 using Wedding_RSVP.Models;
-using HtmlAgilityPack; // Used for parsing HTML
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -15,9 +14,14 @@ using System.Net;
 using System.Text;
 using System.IO;
 using Wedding_RSVP.Models.ViewModels;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Wedding_RSVP.Controllers
 {
+   //[Authorize]
    public class GiftController : Controller
    {
       private readonly WeddingDbContext _context;
@@ -27,13 +31,42 @@ namespace Wedding_RSVP.Controllers
          _context = context;
       }
 
+      [AllowAnonymous]
+      public IActionResult GiftRegistryLogin()
+      {
+         return Challenge(new AuthenticationProperties { RedirectUri = Url.Action("DbContainsUser") }, 
+               GoogleDefaults.AuthenticationScheme); 
+      }
+
+      [AllowAnonymous]
+      public async Task<IActionResult> DbContainsUser()
+      {
+//         var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+//         for (var user in _context.MyUsers)
+//         {
+//            if (user.Email == 
+//         }
+         return RedirectToAction(nameof(GiftRegistry));
+      }
+
       public IActionResult GiftRegistry()
       {
-         UserGiftViewModel userGift = new()
+         UserGiftsViewModel userGift = new()
          {
-            // TODO: Set user to the user matching email in session data
-            User = _context.Users.FirstOrDefault(),
-            Gifts = _context.Gifts
+            User = new(),
+            Gifts = new List<Gift>()
+         };
+
+         return View(userGift);
+      }
+
+      public IActionResult RegisteredGifts()
+      {
+         UserGiftsViewModel userGift = new()
+         {
+            User = new(),
+            Gifts = new List<Gift>()
          };
 
          return View(userGift);

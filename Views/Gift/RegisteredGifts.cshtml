@@ -1,0 +1,30 @@
+@Model Wedding_RSVP.Models.ViewModels.UserGiftsViewModel
+@{
+   ViewData["title"] = "Registered Gifts";
+}
+
+<h1>Registered Gifts</h1>
+@if (!Model.Gifts.IsNullOrEmpty())
+{
+   <ul>
+      @foreach (var gift in Model.Gifts)
+      {
+         <li>@gift</li>  
+      }
+   </ul>
+}
+
+@* TODO: Move to GiftRegistry *@
+@section Scripts {
+   <script>
+      $(document).ready(function() {
+         var email = localStorage.getItem("UserEmail");
+
+         if (email === null) {
+            alert("User email has not been entered");
+         } else {
+            alert("User email is " + email);
+         }
+      });
+   </script>
+}
