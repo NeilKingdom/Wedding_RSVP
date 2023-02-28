@@ -1,12 +1,7 @@
 1.   Add name + date banner above image carousel
-3.   Add parallax scroll via react spring !!! LEAST PRIORITY !!!
-4.   Hosting platform + database
-6.   RESTful API for user count, gift registry mgmnt., attendee mgmnt., etc.
-7.   Make UI mobile friendly
-8.   Encrypt emails
-9.   Multilang support?
-10.  Store email in session. Check if other users exist with that email
-11.  Prompt for email when user goes to Gift Registry and data is not cached
-12.  Display item selected and undo button once confirmed
-13.  Fix map panning issue
-14.  Bring back checkboxes in the Gift registry. Make them look like fontawesome x or v/ (bottom left corner)
+2.   Add parallax scroll via react spring !!! LEAST PRIORITY !!!
+3.   RESTful API for user count, gift registry mgmnt., attendee mgmnt., etc.
+4.   Make UI mobile friendly
+5.   Encrypt emails
+6.   Store email in session. Check if other users exist with that email
+7.   Fix map panning issue

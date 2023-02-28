@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Builder;
 
 namespace Wedding_RSVP
 {
@@ -13,40 +14,42 @@ namespace Wedding_RSVP
       public static void Main(string[] args)
       {
          var builder = WebApplication.CreateBuilder(args);
+         var services = builder.Services;
+         var configuration = builder.Configuration;
 
          // Use PostgreSQL via the Npgsql package for the DbContext
-         var connection = builder.Configuration.GetConnectionString("DefaultConnection");
-         builder.Services.AddDbContext<WeddingDbContext>(options => options.UseNpgsql(connection));
+         var connection = configuration.GetConnectionString("DefaultConnection");
+         services.AddDbContext<WeddingDbContext>(options => options.UseNpgsql(connection));
 
          // Required for Nginx
-         builder.Services.Configure<ForwardedHeadersOptions>(options => {
+         services.Configure<ForwardedHeadersOptions>(options => {
             options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
          });
 
          // AddDefaultIdentity() sets up token providers and configures authorization to use identity cookies
-         builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<WeddingDbContext>().AddDefaultTokenProviders();
 
          // OAuth 2.0 Google authentication
-         builder.Services.AddAuthentication().AddGoogle(googleOptions => {
-            googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-            googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+         services.AddAuthentication().AddGoogle(googleOptions => {
+            googleOptions.ClientId = configuration.GetValue<string>("Authentication:Google:ClientId");
+            googleOptions.ClientSecret = configuration.GetValue<string>("Authentication:Google:ClientSecret");
          });
 
          // Setup authorization for RESTful API endpoints with Auth0 and JWT
-//         builder.Services.AddAuthentication(options =>
+//         services.AddAuthentication(options =>
 //         {
 //            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 //            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 //         }).AddJwtBearer(options =>
 //            {
-//               options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}/";
-//               options.Audience = builder.Configuration["Auth0:Audience"];
+//               options.Authority = $"https://{configuration["Auth0:Domain"]}/";
+//               options.Audience = configuration["Auth0:Audience"];
 //            }
 //         );
 //
 //         // Generate SwaggerUI. Authorization occurs through here with the help of Auth0.
-//         builder.Services.AddSwaggerGen(c => {
+//         services.AddSwaggerGen(c => {
 //            c.SwaggerDoc("v2", new OpenApiInfo { Title = "Wedding RSVP API", Version = "v2" });
 //            c.ResolveConflictingActions(x => x.First());
 //
@@ -72,10 +75,10 @@ namespace Wedding_RSVP
 //         });
 
          // Enable MVC support
-         builder.Services.AddMvc().AddSessionStateTempDataProvider();
-         builder.Services.AddSession();
+         services.AddMvc().AddSessionStateTempDataProvider();
+         services.AddSession();
 
-         builder.Services.AddControllersWithViews();
+         services.AddControllersWithViews();
          var app = builder.Build();
 
          // Seed the database 
@@ -97,11 +100,15 @@ namespace Wedding_RSVP
 
          // Configure the HTTP request pipeline
          
+         app.UseForwardedHeaders(); // NOTE: Make this first in the pipeline
+
          if (!app.Environment.IsDevelopment())
          {
             app.UseExceptionHandler("/Home/Error");
-            app.UseForwardedHeaders();
-            app.UseHsts();
+         }
+         else
+         {
+             app.UseDeveloperExceptionPage();
          }
 
 //         app.UseSwagger(c => {
@@ -112,6 +119,7 @@ namespace Wedding_RSVP
 //            c.RoutePrefix = "api";
 //         });
 
+         app.UseHsts();
          app.UseHttpsRedirection();
          app.UseStaticFiles();
          app.UseRouting();
