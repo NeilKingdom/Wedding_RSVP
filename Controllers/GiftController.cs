@@ -32,22 +32,10 @@ namespace Wedding_RSVP.Controllers
       }
 
       [AllowAnonymous]
-      public IActionResult GiftRegistryLogin()
+      public IActionResult OnGet()
       {
-         return Challenge(new AuthenticationProperties { RedirectUri = Url.Action("DbContainsUser") }, 
+         return Challenge(new AuthenticationProperties { RedirectUri = Url.Action("GiftRegistry") }, 
                GoogleDefaults.AuthenticationScheme); 
-      }
-
-      [AllowAnonymous]
-      public async Task<IActionResult> DbContainsUser()
-      {
-//         var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-//         for (var user in _context.MyUsers)
-//         {
-//            if (user.Email == 
-//         }
-         return RedirectToAction(nameof(GiftRegistry));
       }
 
       public IActionResult GiftRegistry()

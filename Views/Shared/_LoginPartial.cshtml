@@ -5,9 +5,9 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-   <a class="hlink" asp-controller="Gift" asp-action="DbContainsUser">Gift Registry</a>
+   <a class="hlink" asp-controller="Gift" asp-action="GiftRegistry">Gift Registry</a>
 } 
 else
 {
-   <a class="hlink" asp-controller="Gift" asp-action="GiftRegistryLogin">Gift Registry (Login)</a>
+   <a class="hlink" asp-controller="Gift" asp-action="OnGet">Gift Registry</a>
 }

@@ -85,15 +85,15 @@ namespace Wedding_RSVP
 
          using (var scope = app.Services.CreateScope())
          {
-            var services = scope.ServiceProvider;
+            var serviceProvider = scope.ServiceProvider;
             try
             {
-               var context = services.GetRequiredService<WeddingDbContext>();
+               var context = serviceProvider.GetRequiredService<WeddingDbContext>();
                DbInitializer.Initialize(context);
             }
             catch (Exception ex)
             {
-               var logger = services.GetRequiredService<ILogger<Program>>();
+               var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
                logger.LogError(ex, "An error occurred while seeding the database.");
             }
          }
