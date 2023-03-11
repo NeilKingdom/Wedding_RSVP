@@ -10,6 +10,9 @@ namespace Wedding_RSVP.Models
       [Column("UserID")]
       public int ID { get; set; }
 
+      [ForeignKey("UserCode")]
+      public int UserCodeID { get; set; }
+
       [Required(ErrorMessage="First name is required")]
       [BindProperty]
       [DisplayName("First Name")]
@@ -45,6 +48,7 @@ namespace Wedding_RSVP.Models
       public bool IsRsvpd { get; set; }
 
       // Navigation props
+      public virtual UserCode UserCode { get; set; }
       public virtual IList<Gift> Gifts { get; set; }
       public virtual IList<Attendee> Attendees { get; set; }
    }

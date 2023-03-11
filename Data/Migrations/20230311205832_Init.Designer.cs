@@ -12,7 +12,7 @@ using Wedding_RSVP.Data;
 namespace Wedding_RSVP.Data.Migrations
 {
     [DbContext(typeof(WeddingDbContext))]
-    [Migration("20230304040748_Init")]
+    [Migration("20230311205832_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -104,18 +104,17 @@ namespace Wedding_RSVP.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("text");
 
-                    b.Property<bool>("IsRsvpd")
+                    b.Property<bool?>("IsRsvpd")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("text");
 
-                    b.Property<int>("NumAttendees")
+                    b.Property<int?>("NumAttendees")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.Property<string>("OtherInfo")
@@ -127,6 +126,30 @@ namespace Wedding_RSVP.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("User", (string)null);
+                });
+
+            modelBuilder.Entity("Wedding_RSVP.Models.UserCode", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("character varying(9)");
+
+                    b.Property<int?>("UserID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserID")
+                        .IsUnique();
+
+                    b.ToTable("UserCode", (string)null);
                 });
 
             modelBuilder.Entity("Wedding_RSVP.Models.Attendee", b =>
@@ -147,11 +170,22 @@ namespace Wedding_RSVP.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Wedding_RSVP.Models.UserCode", b =>
+                {
+                    b.HasOne("Wedding_RSVP.Models.User", "User")
+                        .WithOne("UserCode")
+                        .HasForeignKey("Wedding_RSVP.Models.UserCode", "UserID");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Wedding_RSVP.Models.User", b =>
                 {
                     b.Navigation("Attendees");
 
                     b.Navigation("Gifts");
+
+                    b.Navigation("UserCode");
                 });
 #pragma warning restore 612, 618
         }

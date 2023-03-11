@@ -14,6 +14,16 @@ namespace Wedding_RSVP.Data
             return; // DB has been seeded
          }
 
+         // Add user codes to DB 
+         var userCodes = new List<UserCode>();
+         var rand = new Random();
+         for (int i = 0; i < 100; i++) 
+         {
+            userCodes.Add(new UserCode { Code = rand.Next(100000000, 1000000000).ToString() });
+         }
+         userCodes.ForEach(code => context.UserCodes.Add(code));
+         context.SaveChanges();
+
          // Add users to DB
          var users = new List<User>
          {

@@ -26,55 +26,57 @@
       </script>
    </head>
    <body class="d-flex flex-column min-vh-100">
-      <header>
-         <img class="logo" src="~/img/logo/Logo2.png" alt="Neil & Madison" />
-         <div class="hlinks">
-            <!-- 
-               Better to use anchor tags here rather than Action Links due to styling issues with the latter.
-               Also using href attributes instead of ASP.NET helper tags since I match the attribute using jQuery.
-            -->
-            <a class="hlink" href="/Home/Index" onclick="setActive()">Home</a>
-            <a class="hlink" href="/Gift/GiftRegistry" onclick="setActive()">Gift Registry</a>
-            <a class="hlink" href="/User/RsvpForm" onclick="setActive()">RSVP</a>
-         </div>
-      </header>
-      <main>
-         @RenderBody()
-      </main>
-      <footer class="myfooter mt-auto">
-         <h1 style="color: linen;">Contact Information</h1>
-         <table style="text-align: left;">
-            <tr>
-               <td>
-                  <i class="fa-regular fa-envelope"></i>
-                  Email:
-               </td>
-               <td>
-                  <a class="email" href="mailto:neilandmadison@gmail.com">neilandmadison@gmail.com</a>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <i class="fa-solid fa-phone"></i>
-                  Phone:
-               </td>
-               <td>
-                  (613) 206-3707
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  Social Media:
-               </td>
-               <td>
-                  <a href="https://www.facebook.com/madison.mainville.5"><i class="fontawesome fa-lg fa-brands fa-facebook-square"></i></a>
-                  <!-- TODO: Link this to an actual pages -->
-                  <a href=""><i class="fontawesome fa-lg fa-brands fa-instagram"></i></a>
-               </td>
-            </tr>
-         </table>
-         <div class="footer-bar">&commat;Neil Kingdom - 2022</div>
-      </footer>
-      @await RenderSectionAsync("Scripts", required: false)
+      <div>
+         <header>
+            <img class="logo" src="~/img/logo/Logo2.png" alt="Neil & Madison" />
+            <div class="hlinks">
+               <!-- 
+                  Better to use anchor tags here rather than Action Links due to styling issues with the latter.
+                  Also using href attributes instead of ASP.NET helper tags since I match the attribute using jQuery.
+               -->
+               <a class="hlink" href="/Home/Index" onclick="setActive()">Home</a>
+               <a class="hlink" href="/Gift/GiftRegistry" onclick="setActive()">Gift Registry</a>
+               <a class="hlink" href="/User/RsvpForm" onclick="setActive()">RSVP</a>
+            </div>
+         </header>
+         <main>
+            @RenderBody()
+         </main>
+         <footer class="myfooter mt-auto">
+            <h1 style="color: linen;">Contact Information</h1>
+            <table style="text-align: left;">
+               <tr>
+                  <td>
+                     <i class="fa-regular fa-envelope"></i>
+                     Email:
+                  </td>
+                  <td>
+                     <a class="email" href="mailto:neilandmadison@gmail.com">neilandmadison@gmail.com</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <i class="fa-solid fa-phone"></i>
+                     Phone:
+                  </td>
+                  <td>
+                     (613) 206-3707
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     Social Media:
+                  </td>
+                  <td>
+                     <a href="https://www.facebook.com/madison.mainville.5"><i class="fontawesome fa-lg fa-brands fa-facebook-square"></i></a>
+                     <!-- TODO: Link this to an actual pages -->
+                     <a href=""><i class="fontawesome fa-lg fa-brands fa-instagram"></i></a>
+                  </td>
+               </tr>
+            </table>
+            <div class="footer-bar">&commat;Neil Kingdom - 2022</div>
+         </footer>
+         @await RenderSectionAsync("Scripts", required: false)
+      </div>
    </body>
 </html>

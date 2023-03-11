@@ -38,9 +38,36 @@ window.onload = function() {
 //   }
 }
 
+function validateUser(code) {
+   var url = new URL(window.location.href);
+
+   if (code)
+      // TODO: Check length of code
+      url.searchParams.set("code", code); 
+   else
+      url.searchParams.set("code", $("#code-input").val()); 
+
+   alert(url.href);
+   window.location.replace(url.href);
+}
+
 $(document).ready(function() {
 	// Set the number of attendees field to 0 on document load
 	$("#User_NumAttendees").val(0);
+
+   // Popup dialog for user validation
+   var existingCode = localStorage.getItem("Code");
+   if (existingCode === null) {
+      var dialogElements = '<div class="passconf-dialog">';
+      dialogElements    += '<span>Please enter the code that was included in your invite:</span>';
+      dialogElements    += '<div><a href="javascript:history.back()">Back</a><input id="code-input" type="text" /></div>';
+      dialogElements    += '<button class="confirm-btn" onclick="validateUser()">Enter</button>'
+
+      $("body").prepend('<div id="overlay"></div>');
+      $("body").prepend(dialogElements);
+   } else {
+      validateUser(existingCode);
+   }
 
 	// Event handler for increment button click
 	$("#inc").click(function(e) {
