@@ -21,7 +21,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Wedding_RSVP.Controllers
 {
-   //[Authorize]
    public class GiftController : Controller
    {
       private readonly WeddingDbContext _context;
@@ -31,22 +30,12 @@ namespace Wedding_RSVP.Controllers
          _context = context;
       }
 
-      [AllowAnonymous]
-      public IActionResult OnGet()
-      {
-         return Challenge(new AuthenticationProperties { RedirectUri = Url.Action("GiftRegistry") }, 
-               GoogleDefaults.AuthenticationScheme); 
-      }
-
       public IActionResult GiftRegistry()
       {
-         UserGiftsViewModel userGift = new()
-         {
-            User = new(),
-            Gifts = new List<Gift>()
+         GiftsViewModel giftsViewModel = new() {
+            Gifts = _context.Gifts.Where(c => c.Available == true)
          };
-
-         return View(userGift);
+         return View(giftsViewModel);
       }
 
       public IActionResult RegisteredGifts()

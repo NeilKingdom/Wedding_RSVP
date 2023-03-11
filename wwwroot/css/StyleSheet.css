@@ -9,7 +9,7 @@ html {
    height: 100%;
 }
 
-/* Universal background color */
+/* Universal background color (pure white is icky) */
 body {
    background-color: #f5f5f5;
 }
@@ -18,53 +18,83 @@ body {
 header {
    /* Flex settings */
    display: flex;
-   flex-flow: row nowrap;
-   justify-content: flex-start;
+   flex-flow: column nowrap;
+   justify-content: center;
    align-items: center;
 
-   background-color: linen;
-   width: 100%;
-   max-height: 4vw;
-   position: fixed;
    /*
       The banner should be above all
       content since the links to the
       other pages are top priority
    */
    z-index: 100;
+   width: 100%;
 }
 
 /* Home page logo */
 .logo {
-   max-height: 4vw;
-   width: auto;
+   width: 50vw;
+   height: auto;
+   margin: 2vw 0 2vw 0;
 }
 
-/* Header links (Gift Registry + RSVP) */
+@media only screen and (max-width: 767px) {
+   .logo {
+      width: 70vw;
+   }
+}
+
+/* Container for anchor tags belonging specifically to the header */
+.hlinks {
+   /* Flex settings */
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: center;
+   align-items: center;
+   column-gap: 5vw;
+
+   padding: 0.5vw;
+}
+
+/* Anchor tags belonging specifically to the header */
 .hlink,
 .hlink:link,
 .hlink:hover,
 .hlink:active,
 .hlink:visited {
    color: #bc987e;
-   font-size: 1.75vw;
-   margin: 0 1.5vw 0 1.5vw;
-   padding: 1vw;
+   font-size: 3vw;
 }
 
-/* Header is split into 2 columns. The logo column occupies 75%, the hlink column occupies 25% */
-.hleft {
-   width: 75%;
+@media only screen and (max-width: 767px) {
+   .hlink,
+   .hlink:link,
+   .hlink:hover,
+   .hlink:active,
+   .hlink:visited {
+      font-size: 5vw;
+   }
 }
 
-.hright {
-   width: 25%;
+/* Create a bottom border to highlight that the link is active */
+.hlink.active {
+   border-bottom-style: solid;
+   border-bottom-color: #bc987e;
+   border-bottom-width: 0.25vw;
 }
 
+/* Set the dimensions of the Bootstrap carousel container */
 .carousel {
    margin-top: 5vw;
    width: 80vw;
    height: 45vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .carousel {
+      width: 100vw;
+      height: 56.25vw;
+   }
 }
 
 /* Center images in the carousel. Default behavior is to stick to the left edge. */
@@ -81,30 +111,62 @@ header {
    height: auto;
 }
 
-/* Carousel control buttons */
-.slide-btn {
-   background-color: gainsboro;
-   width: 6vw;
-   height: auto;
-   z-index: 50; /* Position above images but below header */
-   position: absolute; /* Required to have buttons go on top of images */
-   /* Move from center */
-   cursor: pointer; /* Changes cursor to indicate that the element is clickable */
-
-   -webkit-transition: all 1s ease;
-   -moz-transition: all 1s ease;
-   -o-transition: all 1s ease;
-   transition: all 1s ease;
+@media only screen and (max-width: 767px) {
+   .carousel-img {
+      min-height: 56.25vw;
+      max-height: 56.25vw;
+   }
 }
 
-/* Left button positioning */
-.slide-btn-1 {
+/* The default state of the control buttons */
+.slide-btn {
+   /* Flex settings */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   position: absolute; /* Required to have buttons go on top of images */
+   border: none;
+   width: 10vw;
+   height: 45vw;
+   top: 0;
+   bottom: 0;
+   padding: 0;
+   opacity: 0;
+   background: none;
+   background-color: gainsboro;
+   z-index: 50; /* Position above images but below header */
+   cursor: pointer; /* Changes cursor to indicate that the element is clickable */
+
+   transition: width 1s ease, opacity 1s ease;
+}
+
+/* We don't need slide buttons on mobile */
+@media (pointer: none), (pointer: coarse) {
+   .slide-btn {
+      display: none; 
+   }
+}
+
+/* Added by jQuery to apply a fade in animation */
+.slide-btn-transition {
+   width: 6vw;
+   opacity: 0.6;
+
+   transition: width 1s ease, opacity 1s ease;
+}
+
+.slide-btn-transition:hover {
+   opacity: 0.8; 
+   transition: opacity 0.5s linear;
+}
+
+.slide-btn-prev {
    left: 0;
 }
 
-/* Right button positioning */
-.slide-btn-2 {
-   right: 0;
+.slide-btn-next {
+   right: 0; 
 }
 
 /* The fontawesome chevron icons for carousel buttons */
@@ -135,7 +197,7 @@ article {
 }
 
 /* Change to one column on mobile */
-@media only screen and (max-width: 1070px) {
+@media only screen and (max-width: 767px) {
    article {
       /* Flex settings */
       display: flex;
@@ -152,7 +214,7 @@ article {
 }
 
 /* For mobile, display left columns first (by making width 100%), then right columns after */
-@media only screen and (max-width: 1070px) {
+@media only screen and (max-width: 767px) {
    .col-left {
       width: 100%;
    }
@@ -163,7 +225,7 @@ article {
 }
 
 /* Right columns will go after left columns */
-@media only screen and (max-width: 1070px) {
+@media only screen and (max-width: 767px) {
    .col-right {
       width: 100%;
    }
@@ -176,11 +238,24 @@ article {
    font-size: 1.5vw;
 }
 
+@media only screen and (max-width: 767px) {
+   .section-header {
+      padding: 0.5vw 0.5vw 0.5vw 2vw;
+      background-color: linen;
+      font-size: 5vw;
+   }
+}
+
 /* Section = article entry (header + paragraph) */
 .section {
-   font-family: "Calisto MT", serif;
-   font-style: italic;
+   font-family: baskerville, serif;
    font-size: 1.2vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .section {
+      font-size: 4vw;
+   }
 }
 
 /* Map styling */
@@ -188,7 +263,6 @@ article {
    overflow: hidden;
    padding-bottom: 56.25%; /* Maintain 4:3 aspect ratio */
    position: relative;
-   /*height: 0;*/
 }
 
 .map-responsive iframe {
@@ -201,12 +275,15 @@ article {
 
 /* The Gift Registry page */
 .registry {
-   padding-top: 7vw;
-   margin-left: 5%;
-   width: 90%;
+   padding-top: 5vw;
 }
 
-/* Layout for gift info containers */
+/* The Q&A link and "My Gifts" button */
+.registry-header {
+   margin-bottom: 3vw;
+}
+
+/* Layout for gift containers */
 .gifts-list {
    /* Flex settings */
    display: flex;
@@ -214,6 +291,8 @@ article {
    justify-content: flex-start;
    align-items: center;
    align-content: flex-start;
+
+   width: 90vw;
 }
 
 /* Container for gift info */
@@ -227,27 +306,18 @@ article {
    font-size: 1vw;
    padding: 0.5vw;
    margin: 1vw;
-   width: 15vw;
-   height: 21vw;
-   border-radius: 1vw;
-   filter: drop-shadow(-5px 7px 5px #C0C0C0); /* (x, y, diffusion, rgb) */
+   width: 90vw;
+   height: 105vw;
+   max-width: 370px;
+   max-height: 500px;
+   border-radius: 10px;
+   filter: drop-shadow(-0.2vw 0.5vw 0.2vw #C0C0C0); /* (x, y, diffusion, rgb) */
 }
 
-@media only screen and (max-width: 1070px) {
+@media (max-width: 767px) {
    .gift-container {
-      /* Flex settings */
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: flex-start;
-
-      background-color: white;
-      font-size: 1.5vw;
       padding: 1.5vw;
-      margin: 2.5vw;
-      width: 24vw;
-      height: 33vw;
-      border-radius: 1vw;
-      filter: drop-shadow(-5px 7px 5px #C0C0C0); /* (x, y, diffusion, rgb) */
+      font-size: 5vw;
    }
 }
 
@@ -259,25 +329,17 @@ article {
 
 /* Thumbnail properties for gift registry table */
 img.thumbnail {
-   width: 14vw;
-   height: 14vw;
-}
-
-@media only screen and (max-width: 1070px) {
-   img.thumbnail {
-      width: 22vw;
-      height: 22vw;
-   }
+   width: 85vw;
+   height: 85vw;
+   max-width: 350px;
+   max-height: 350px;
 }
 
 /* Used by JQuery to toggle thumbnail opacity */
 .img-opaque {
    opacity: 0.4;
-
    /* Give it a bit of a fade to match button rotation animation */
-   transition-property: opacity;
-   transition-duration: 0.09s;
-   transition-timing-function: linear;
+   transition: opacity 0.09s linear;
 }
 
 /* Used for the text element that appears over thumbnails on hover */
@@ -285,15 +347,15 @@ img.thumbnail {
    position: absolute;
    top: 50%;
    left: 50%;
-   padding: 0.5vw;
-   font-size: 1vw;
    transform: translate(-50%, -50%);
-   padding: 2px;
+   height: 3em;
+   max-height: 50px;
+   padding: 5px;
    color: gray;
    border-style: solid;
-   border-width: 3px;
-   border-radius: 5px;
    border-color: gray;
+   border-width: 2px;
+   border-radius: 5px;
 }
 
 .enlarge-text:hover {
@@ -302,9 +364,33 @@ img.thumbnail {
    cursor: pointer;
 }
 
+/* Mobile users can just pinch */
+@media (pointer: none), (pointer: coarse) {
+   .enlarge-text,
+   .enlarge-text:hover {
+      display: none;
+   }
+}
+
 /* Used by jQuery to make "enlarge image" text hidden by default */
 .enlarge-text-hidden {
    display: none;
+}
+
+/* div containing website link, description, and price */
+.gift-descr {
+   /* Flex settings */
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: flex-start;
+   align-items: baseline;
+   align-content: center;
+
+   position: absolute;
+   bottom: 1vw;
+   left: 1vw;
+   width: 60vw;
+   height: auto;
 }
 
 /* The background circle for checkboxes */
@@ -317,11 +403,13 @@ img.thumbnail {
    align-content: center;
 
    border-radius: 50%; /* Creates a circle */
-   width: 2.5vw;
-   height: 2.5vw;
+   text-align: center;
+   font-size: 40px;
+   width: 60px;
+   height: 60px;
    position: absolute;
-   bottom: 0.5vw;
-   right: 0.5vw;
+   bottom: 1vw;
+   right: 1vw;
    z-index: 50; /* Position above the gift-container but below plus icon */
    cursor: pointer; /* Changes cursor to indicate that the element is clickable */
 
@@ -329,31 +417,6 @@ img.thumbnail {
    background-image: linear-gradient(135deg, #00ab66, #ffffff, #00ae6f);
    background-size: 300% 300%;
    background-position: right bottom;
-}
-
-@media only screen and (max-width: 1070px) {
-   .cbox {
-      /* Flex settings */
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-
-      border-radius: 50%; /* Creates a circle */
-      width: 3.5vw;
-      height: 3.5vw;
-      position: absolute;
-      bottom: 0.5vw;
-      right: 0.5vw;
-      z-index: 50; /* Position above the gift-container but below plus icon */
-      cursor: pointer; /* Changes cursor to indicate that the element is clickable */
-
-      /* Off-screen gradient */
-      background-image: linear-gradient(135deg, #00ab66, #ffffff, #00ae6f);
-      background-size: 300% 300%;
-      background-position: right bottom;
-   }
 }
 
 /* Gradient transition for sheen effect on hover */
@@ -366,13 +429,7 @@ img.thumbnail {
 .cbox > i {
    color: white;
    z-index: 100;
-   /*
-      The fontawesome font I chose is originally an x, because the plus
-      symbols are not symetrical and appear skewed when rotated. This
-      icon is semetrical, but it's starting position must be offset by
-      45 degrees.
-   */
-   transform: rotate(45deg);
+   transform: rotate(45deg); /* The font awesome icon is an x, but we want it to look like a + */
 }
 
 /* Animation for rotating from '+' to 'x' */
@@ -415,14 +472,15 @@ img.thumbnail {
    flex-flow: row nowrap;
    justify-content: flex-start;
    align-items: center;
-   gap: 37.5%; /* Kind of hacky. Just did guess and check till it was centered with footer */
 
-   height: 7vw;
+   position: relative;
+   left: 50%;
+   height: 14vw;
 }
 
 /* RSVP page */
 .rsvp {
-   padding-top: 7vw;
+   padding-top: 5vw;
 }
 
 .rsvp-form {
@@ -436,33 +494,81 @@ img.thumbnail {
 /* The table used in RSVP form */
 .rsvp-table {
    font-size: 2vw;
-   width: 75vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .rsvp-table {
+      font-size: 4vw;
+      width: 100%;
+   }
+}
+
+/* Text field header */
+.tf-header {
+   font-size: 1.5vw;
+}
+
+/* Extend width of text input fields */
+.rsvp-table input[type="text"],
+.rsvp-table input[type="email"] {
+   width: 50vw;
+}
+
+/* Extend width of text area fields */
+.rsvp-table textarea {
+   width: 50vw;
+   height: 25vw;
+}
+
+/* Input field placeholder text size */
+.rsvp-table input::placeholder,
+.rsvp-table textarea::placeholder {
+   font-size: 1.2vw; 
+}
+
+/* Number of attendees text field */
+.attendees-input {
+   box-sizing: border-box;
+   max-height: inherit; /* Prevent resizing so that buttons are forced inside bounds */ 
 }
 
 /* Custom increment/decrement buttons */
 .inc-dec {
+   /* Flex settings */
+   display: flex;
+   flex-flow: row wrap;
+
+   position: absolute;
+   transform: translate(44vw, -3vw);
+   min-height: 20px;
+}
+
+#inc,
+#dec {
+   /* Flex settings */
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: center;
+   align-content: center;
+
    color: darkgray;
-   background-color: white;
-   font-size: 2vw;
+   background-color: none;
+   background: none;
    border-style: none;
-   border-radius: 0.2vw;
-   width: 2.75vw;
-   height: 2.75vw;
+   border-radius: 5px;
+   width: 2.5vw;
+   height: 2.5vw;
 }
 
-.inc-dec:hover {
+#inc:hover,
+#dec:hover {
    background-color: #e2e3e4;
-}
-
-/* Prevent top/bottom padding on fontawesome icons due to how browsers render fonts */
-.inc-dec > i {
-   display: block;
 }
 
 /* Submission success page */
 .rsvp-success {
    width: 50%;
-   padding-top: 7vw;
+   padding-top: 14vw;
    font-size: 1.5vw;
 }
 
@@ -476,7 +582,7 @@ img.thumbnail {
 }
 
 .fontawesome {
-   margin: 0 2px 0 2px;
+   margin: 0 0.5vw 0 0.5vw;
 }
 
 .fontawesome:hover,
@@ -494,35 +600,35 @@ img.thumbnail {
 
    background-color: #c19c98;
    padding-top: 0.75vw;
-   font-size: 1.3vw;
 }
 
 /* Scale h1 within footer */
 .myfooter > h1 {
-   font-size: 2vw;
+   font-size: 3vw;
 }
 
 /* We need this because setting padding-bottom for myfooter extends it past the bar */
 .myfooter > table {
-   margin-bottom: 0.75vw;
+   font-size: 2vw;
+   margin-bottom: 1vw; 
 }
 
 /* Bar spanning the very bottom of the footer */
 .footer-bar {
    /* Flex settings */
    display: flex;
-   align-items: center;
+   align-content: center;
 
+   position: relative;
+   width: 100%;
    color: linen;
    background-color: #90686d;
-   font-size: 0.75vw;
-   padding: 0.25vw 0 0 5%; /* The bottom already appears to have padding for some reason? */
-   width: 100%;
-   position: relative;
+   font-size: 1vw;
+   padding: 0.25vw 0 0 4vw; 
 }
 
-/* Override default color of bootstrap btn and btn-primary */
-.mybtn {
+/* Override default color of bootstrap btn and btn-primary (accept) */
+.confirm-btn {
    color: white;
    background: #aadae0;
    font-size: 2vw;
@@ -531,7 +637,21 @@ img.thumbnail {
    border-style: none;
 }
 
-.mybtn:hover {
+.confirm-btn:hover {
+   background: #9acad0;
+}
+
+/* Override default color of bootstrap btn and btn-primary (decline) */
+.decline-btn {
+   color: white;
+   background: #f08080;
+   font-size: 2vw;
+   padding: 0.1vw 1vw 0.1vw 1vw;
+   border-radius: 150px;
+   border-style: none;
+}
+
+.decline-btn:hover {
    background: #9acad0;
 }
 

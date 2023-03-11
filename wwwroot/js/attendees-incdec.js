@@ -54,9 +54,14 @@ $(document).ready(function() {
 			index = (isNaN(index)) ? 1 : index + 1;
 
 			var newField = '<tr id="attendee(' + index + ')">';
-			newField    += '<td>Full Name for Attendee ' + index + '</td>';
 			newField		+= '<td>';
-			newField 	+= '<input type="text" id="Attendees_' + (index-1) + '__FullName" name="Attendees[' + (index-1) + '].FullName" /><br />';
+			newField    += '<span class="tf-header">Full Name for Attendee ' + index + '</span>';
+			newField 	+= '<div><input type="text" placeholder="Full Name (Required)"'
+            + 'id="Attendees_' 
+            + (index-1) 
+            + '__FullName" name="Attendees[' 
+            + (index-1) 
+            + '].FullName" /></div>';
 			newField		+= '<span asp-validation-for="Attendees[' + (index-1) + '].FullName" class="text-danger"></span>';
 			newField		+= '</td>';
 			newField		+= '</tr>';

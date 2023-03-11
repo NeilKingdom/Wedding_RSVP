@@ -26,32 +26,20 @@ namespace Wedding_RSVP
             options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
          });
 
-         // AddDefaultIdentity() sets up token providers and configures authorization to use identity cookies
-         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<WeddingDbContext>().AddDefaultTokenProviders();
-
-         // OAuth 2.0 Google authentication
-         services.AddAuthentication().AddGoogle(googleOptions => {
-            googleOptions.ClientId = configuration.GetValue<string>("Authentication:Google:ClientId");
-            googleOptions.ClientSecret = configuration.GetValue<string>("Authentication:Google:ClientSecret");
-         });
-
          // Setup authorization for RESTful API endpoints with Auth0 and JWT
-//         services.AddAuthentication(options =>
-//         {
-//            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//         }).AddJwtBearer(options =>
-//            {
-//               options.Authority = $"https://{configuration["Auth0:Domain"]}/";
-//               options.Audience = configuration["Auth0:Audience"];
-//            }
-//         );
-//
-//         // Generate SwaggerUI. Authorization occurs through here with the help of Auth0.
+         services.AddAuthentication(options =>
+         {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+         }).AddJwtBearer(options => {
+               options.Authority = $"https://{configuration["Auth0:Domain"]}/";
+               options.Audience = configuration["Auth0:Audience"];
+            }
+         );
+
+         // Generate SwaggerUI. Authorization occurs through here with the help of Auth0.
 //         services.AddSwaggerGen(c => {
 //            c.SwaggerDoc("v2", new OpenApiInfo { Title = "Wedding RSVP API", Version = "v2" });
-//            c.ResolveConflictingActions(x => x.First());
 //
 //            var securitySchema = new OpenApiSecurityScheme
 //            {

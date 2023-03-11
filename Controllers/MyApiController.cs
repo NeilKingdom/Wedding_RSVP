@@ -27,7 +27,7 @@ namespace Wedding_RSVP.Controllers
       [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public async Task<ActionResult<int>> GetCount()
       {
-         int countUsers = await _context.MyUsers.CountAsync();
+         int countUsers = await _context.Users.CountAsync();
          int countAttendees = await _context.Attendees.CountAsync();
          return Ok(countUsers + countAttendees);
       }
@@ -41,7 +41,7 @@ namespace Wedding_RSVP.Controllers
       [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public async Task<ActionResult<IEnumerable<User>>> GetUsers()
       {
-         return Ok(await _context.MyUsers.ToListAsync()); 
+         return Ok(await _context.Users.ToListAsync()); 
       }
 
       /* RESTful endpoint for displaying a specific user */
@@ -55,7 +55,7 @@ namespace Wedding_RSVP.Controllers
       [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public async Task<ActionResult<User>> GetUser(int id)
       {
-         User user = await _context.MyUsers.FindAsync(id);
+         User user = await _context.Users.FindAsync(id);
          if (user == null) return NotFound();
          return Ok(user);
       }
@@ -81,7 +81,7 @@ namespace Wedding_RSVP.Controllers
       [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public async Task<IActionResult> DeleteUser(int id)
       {
-         var user = await _context.MyUsers.FindAsync(id);
+         var user = await _context.Users.FindAsync(id);
          if (user == null)
          {
             return NotFound();
@@ -93,7 +93,7 @@ namespace Wedding_RSVP.Controllers
             _context.Attendees.Remove(attendee);
          }
 
-         _context.MyUsers.Remove(user);
+         _context.Users.Remove(user);
          await _context.SaveChangesAsync();
 
          return NoContent();

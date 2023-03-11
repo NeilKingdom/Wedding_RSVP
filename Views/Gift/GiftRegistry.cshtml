@@ -1,16 +1,17 @@
-@model Wedding_RSVP.Models.ViewModels.UserGiftsViewModel
+@model Wedding_RSVP.Models.ViewModels.GiftsViewModel
 @{
    ViewData["Title"] = "Gift Registry";
 }
 
 <div class="registry">
-   <p style="font-size: 3vw;">Gift Registry</p>
-   <p style="font-size: 1vw;">See the
-      <a href="~/Home/Index/#qanda">
-         <u>Q&amp;A</u>
-      </a> for more information on the gift registry
-   </p>
-   <br />
+   <div class="registry-header">
+      <span style="font-size: 2vw;">See the
+         <a href="~/Home/Index/#qanda">
+            <u>Q&amp;A</u>
+         </a> for more information on the gift registry
+      </span>
+      <button class="confirm-btn" style="position: absolute; right: 10vw;" onclick="validateUserEmail()">My Gifts</button>
+   </div>
    @if (Model.Gifts != null && Model.Gifts.Count() > 0)
    {
       <div class="gifts-list">
@@ -22,33 +23,34 @@
                <div class="gift-container">
                   <div class="tn-container">
                      <img class="thumbnail" src="@imageSrc" />
-                     <span class="enlarge-text enlarge-text-hidden">
+                     <div class="enlarge-text enlarge-text-hidden">
                         <b>Enlarge</b>&nbsp;
                         <i class="fa-solid fa-magnifying-glass"></i>
-                     </span>
+                     </div>
                   </div>
-                  <a href="@gift.SiteUrl">Go to Website</a>
-                  @gift.Desc<br />
-                  @string.Format("${0:0.00}", gift.EstPrice)
+                  <div class="gift-descr">
+                     <a href="@gift.SiteUrl">Go to Website</a>
+                     <span>@gift.Desc</span>
+                     <span>@string.Format("${0:0.00}", gift.EstPrice)</span>
+                  </div>
                   <label>
-                     <!-- Hidden checkbox. Replaced by icon in the span -->
+                     <!-- Hidden checkbox. Replaced by icon in the div -->
                      <input asp-for="@gift.Available" style="display: none;" type="checkbox" />
-                     <span class="cbox">
+                     <div class="cbox">
                         <i class="fa-solid fa-xmark"></i>
-                     </span>
+                     </div>
                   </label>
                </div>
             }
          }
       </div>
       <div class="registry-nav-ctrls">
-         <a href="javascript:history.back()" style="font-size: 1.75vw;">Back</a>
-         <input id="submit" class="mybtn" type="submit" value="Continue" />
+         <input id="submit" class="confirm-btn" type="submit" value="Continue" />
       </div>
    }
-   else
+   else 
    {
-      <h5>No Gifts have been added to the registry</h5>
+      <div>Sorry... There are currently no gifts available in the registry!</div>
    }
 </div>
 
@@ -104,5 +106,13 @@
             }
          });
       });
+
+      function validateUserEmail() {
+         if (localStorage.getItem("Email") === null) {
+            alert("No email is registered");
+         } else {
+            alert("Email is " + localStorage.getItem("Email"));
+         }
+      }
 	</script>
 }

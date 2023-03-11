@@ -4,57 +4,65 @@
 }
 
 <div class="rsvp">
-   <p style="font-size: 3vw;">RSVP</p>
    <br />
    <form class="rsvp-form form" asp-action="RsvpForm" method="post">
       <table class="rsvp-table table">
          <tr>
-            <td>@Html.DisplayNameFor(model => model.User.FirstName)</td>
             <td>
-               <input asp-for="@Model.User.FirstName" /><br />
+               <span class="tf-header">@Html.DisplayNameFor(model => model.User.FirstName)</span>
+               <div><input asp-for="@Model.User.FirstName" placeholder="@Html.DisplayNameFor(model => model.User.FirstName) (Required)" /></div>
                <span asp-validation-for="@Model.User.FirstName" class="text-danger"></span>
             </td>
          </tr>
          <tr>
-            <td>@Html.DisplayNameFor(model => model.User.LastName)</td>
             <td>
-               <input asp-for="@Model.User.LastName" /><br />
+               <span class="tf-header">@Html.DisplayNameFor(model => model.User.LastName)</span>
+               <div><input asp-for="@Model.User.LastName" placeholder="@Html.DisplayNameFor(model => model.User.LastName) (Required)" /></div>
                <span asp-validation-for="@Model.User.LastName" class="text-danger"></span>
             </td>
          </tr>
          <tr>
-            <td>@Html.DisplayNameFor(model => model.User.Email)</td>
             <td>
-               <input asp-for="@Model.User.Email" /><br />
+               <span class="tf-header">@Html.DisplayNameFor(model => model.User.Email)</span>
+               <div><input asp-for="@Model.User.Email" placeholder="@Html.DisplayNameFor(model => model.User.Email) (Required)" /></div>
                <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
             </td>
          </tr>
          <tr>
-            <td>Number of Attendees (Max of 5)</td>
             <td>
-               <!-- Using TextBoxFor forces ASP.NET to use a text input instead of a number input -->
-               @Html.TextBoxFor(model => model.User.NumAttendees, new { @readonly=true })
-               <button id="inc" class="inc-dec">
-                  <i class="fa-solid fa-plus"></i>
-               </button>
-               <button id="dec" class="inc-dec">
-                  <i class="fa-solid fa-minus"></i>
-               </button>
-               <br />
+               <span class="tf-header">Number of Attendees (Max of 5)</span>
+               <div class="attendees-input">
+                  <!-- Using TextBoxFor forces ASP.NET to use a text input instead of a number input -->
+                  @Html.TextBoxFor(model => model.User.NumAttendees, new { @readonly=true })
+                  <div class="inc-dec">
+                     <button id="inc">
+                        <span><i class="fa-solid fa-plus"></i></span>
+                     </button>
+                     <button id="dec">
+                        <span><i class="fa-solid fa-minus"></i></span>
+                     </button>
+                  </div>
+               </div>
                <span asp-validation-for="@Model.User.NumAttendees" class="text-danger"></span>
             </td>
          </tr>
          <tr id="after-attendees">
-            <td>Song Request (Optional)</td>
-            <td><input asp-for="@Model.User.SongRequest" type="text" /></td>
+            <td>
+               <span class="tf-header">Song Request</span>
+               <div><input asp-for="@Model.User.SongRequest" type="text" placeholder="Song Request (Optional)" /></div>
+            </td>
          </tr>
          <tr>
-            <td>Anything You'd Like us to Know (Optional)</td>
-            <td><textarea asp-for="@Model.User.OtherInfo" rows="4" cols="26"></textarea></td>
+            <td>
+               <span class="tf-header">Anything You'd Like us to Know</span>
+               <div><textarea asp-for="@Model.User.OtherInfo" placeholder="Anything You'd Like us to Know (Optional)"></textarea></div>
+            </td>
          </tr>
          <tr>
-            <td><a href="javascript:history.back()">Back</a></td>
-            <td><input id="submit" class="mybtn btn btn-primary" type="submit" value="Continue" /></td>
+            <td>
+               <input id="submit" class="decline-btn btn btn-primary" type="submit" value="Decline" />
+               <input id="submit" class="confirm-btn btn btn-primary" type="submit" value="Accept" />
+            </td>
          </tr>
       </table>
    </form>
