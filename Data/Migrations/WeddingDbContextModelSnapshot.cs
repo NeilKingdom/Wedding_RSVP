@@ -103,15 +103,14 @@ namespace Wedding_RSVP.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool?>("IsRsvpd")
+                    b.Property<bool>("IsRsvpd")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("NumAttendees")
-                        .IsRequired()
+                    b.Property<int>("NumAttendees")
                         .HasColumnType("integer");
 
                     b.Property<string>("OtherInfo")
@@ -120,7 +119,13 @@ namespace Wedding_RSVP.Data.Migrations
                     b.Property<string>("SongRequest")
                         .HasColumnType("text");
 
+                    b.Property<int>("UserCodeID")
+                        .HasColumnType("integer");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("UserCodeID")
+                        .IsUnique();
 
                     b.ToTable("User", (string)null);
                 });
@@ -138,13 +143,7 @@ namespace Wedding_RSVP.Data.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("character varying(9)");
 
-                    b.Property<int?>("UserID")
-                        .HasColumnType("integer");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserID")
-                        .IsUnique();
 
                     b.ToTable("UserCode", (string)null);
                 });
@@ -167,13 +166,15 @@ namespace Wedding_RSVP.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Wedding_RSVP.Models.UserCode", b =>
+            modelBuilder.Entity("Wedding_RSVP.Models.User", b =>
                 {
-                    b.HasOne("Wedding_RSVP.Models.User", "User")
-                        .WithOne("UserCode")
-                        .HasForeignKey("Wedding_RSVP.Models.UserCode", "UserID");
+                    b.HasOne("Wedding_RSVP.Models.UserCode", "UserCode")
+                        .WithOne("User")
+                        .HasForeignKey("Wedding_RSVP.Models.User", "UserCodeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("UserCode");
                 });
 
             modelBuilder.Entity("Wedding_RSVP.Models.User", b =>
@@ -181,8 +182,11 @@ namespace Wedding_RSVP.Data.Migrations
                     b.Navigation("Attendees");
 
                     b.Navigation("Gifts");
+                });
 
-                    b.Navigation("UserCode");
+            modelBuilder.Entity("Wedding_RSVP.Models.UserCode", b =>
+                {
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

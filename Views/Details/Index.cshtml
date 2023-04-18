@@ -47,8 +47,7 @@
    <p class="section-content">
       Welcome to our wedding website - made and designed from scratch by the bride and<br />
       groom! Find all the details and important information for our big day below and through<br />
-      our “<a href="/Details/Index">Details</a>” page. If you have any questions, please don’t 
-      hesitate to ask us. We cannot<br />
+      our “Details” page. If you have any questions, please don’t hesitate to ask us. We cannot<br />
       wait to have you as part of our special day!
    </p>
 
@@ -135,24 +134,17 @@
    </div>
 
    <p class="section-content">
-      2 pm - Ceremony begins at Southgate. Please aim to arrive 10-15 minutes early<br /><br />
-      2:30 pm to 2:45 pm - Receiving line immediately after the ceremony. Please take a<br /><br />
-      minute to congratulate the newlywed couple!<br /><br />
-      3:30 pm to 5:15 pm - Cocktail hour at eQuinelle. Be sure to mingle and watch for family<br /><br />
-      and friend photographs around this time.<br /><br />
-      5:30 pm - Bridal party entrances and dinner is served<br /><br />
-      6 pm to 6:30 pm - Speeches from family and friends<br /><br />
-      Dancing!<br /><br />
-      Cake cutting/dessert is served<br /><br />
+      2 pm - Ceremony begins at Southgate. Please aim to arrive 10-15 minutes early<br />
+      2:30 pm to 2:45 pm - Receiving line immediately after the ceremony. Please take a<br />
+      minute to congratulate the newlywed couple!<br />
+      3:30 pm to 5:15 pm - Cocktail hour at eQuinelle. Be sure to mingle and watch for family<br />
+      and friend photographs around this time.<br />
+      5:30 pm - Bridal party entrances and dinner is served<br />
+      6 pm to 6:30 pm - Speeches from family and friends<br />
+      Dancing!<br />
+      Cake cutting/dessert is served<br />
       Grand exit
    </p>
-
-   <div style="width: 100%;">
-      <h1 class="section-header">
-         ONLY <span id="days-remaining"></span> DAYS<br />
-         until we say "I do"!
-      </h1>
-   </div>
 </article>
 
 @section Scripts {
@@ -160,17 +152,11 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
    <script>
       var timeoutHandle; 
-      var daysRemaining = 0;
 
       $(document).ready(function() {
-         // Clicks the first page link in the header to make it appear selected
-         $(".hlink").first().click(); 
+         $(".hlink").first().click();
       });
 
-      /* 
-         Adds the slide button transition animation on hover, then
-         reverses it after 5 seconds of the mouse exiting the carousel
-      */
       $("#my-carousel").hover(function() {
          window.clearTimeout(timeoutHandle);
          $(".slide-btn").addClass("slide-btn-transition");
@@ -179,15 +165,5 @@
             $(".slide-btn").removeClass("slide-btn-transition");
          }, (5 * 1000))
       });
-
-      window.onload = setNumDaysRemaining();
-
-      // Gets the # of days until the wedding
-      function setNumDaysRemaining() {
-         var wdToMsSinceEpoch = new Date(2023, 8, 26).getTime();
-         daysRemaining = (wdToMsSinceEpoch - Date.now()) / (1000 * 60 * 60 * 24);
-         if (daysRemaining < 0) daysRemaining = 0;
-         $("#days-remaining").append(Math.trunc(daysRemaining).toString());
-      }
    </script>
 }

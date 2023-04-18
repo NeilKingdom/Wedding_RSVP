@@ -12,22 +12,42 @@ namespace Wedding_RSVP.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "UserCode",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Code = table.Column<string>(type: "character varying(9)", maxLength: 9, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserCode", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
                     UserID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserCodeID = table.Column<int>(type: "integer", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     NumAttendees = table.Column<int>(type: "integer", nullable: false),
                     SongRequest = table.Column<string>(type: "text", nullable: true),
                     OtherInfo = table.Column<string>(type: "text", nullable: true),
-                    IsRsvpd = table.Column<bool>(type: "boolean", nullable: true)
+                    IsRsvpd = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.UserID);
+                    table.ForeignKey(
+                        name: "FK_User_UserCode_UserCodeID",
+                        column: x => x.UserCodeID,
+                        principalTable: "UserCode",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,25 +94,6 @@ namespace Wedding_RSVP.Data.Migrations
                         principalColumn: "UserID");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "UserCode",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserID = table.Column<int>(type: "integer", nullable: true),
-                    Code = table.Column<string>(type: "character varying(9)", maxLength: 9, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserCode", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_UserCode_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Attendee_UserID",
                 table: "Attendee",
@@ -104,9 +105,9 @@ namespace Wedding_RSVP.Data.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCode_UserID",
-                table: "UserCode",
-                column: "UserID",
+                name: "IX_User_UserCodeID",
+                table: "User",
+                column: "UserCodeID",
                 unique: true);
         }
 
@@ -120,10 +121,10 @@ namespace Wedding_RSVP.Data.Migrations
                 name: "Gift");
 
             migrationBuilder.DropTable(
-                name: "UserCode");
+                name: "User");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "UserCode");
         }
     }
 }

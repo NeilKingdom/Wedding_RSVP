@@ -38,7 +38,6 @@ namespace Wedding_RSVP.Controllers
             
             // Need to re-fetch user from DB since it had to assign the user's ID
             user = await _context.Users.FindAsync(user);
-            userCode.UserID = user.ID;
 
             UserAttendeesViewModel userAttendees = new() { User = user };
             return View(nameof(RsvpForm), userAttendees);

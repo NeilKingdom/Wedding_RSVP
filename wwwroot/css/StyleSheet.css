@@ -71,6 +71,8 @@ header {
 @media only screen and (max-width: 767px) {
    .logo {
       width: 70vw;
+      height: auto;
+      margin: 5vw 0 3vw 0;
    }
 }
 
@@ -186,9 +188,10 @@ header {
    transition: width 1s ease, opacity 1s ease;
 }
 
+/* Make button darker on hover */
 .slide-btn-transition:hover {
    opacity: 0.8; 
-   transition: opacity 0.5s linear;
+   transition: opacity 0.1s linear;
 }
 
 .slide-btn-prev {
@@ -220,10 +223,10 @@ article {
    /* Flex settings */
    display: flex;
    flex-flow: row wrap;
-   justify-content: space-between; /* Push sections to outer borders */
+   justify-content: space-evenly; 
 
-   width: 80%;
    margin: 5vw 0 5vw 0;
+   text-align: center;
 }
 
 /* Change to one column on mobile */
@@ -232,61 +235,162 @@ article {
       /* Flex settings */
       display: flex;
       flex-flow: column nowrap;
+      justify-content: space-evenly;
 
-      width: 80%;
       margin: 5vw 0 5vw 0;
-   }
-}
-
-/* Article is split into 2 columns, each occupying 1/5 of the total space */
-.col-left {
-   width: 45%;
-}
-
-/* For mobile, display left columns first (by making width 100%), then right columns after */
-@media only screen and (max-width: 767px) {
-   .col-left {
-      width: 100%;
-   }
-}
-
-.col-right {
-   width: 45%;
-}
-
-/* Right columns will go after left columns */
-@media only screen and (max-width: 767px) {
-   .col-right {
-      width: 100%;
+      text-align: center;
    }
 }
 
 /* Section header */
 .section-header {
-   padding: 0.5vw 0.5vw 0.5vw 2vw;
-   background-color: linen;
-   font-size: 1.5vw;
+   position: relative;
+   left: 25%;
+   width: 50%;
+   padding-top: 2vw;
+   margin: 2vw 0 3vw 0;
+   font-size: 3vw;
+
+   border-color: black;
+   border-top-width: 0.25vw;
+   border-top-style: solid;
 }
 
 @media only screen and (max-width: 767px) {
    .section-header {
-      padding: 0.5vw 0.5vw 0.5vw 2vw;
-      background-color: linen;
+      position: relative;
+      left: 25%;
+      width: 50%;
+      padding-top: 2vw;
+      margin: 2vw 0 3vw 0;
       font-size: 5vw;
+
+      border-color: black;
+      border-top-width: 0.25vw;
+      border-top-style: solid;
    }
 }
 
-/* Section = article entry (header + paragraph) */
-.section {
-   font-family: baskerville, serif;
-   font-size: 1.2vw;
+/* Used for paragraph text on the main page */
+.section-content {
+   width: 100%;
+   text-align: center;
+   font-size: 2vw;
 }
 
 @media only screen and (max-width: 767px) {
-   .section {
-      font-size: 4vw;
+   .section-content {
+      width: 100%;
+      text-align: center;
+      font-size: 2.2vw;
    }
 }
+
+.section-content > img {
+   width: 75vw;
+   max-width: 75vw;
+}
+
+/* Used for the circular cutouts with portraits and the text underneath */
+.profile {
+   /* Flex settings */
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: center;
+
+   position: relative;
+   width: 50%;
+   height: auto;
+   margin: 2vw 0 2vw 0;
+   font-size: 1.5vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .profile {
+      position: relative;
+      left: 0;
+      width: 100%;
+      height: auto;
+      margin: 2vw 0 2vw 0;
+      text-align: center;
+      font-size: 3vw;
+   }
+}
+
+/* Leave a gap between image and text */
+.profile > div {
+   margin-bottom: 1vw;
+}
+
+/* Create the circular cutout */
+#breena,
+#daniel,
+#marysia,
+#devan,
+#elizabeth,
+#ramses {
+   width: 30vw;
+   height: 30vw;
+   border-radius: 50%; /* Creates a circle */
+   background-repeat: no-repeat;
+   background-size: 100%;
+   background-position: center;
+}
+
+@media only screen and (max-width: 767px) {
+   #breena,
+   #daniel,
+   #marysia,
+   #devan,
+   #elizabeth,
+   #ramses {
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%; /* Creates a circle */
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+   }
+}
+
+/* These images need to be scaled, otherwise they will be cropped at the top + bottom */
+#mary-ellen,
+#kim-and-andre,
+#tom-and-britte,
+#mohit {
+   width: 30vw;
+   height: 30vw;
+   border-radius: 50%; /* Creates a circle */
+   background-repeat: no-repeat;
+   background-size: 120%;
+   background-position: center;
+}
+
+@media only screen and (max-width: 767px) {
+   #mary-ellen,
+   #kim-and-andre,
+   #tom-and-britte,
+   #mohit {
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%; /* Creates a circle */
+      background-repeat: no-repeat;
+      background-size: 120%;
+      background-position: center;
+   }
+}
+
+/* Set the background images */
+#breena { background-image: url("../img/profiles/breena.jpg"); }
+#daniel { background-image: url("../img/profiles/breena.jpg"); }
+#marysia { background-image: url("../img/profiles/marysia.jpeg"); }
+#devan { background-image: url("../img/profiles/marysia.jpeg"); }
+#elizabeth { background-image: url("../img/profiles/elizabeth.jpeg"); }
+#ramses { background-image: url("../img/profiles/elizabeth.jpeg"); }
+#mary-ellen { background-image: url("../img/profiles/mary_ellen.jpeg"); }
+#mohit { background-image: url("../img/profiles/mohit.jpg"); }
+#kim-and-andre { background-image: url("../img/profiles/kim_and_andre.jpeg"); }
+#tom-and-britte { background-image: url("../img/profiles/kim_and_andre.jpeg"); }
 
 /* Map styling */
 .map-responsive {
@@ -513,6 +617,7 @@ img.thumbnail {
    padding-top: 5vw;
 }
 
+/* Used for the form content i.e., inputs */
 .rsvp-form {
    /* Flex settings */
    display: flex;

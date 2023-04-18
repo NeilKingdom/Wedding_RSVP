@@ -9,11 +9,6 @@ namespace Wedding_RSVP.Models
    {
       public int ID { get; set; }
 
-#nullable enable
-      [ForeignKey("User")]
-      public int? UserID { get; set; }
-#nullable disable
-
       [Required(ErrorMessage="Code is required")]
       [BindProperty]
       [StringLength(9, MinimumLength=9, ErrorMessage="Invalid code")]
