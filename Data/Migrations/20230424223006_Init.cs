@@ -12,25 +12,11 @@ namespace Wedding_RSVP.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "UserCode",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Code = table.Column<string>(type: "character varying(9)", maxLength: 9, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserCode", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
                     UserID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserCodeID = table.Column<int>(type: "integer", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
@@ -42,12 +28,6 @@ namespace Wedding_RSVP.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.UserID);
-                    table.ForeignKey(
-                        name: "FK_User_UserCode_UserCodeID",
-                        column: x => x.UserCodeID,
-                        principalTable: "UserCode",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,12 +83,6 @@ namespace Wedding_RSVP.Data.Migrations
                 name: "IX_Gift_UserID",
                 table: "Gift",
                 column: "UserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_UserCodeID",
-                table: "User",
-                column: "UserCodeID",
-                unique: true);
         }
 
         /// <inheritdoc />
@@ -122,9 +96,6 @@ namespace Wedding_RSVP.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
-
-            migrationBuilder.DropTable(
-                name: "UserCode");
         }
     }
 }

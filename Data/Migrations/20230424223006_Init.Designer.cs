@@ -12,7 +12,7 @@ using Wedding_RSVP.Data;
 namespace Wedding_RSVP.Data.Migrations
 {
     [DbContext(typeof(WeddingDbContext))]
-    [Migration("20230417193018_Init")]
+    [Migration("20230424223006_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -122,33 +122,9 @@ namespace Wedding_RSVP.Data.Migrations
                     b.Property<string>("SongRequest")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserCodeID")
-                        .HasColumnType("integer");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserCodeID")
-                        .IsUnique();
 
                     b.ToTable("User", (string)null);
-                });
-
-            modelBuilder.Entity("Wedding_RSVP.Models.UserCode", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("character varying(9)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("UserCode", (string)null);
                 });
 
             modelBuilder.Entity("Wedding_RSVP.Models.Attendee", b =>
@@ -171,25 +147,9 @@ namespace Wedding_RSVP.Data.Migrations
 
             modelBuilder.Entity("Wedding_RSVP.Models.User", b =>
                 {
-                    b.HasOne("Wedding_RSVP.Models.UserCode", "UserCode")
-                        .WithOne("User")
-                        .HasForeignKey("Wedding_RSVP.Models.User", "UserCodeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserCode");
-                });
-
-            modelBuilder.Entity("Wedding_RSVP.Models.User", b =>
-                {
                     b.Navigation("Attendees");
 
                     b.Navigation("Gifts");
-                });
-
-            modelBuilder.Entity("Wedding_RSVP.Models.UserCode", b =>
-                {
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -14,36 +14,6 @@ body {
    background-color: #f5f5f5;
 }
 
-/* Used by jQuery to make the page appear "disabled" */
-#overlay {
-   position: fixed;
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-   background-color: #aaaaaa;
-   opacity: 0.6;
-   z-index: 998;
-}
-
-/* User password confirmation dialog */
-.passconf-dialog {
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   width: 60vw;
-   height: 30vw;
-   color: black;
-   background-color: white;
-   font-size: 2vw;
-   font-family: sans-serif;
-   z-index: 999;
-   text-align: center;
-   padding: 3vw;
-   border-radius: 20px;
-}
-
 /* Banner at the top of every page */
 header {
    /* Flex settings */
@@ -160,7 +130,7 @@ header {
    position: absolute; /* Required to have buttons go on top of images */
    border: none;
    width: 10vw;
-   height: 45vw;
+   height: auto;
    top: 0;
    bottom: 0;
    padding: 0;
@@ -173,7 +143,7 @@ header {
    transition: width 1s ease, opacity 1s ease;
 }
 
-/* We don't need slide buttons on mobile */
+/* We don't need slide buttons on devices with touch screens */
 @media (pointer: none), (pointer: coarse) {
    .slide-btn {
       display: none; 
@@ -234,7 +204,7 @@ article {
    article {
       /* Flex settings */
       display: flex;
-      flex-flow: column nowrap;
+      flex-flow: row wrap;
       justify-content: space-evenly;
 
       margin: 5vw 0 5vw 0;
@@ -296,10 +266,9 @@ article {
    /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
-   justify-content: center;
+   align-items: center;
 
-   position: relative;
-   width: 50%;
+   width: 40%;
    height: auto;
    margin: 2vw 0 2vw 0;
    font-size: 1.5vw;
@@ -307,12 +276,14 @@ article {
 
 @media only screen and (max-width: 767px) {
    .profile {
-      position: relative;
-      left: 0;
+      /* Flex settings */
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
       width: 100%;
       height: auto;
       margin: 2vw 0 2vw 0;
-      text-align: center;
       font-size: 3vw;
    }
 }
@@ -331,10 +302,10 @@ article {
 #ramses {
    width: 30vw;
    height: 30vw;
-   border-radius: 50%; /* Creates a circle */
+   border-radius: 50%;
+   background-position: center;
    background-repeat: no-repeat;
    background-size: 100%;
-   background-position: center;
 }
 
 @media only screen and (max-width: 767px) {
@@ -346,10 +317,10 @@ article {
    #ramses {
       width: 50vw;
       height: 50vw;
-      border-radius: 50%; /* Creates a circle */
+      border-radius: 50%;
+      background-position: center;
       background-repeat: no-repeat;
       background-size: 100%;
-      background-position: center;
    }
 }
 
@@ -360,10 +331,10 @@ article {
 #mohit {
    width: 30vw;
    height: 30vw;
-   border-radius: 50%; /* Creates a circle */
+   border-radius: 50%;
+   background-position: center;
    background-repeat: no-repeat;
    background-size: 120%;
-   background-position: center;
 }
 
 @media only screen and (max-width: 767px) {
@@ -373,10 +344,10 @@ article {
    #mohit {
       width: 50vw;
       height: 50vw;
-      border-radius: 50%; /* Creates a circle */
+      border-radius: 50%;
+      background-position: center;
       background-repeat: no-repeat;
       background-size: 120%;
-      background-position: center;
    }
 }
 
@@ -384,7 +355,7 @@ article {
 #breena { background-image: url("../img/profiles/breena.jpg"); }
 #daniel { background-image: url("../img/profiles/breena.jpg"); }
 #marysia { background-image: url("../img/profiles/marysia.jpeg"); }
-#devan { background-image: url("../img/profiles/marysia.jpeg"); }
+#devan { background-image: url("../img/profiles/devan.jpg"); }
 #elizabeth { background-image: url("../img/profiles/elizabeth.jpeg"); }
 #ramses { background-image: url("../img/profiles/elizabeth.jpeg"); }
 #mary-ellen { background-image: url("../img/profiles/mary_ellen.jpeg"); }
@@ -409,24 +380,29 @@ article {
 
 /* The Gift Registry page */
 .registry {
-   padding-top: 5vw;
+   margin-top: 5vw;
+   overflow-x: hidden;
 }
 
-/* The Q&A link and "My Gifts" button */
+/* The Details link and "My Gifts" button */
 .registry-header {
    margin-bottom: 3vw;
 }
 
 /* Layout for gift containers */
 .gifts-list {
-   /* Flex settings */
-   display: flex;
-   flex-flow: row wrap;
-   justify-content: flex-start;
-   align-items: center;
-   align-content: flex-start;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(20vw, 410px));
+   width: fit-content;
+   max-width: 90vw;
+}
 
-   width: 90vw;
+@media only screen and (max-width: 767px) {
+   .gifts-list {
+      display: grid;
+      grid-template-columns: auto;
+      max-width: 100%;
+   }
 }
 
 /* Container for gift info */
@@ -434,25 +410,17 @@ article {
    /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
-   align-items: flex-start;
+   align-items: center;
+   justify-content: flex-start;
 
    background-color: white;
    font-size: 1vw;
-   padding: 0.5vw;
    margin: 1vw;
-   width: 90vw;
-   height: 105vw;
-   max-width: 370px;
-   max-height: 500px;
+   padding-top: 10px;
+   width: 370px;
+   height: auto;
    border-radius: 10px;
    filter: drop-shadow(-0.2vw 0.5vw 0.2vw #C0C0C0); /* (x, y, diffusion, rgb) */
-}
-
-@media (max-width: 767px) {
-   .gift-container {
-      padding: 1.5vw;
-      font-size: 5vw;
-   }
 }
 
 /* Thumbnail container (encapsulates thumbnail + enlarge text) */
@@ -463,10 +431,8 @@ article {
 
 /* Thumbnail properties for gift registry table */
 img.thumbnail {
-   width: 85vw;
-   height: 85vw;
-   max-width: 350px;
-   max-height: 350px;
+   width: 350px;
+   height: 350px;
 }
 
 /* Used by JQuery to toggle thumbnail opacity */
@@ -482,14 +448,13 @@ img.thumbnail {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   height: 3em;
-   max-height: 50px;
    padding: 5px;
    color: gray;
    border-style: solid;
    border-color: gray;
    border-width: 2px;
    border-radius: 5px;
+   font-size: 24px;
 }
 
 .enlarge-text:hover {
@@ -511,39 +476,30 @@ img.thumbnail {
    display: none;
 }
 
+.gift-btm-container {
+   display: inline-flex;
+   flex-flow: row nowrap;
+   align-items: center;
+
+   width: auto;
+   height: 135px;
+}
+
 /* div containing website link, description, and price */
 .gift-descr {
-   /* Flex settings */
-   display: flex;
-   flex-flow: column nowrap;
-   justify-content: flex-start;
-   align-items: baseline;
-   align-content: center;
-
-   position: absolute;
-   bottom: 1vw;
-   left: 1vw;
-   width: 60vw;
-   height: auto;
+   text-align: start;
+   width: 280px;
+   height: 100%;
+   font-size: 20px;
 }
 
 /* The background circle for checkboxes */
 .cbox {
-   /* Flex settings */
-   display: flex;
-   flex-flow: row nowrap;
-   justify-content: center;
-   align-items: center;
-   align-content: center;
-
    border-radius: 50%; /* Creates a circle */
    text-align: center;
    font-size: 40px;
    width: 60px;
    height: 60px;
-   position: absolute;
-   bottom: 1vw;
-   right: 1vw;
    z-index: 50; /* Position above the gift-container but below plus icon */
    cursor: pointer; /* Changes cursor to indicate that the element is clickable */
 
@@ -663,36 +619,61 @@ img.thumbnail {
 
 /* Number of attendees text field */
 .attendees-input {
-   box-sizing: border-box;
-   max-height: inherit; /* Prevent resizing so that buttons are forced inside bounds */ 
+   position: relative;
+   display: inline-block;
 }
 
 /* Custom increment/decrement buttons */
 .inc-dec {
    /* Flex settings */
    display: flex;
-   flex-flow: row wrap;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+   align-items: center;
 
    position: absolute;
-   transform: translate(44vw, -3vw);
-   min-height: 20px;
+   top: 0;
+   right: 0.5vw;
+   height: 100%;
+   width: 5.5vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .inc-dec {
+      /* Flex settings */
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+
+      position: absolute;
+      top: 0;
+      right: 2vw;
+      height: 100%;
+      width: 10vw;
+   }
 }
 
 #inc,
 #dec {
-   /* Flex settings */
    display: flex;
-   flex-flow: column nowrap;
+   align-items: center;
    justify-content: center;
-   align-content: center;
 
+   width: 2.5vw;
+   height: 2.5vw;
+   min-width: 30px;
+   min-height: 30px;
    color: darkgray;
    background-color: none;
    background: none;
    border-style: none;
-   border-radius: 5px;
-   width: 2.5vw;
-   height: 2.5vw;
+   border-radius: 0.4vw;
+}
+
+#inc span,
+#dec span {
+   margin-right: auto;
 }
 
 #inc:hover,

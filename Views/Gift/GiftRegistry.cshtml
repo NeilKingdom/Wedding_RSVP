@@ -6,9 +6,9 @@
 <div class="registry">
    <div class="registry-header">
       <span style="font-size: 2vw;">See the
-         <a href="~/Home/Index/#qanda">
-            <u>Q&amp;A</u>
-         </a> for more information on the gift registry
+         <a href="~/Details/Index">
+            <u>Details</u>
+         </a>page for more information on the gift registry
       </span>
       <button class="confirm-btn" style="position: absolute; right: 10vw;" onclick="validateUserEmail()">My Gifts</button>
    </div>
@@ -28,18 +28,20 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                      </div>
                   </div>
-                  <div class="gift-descr">
-                     <a href="@gift.SiteUrl">Go to Website</a>
-                     <span>@gift.Desc</span>
-                     <span>@string.Format("${0:0.00}", gift.EstPrice)</span>
-                  </div>
-                  <label>
-                     <!-- Hidden checkbox. Replaced by icon in the div -->
-                     <input asp-for="@gift.Available" style="display: none;" type="checkbox" />
-                     <div class="cbox">
-                        <i class="fa-solid fa-xmark"></i>
+                  <div class="gift-btm-container">
+                     <div class="gift-descr">
+                        <a href="@gift.SiteUrl">Go to Website</a><br />
+                        <span>@gift.Desc</span><br />
+                        <span>@string.Format("${0:0.00}", gift.EstPrice)</span>
                      </div>
-                  </label>
+                     <label>
+                        <!-- Hidden checkbox. Replaced by icon in the div -->
+                        <input asp-for="@gift.Available" style="display: none;" type="checkbox" />
+                        <div class="cbox">
+                           <i class="fa-solid fa-xmark"></i>
+                        </div>
+                     </label>
+                  </div>
                </div>
             }
          }
