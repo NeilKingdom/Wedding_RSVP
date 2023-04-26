@@ -248,11 +248,18 @@ article {
    font-size: 2vw;
 }
 
+/* TODO: Temporary */
+ul {
+   width: 100%;
+   text-align: left;
+   font-size: 3vw;
+}
+
 @media only screen and (max-width: 767px) {
    .section-content {
       width: 100%;
       text-align: center;
-      font-size: 2.2vw;
+      font-size: 3vw;
    }
 }
 
@@ -363,6 +370,47 @@ article {
 #kim-and-andre { background-image: url("../img/profiles/kim_and_andre.jpeg"); }
 #tom-and-britte { background-image: url("../img/profiles/kim_and_andre.jpeg"); }
 
+/* Container for timeline-line and timeline-content */
+.timeline-container {
+   display: flex;
+   flex-flow: row nowrap; 
+   justify-content: flex-start;
+   column-gap: 7vw;
+
+   font-size: 2.2vw;
+}
+
+.timeline-line-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+   width: min-content;
+   height: 100%;
+}
+
+.timeline-line {
+   display: flex;
+   flex-grow: 1;
+
+   width: 0.5vw;
+   height: 100%;
+   background-color: #bc987e;
+}
+
+/* The timeline line the spans the left-hand-side of timeline-content */
+.timeline-dots {
+   position: absolute;
+   font-weight: 999;
+   color: #bc987e;
+   z-index: 10;
+}
+
+/* The actual text belonging to the timeline section */
+.timeline-content {
+   text-align: start;
+}
+
 /* Map styling */
 .map-responsive {
    overflow: hidden;
@@ -376,6 +424,11 @@ article {
    height: 100%;
    width: 100%;
    position: absolute;
+}
+
+/* The Details page */
+.details {
+   padding: 0 10vw 0 10vw;
 }
 
 /* The Gift Registry page */
@@ -392,7 +445,7 @@ article {
 /* Layout for gift containers */
 .gifts-list {
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(20vw, 410px));
+   grid-template-columns: repeat(auto-fill, 410px);
    width: fit-content;
    max-width: 90vw;
 }
