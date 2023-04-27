@@ -23,11 +23,22 @@ namespace Wedding_RSVP.Controllers
       public IActionResult RsvpForm() => View();
 
       [HttpPost]
-      public async Task<IActionResult> RsvpForm(UserAttendeesViewModel userAttendeesViewModel)
+      [Route("{accepts}")]
+      public async Task<IActionResult> RsvpForm(String accepts, UserAttendeesViewModel userAttendeesViewModel)
       {
          if (!ModelState.IsValid) return View();
-
-         // TODO: Take into consideration the accepts or regrets 
+      
+         if (accepts == "true") 
+         {
+            userAttendeesViewModel.User.IsRsvpd = true; 
+         }
+         else if (accepts == "false")
+         {
+            userAttendeesViewModel.User.IsRsvpd = false; 
+            // Disregard attendees if the user is not RSVPd
+            userAttendeesViewModel.User.NumAttendees = 0;
+            userAttendeesViewModel.Attendees = null;
+         }
          
          _context.Users.Add(userAttendeesViewModel.User);
          // Add attendees to DB as well

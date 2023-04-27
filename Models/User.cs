@@ -2,9 +2,11 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Wedding_RSVP.Models
 {
+   [Index(nameof(Email), IsUnique=true)]
    public class User
    {
       [Column("UserID")]

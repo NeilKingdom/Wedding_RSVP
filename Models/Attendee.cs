@@ -16,8 +16,7 @@ namespace Wedding_RSVP.Models
 
       [Required]
       [BindProperty]
-      [RegularExpression(@"^([a-zA-Z]*)\s+([a-zA-Z]*)$",
-       ErrorMessage = "Please enter the attendee's first and last name")]
+      // NOTE: Regex is handled by jQuery
       public string FullName {
          get => $"{FirstName} {LastName}";
          set {

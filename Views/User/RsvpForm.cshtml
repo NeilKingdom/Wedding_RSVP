@@ -44,7 +44,6 @@
                      </button>
                   </div>
                </div>
-               <span asp-validation-for="@Model.User.NumAttendees" class="text-danger"></span>
             </td>
          </tr>
          <tr id="after-attendees">
@@ -61,8 +60,8 @@
          </tr>
          <tr>
             <td>
-               <input id="submit" class="decline-btn" type="submit" value="Regrets" asp-accepts="false" />
-               <input id="submit" class="confirm-btn" type="submit" value="Accepts" asp-accepts="true" />
+               <input id="submit" class="decline-btn" type="submit" value="Regrets" asp-route-accepts="false" />
+               <input id="submit" class="confirm-btn" type="submit" value="Accepts" asp-route-accepts="true" />
             </td>
          </tr>
       </table>
