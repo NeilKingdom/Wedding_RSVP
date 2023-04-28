@@ -20,7 +20,7 @@
          $(document).ready(function() {
             $("a").each(function() {
                if ($(this).prop("href") === window.location.href) {
-                  $(this).addClass("active"); 
+                  $(this).addClass("active");
                }
             });
          })
@@ -30,14 +30,14 @@
       <header>
          <img class="logo" src="~/img/logo/Logo2.png" alt="Neil & Madison" />
          <div class="hlinks">
-            <!-- 
-               Better to use anchor tags here rather than Action Links due to 
-               styling issues with the latter. Also using href attributes instead 
+            <!--
+               Better to use anchor tags here rather than Action Links due to
+               styling issues with the latter. Also using href attributes instead
                of ASP.NET helper tags since I match the attribute using jQuery.
             -->
             <a class="hlink" href="/Home/Index" onclick="setActive()">Home</a>
             <a class="hlink" href="/Details/Index" onclick="setActive()">Details</a>
-            <a class="hlink" href="/Gift/GiftRegistry" onclick="setActive()">Gift Registry</a>
+            <a class="hlink" href="https://www.myregistry.com/wedding-registry/madison-mainville-and-neil-kingdom-manotick-on/3538001" onclick="setActive()">Gift Registry</a>
             <a class="hlink" href="/User/RsvpForm" onclick="setActive()">RSVP</a>
          </div>
       </header>

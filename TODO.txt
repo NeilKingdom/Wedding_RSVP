@@ -1,7 +1,3 @@
 1.   Add name + date banner above image carousel
-2.   Add parallax scroll via react spring !!! LEAST PRIORITY !!!
-3.   RESTful API for user count, gift registry mgmnt., attendee mgmnt., etc.
-4.   Make UI mobile friendly
-5.   Encrypt emails
-6.   Store email in session. Check if other users exist with that email
-7.   Fix map panning issue
+2.   RESTful API for user count, gift registry mgmnt., attendee mgmnt., etc.
+3.   Email validation

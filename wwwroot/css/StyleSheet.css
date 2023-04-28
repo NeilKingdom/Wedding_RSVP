@@ -146,7 +146,7 @@ header {
 /* We don't need slide buttons on devices with touch screens */
 @media (pointer: none), (pointer: coarse) {
    .slide-btn {
-      display: none; 
+      display: none;
    }
 }
 
@@ -160,7 +160,7 @@ header {
 
 /* Make button darker on hover */
 .slide-btn-transition:hover {
-   opacity: 0.8; 
+   opacity: 0.8;
    transition: opacity 0.1s linear;
 }
 
@@ -169,7 +169,7 @@ header {
 }
 
 .slide-btn-next {
-   right: 0; 
+   right: 0;
 }
 
 /* The fontawesome chevron icons for carousel buttons */
@@ -193,7 +193,7 @@ article {
    /* Flex settings */
    display: flex;
    flex-flow: row wrap;
-   justify-content: space-evenly; 
+   justify-content: space-evenly;
 
    width: 90vw;
    margin: 5vw 0 5vw 0;
@@ -202,30 +202,16 @@ article {
 
 /* Section header */
 .section-header {
-   position: relative;
-   left: 25%;
-   width: 50%;
-   padding-top: 2vw;
-   margin: 2vw 0 3vw 0;
+   margin: 2vw 0 2vw 0;
    font-size: 3vw;
-
-   border-color: black;
-   border-top-width: 0.25vw;
-   border-top-style: solid;
+   text-align: center;
 }
 
 @media only screen and (max-width: 767px) {
    .section-header {
-      position: relative;
-      left: 25%;
-      width: 50%;
-      padding-top: 2vw;
-      margin: 2vw 0 3vw 0;
+      margin: 2vw 0 2vw 0;
       font-size: 5vw;
-
-      border-color: black;
-      border-top-width: 0.25vw;
-      border-top-style: solid;
+      text-align: center;
    }
 }
 
@@ -236,11 +222,17 @@ article {
    font-size: 2vw;
 }
 
-/* TODO: Temporary */
-ul {
-   width: 100%;
+/* Unordered list on Details page */
+.details-list {
    text-align: left;
-   font-size: 3vw;
+   font-size: 1.8vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .details-list {
+      text-align: left;
+      font-size: 3vw;
+   }
 }
 
 @media only screen and (max-width: 767px) {
@@ -361,7 +353,7 @@ ul {
 /* Container for timeline-line and timeline-content */
 .timeline-container {
    display: flex;
-   flex-flow: row nowrap; 
+   flex-flow: row nowrap;
    justify-content: flex-start;
    column-gap: 7vw;
 
@@ -369,12 +361,12 @@ ul {
 }
 
 .timeline-line-container {
+   /* Flex settings */
    display: flex;
    flex-direction: column;
    align-items: center;
 
    width: min-content;
-   height: 100%;
 }
 
 .timeline-line {
@@ -382,8 +374,8 @@ ul {
    flex-grow: 1;
 
    width: 0.5vw;
-   height: 100%;
    background-color: #bc987e;
+   border-radius: 100vw;
 }
 
 /* The timeline line the spans the left-hand-side of timeline-content */
@@ -397,6 +389,8 @@ ul {
 /* The actual text belonging to the timeline section */
 .timeline-content {
    text-align: start;
+   height: min-content;
+   margin: 0;
 }
 
 /* Map styling */
@@ -412,11 +406,6 @@ ul {
    height: 100%;
    width: 100%;
    position: absolute;
-}
-
-/* The Details page */
-.details {
-   padding: 0 10vw 0 10vw;
 }
 
 /* The Gift Registry page */
@@ -663,6 +652,12 @@ img.thumbnail {
    font-size: 1.5vw;
 }
 
+@media only screen and (max-width: 767px) {
+   .tf-header {
+      font-size: 3vw;
+   }
+}
+
 /* Extend width of text input fields */
 .rsvp-table input[type="text"],
 .rsvp-table input[type="email"] {
@@ -673,6 +668,19 @@ img.thumbnail {
    .rsvp-table input[type="text"],
    .rsvp-table input[type="email"] {
       width: 75vw;
+   }
+}
+
+/* Input field placeholder text size */
+.rsvp-table input::placeholder,
+.rsvp-table textarea::placeholder {
+   font-size: 1.2vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .rsvp-table input::placeholder,
+   .rsvp-table textarea::placeholder {
+      font-size: 3vw;
    }
 }
 
@@ -687,12 +695,6 @@ img.thumbnail {
       width: 75vw;
       height: 25vw;
    }
-}
-
-/* Input field placeholder text size */
-.rsvp-table input::placeholder,
-.rsvp-table textarea::placeholder {
-   font-size: 1.2vw; 
 }
 
 /* Number of attendees text field */
@@ -823,7 +825,7 @@ img.thumbnail {
 /* We need this because setting padding-bottom for myfooter extends it past the bar */
 .myfooter > table {
    font-size: 2vw;
-   margin-bottom: 1vw; 
+   margin-bottom: 1vw;
 }
 
 /* Bar spanning the very bottom of the footer */
@@ -837,7 +839,7 @@ img.thumbnail {
    color: linen;
    background-color: #90686d;
    font-size: 1vw;
-   padding: 0.25vw 0 0 4vw; 
+   padding: 0.25vw 0 0 4vw;
 }
 
 /* Override default color of bootstrap btn and btn-primary (accept) */
