@@ -10,7 +10,7 @@
             <u>Details</u>
          </a>page for more information on the gift registry
       </span>
-      <button class="confirm-btn" style="position: absolute; right: 10vw;" onclick="validateUserEmail()">My Gifts</button>
+      <button class="confirm-btn" onclick="validateUserEmail()">My Gifts</button>
    </div>
    @if (Model.Gifts != null && Model.Gifts.Count() > 0)
    {
@@ -46,9 +46,7 @@
             }
          }
       </div>
-      <div class="registry-nav-ctrls">
-         <input id="submit" class="confirm-btn" type="submit" value="Continue" />
-      </div>
+      <div><input id="submit" class="confirm-btn" type="submit" value="Continue" /></div>
    }
    else 
    {
