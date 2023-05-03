@@ -52,7 +52,15 @@ namespace Wedding_RSVP.Controllers
             }
          }
 
-         await _context.SaveChangesAsync();
+         try 
+         {
+            await _context.SaveChangesAsync();
+         } 
+         catch(Microsoft.EntityFrameworkCore.DbUpdateException e) 
+         {
+            ViewBag.EmailError = "true";
+            return View();
+         }
          return RedirectToAction(nameof(Success));
       }
 

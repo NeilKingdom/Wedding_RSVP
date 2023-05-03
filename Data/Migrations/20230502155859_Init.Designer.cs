@@ -12,7 +12,7 @@ using Wedding_RSVP.Data;
 namespace Wedding_RSVP.Data.Migrations
 {
     [DbContext(typeof(WeddingDbContext))]
-    [Migration("20230427151324_Init")]
+    [Migration("20230502155859_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -123,6 +123,9 @@ namespace Wedding_RSVP.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("User", (string)null);
                 });

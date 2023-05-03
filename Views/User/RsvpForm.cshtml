@@ -25,12 +25,17 @@
             <td>
                <span class="tf-header">@Html.DisplayNameFor(model => model.User.Email)</span>
                <div><input asp-for="@Model.User.Email" placeholder="@Html.DisplayNameFor(model => model.User.Email) (Required)" /></div>
-               <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
+               <span asp-validation-for="@Model.User.Email" class="text-danger">
+                  @if (ViewBag.EmailError == "true")
+                  {
+                     @Html.Raw("Email has already been taken")
+                  }
+               </span>
             </td>
          </tr>
          <tr>
             <td>
-               <span class="tf-header">Number of Attendees (Max of 5)</span>
+               <span class="tf-header">Number of Guests (Max of 5)</span>
                <br />
                <div class="attendees-input">
                   <!-- Using TextBoxFor forces ASP.NET to use a text input instead of a number input -->
@@ -54,8 +59,8 @@
          </tr>
          <tr>
             <td>
-               <span class="tf-header">Anything You'd Like us to Know</span>
-               <div><textarea asp-for="@Model.User.OtherInfo" placeholder="Anything You'd Like us to Know (Optional)"></textarea></div>
+               <span class="tf-header">Additional Comments</span>
+               <div><textarea asp-for="@Model.User.OtherInfo" placeholder="Additional Comments (Optional)"></textarea></div>
             </td>
          </tr>
          <tr>

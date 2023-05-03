@@ -9,26 +9,7 @@ namespace Wedding_RSVP.Data
       {
          context.Database.EnsureCreated();
 
-         if (context.Users.Any())
-         {
-            return; // DB has been seeded
-         }
-
-         // Add users to DB
-         var users = new List<User>
-         {
-            new User { 
-               FirstName="John",  
-               LastName="Doe",   
-               Email="john@example.com",  
-               NumAttendees=1, 
-               SongRequest=null,
-               OtherInfo=null,
-               IsRsvpd=true 
-            }
-         };
-         users.ForEach(user => context.Users.Add(user));
-         context.SaveChanges();
+         if (context.Users.Any()) return; // DB has been seeded
 
          // Add Gifts to DB
          var gifts = new List<Gift>

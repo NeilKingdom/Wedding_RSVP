@@ -83,6 +83,12 @@ namespace Wedding_RSVP.Data.Migrations
                 name: "IX_Gift_UserID",
                 table: "Gift",
                 column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
         }
 
         /// <inheritdoc />

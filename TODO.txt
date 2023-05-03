@@ -1,3 +1,0 @@
-1.   Add name + date banner above image carousel
-2.   RESTful API for user count, gift registry mgmnt., attendee mgmnt., etc.
-3.   Email validation

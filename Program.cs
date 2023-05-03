@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.IdentityModel.Logging;
 
 namespace Wedding_RSVP
 {
@@ -26,46 +27,49 @@ namespace Wedding_RSVP
             options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
          });
 
+         // Add MVC support 
+         services.AddMvc();
+
          // Setup authorization for RESTful API endpoints with Auth0 and JWT
          services.AddAuthentication(options =>
          {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
          }).AddJwtBearer(options => {
-               options.Authority = $"https://{configuration["Auth0:Domain"]}/";
+               options.Authority = configuration["Auth0:Authority"];
                options.Audience = configuration["Auth0:Audience"];
             }
          );
 
          // Generate SwaggerUI. Authorization occurs through here with the help of Auth0.
-//         services.AddSwaggerGen(c => {
-//            c.SwaggerDoc("v2", new OpenApiInfo { Title = "Wedding RSVP API", Version = "v2" });
-//
-//            var securitySchema = new OpenApiSecurityScheme
-//            {
-//               Description = "Using the Authorization header with the Bearer scheme.",
-//               Name = "Authorization",
-//               In = ParameterLocation.Header,
-//               Type = SecuritySchemeType.Http,
-//               Scheme = "bearer",
-//               Reference = new OpenApiReference
-//               {
-//                  Type = ReferenceType.SecurityScheme,
-//                  Id = "Bearer"
-//               }
-//            };
-//
-//            c.AddSecurityDefinition("Bearer", securitySchema);
-//            c.AddSecurityRequirement(new OpenApiSecurityRequirement
-//            {
-//               { securitySchema, new[] { "Bearer" }}
-//            });
-//         });
+         services.AddSwaggerGen(c => {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Wedding RSVP API", Version = "v1" });
 
-         // Enable MVC support
-         services.AddMvc().AddSessionStateTempDataProvider();
+            var securitySchema = new OpenApiSecurityScheme
+            {
+               Description = "Using the Authorization header with the Bearer scheme.",
+               Name = "Authorization",
+               In = ParameterLocation.Header,
+               Type = SecuritySchemeType.Http,
+               Scheme = "bearer",
+               Reference = new OpenApiReference
+               {
+                  Type = ReferenceType.SecurityScheme,
+                  Id = "Bearer"
+               }
+            };
+
+            c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+            c.AddSecurityDefinition("Bearer", securitySchema);
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+               { securitySchema, new[] { "Bearer" }}
+            });
+         });
+
+         IdentityModelEventSource.ShowPII = true;
+
          services.AddSession();
-
          services.AddControllersWithViews();
          var app = builder.Build();
 
@@ -90,22 +94,20 @@ namespace Wedding_RSVP
          
          app.UseForwardedHeaders(); // NOTE: Make this first in the pipeline
 
-         if (!app.Environment.IsDevelopment())
+         if (app.Environment.IsDevelopment())
          {
-            app.UseExceptionHandler("/Home/Error");
+            app.UseDeveloperExceptionPage();
          }
          else
          {
-             app.UseDeveloperExceptionPage();
+            app.UseExceptionHandler("/Home/Error");
          }
 
-//         app.UseSwagger(c => {
-//            c.RouteTemplate = "swagger/{documentName}/swagger.json";
-//         });
-//         app.UseSwaggerUI(c => {
-//            c.SwaggerEndpoint("/swagger/v2/swagger.json", "Wedding RSVP API");
-//            c.RoutePrefix = "api";
-//         });
+         app.UseSwagger();
+         app.UseSwaggerUI(c => {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wedding RSVP API");
+            c.RoutePrefix = "api"; 
+         });
 
          app.UseHsts();
          app.UseHttpsRedirection();
@@ -114,7 +116,10 @@ namespace Wedding_RSVP
          app.UseSession();
          app.UseAuthentication();
          app.UseAuthorization();
-         app.MapDefaultControllerRoute();
+         app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}"
+         );
 
          app.Run();
       }

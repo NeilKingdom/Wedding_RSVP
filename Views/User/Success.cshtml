@@ -5,3 +5,14 @@
 <div class="rsvp-success">
    Thank you! Your submission has been processed.
 </div>
+
+@section Scripts {
+   <script>
+      $(document).ready(function() {
+         if (sessionStorage.getItem("RegisteredEmail") === null) {
+            var registeredEmail = sessionStorage.getItem("Email");
+            sessionStorage.setItem("RegisteredEmail", registeredEmail);
+         }
+      });
+   </script>
+}

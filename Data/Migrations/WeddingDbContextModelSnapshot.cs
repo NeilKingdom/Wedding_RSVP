@@ -121,6 +121,9 @@ namespace Wedding_RSVP.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("User", (string)null);
                 });
 

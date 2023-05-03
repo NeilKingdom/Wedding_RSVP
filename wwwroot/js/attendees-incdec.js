@@ -56,6 +56,10 @@ $(document).ready(function() {
 	// Set the number of attendees field to 0 on document load
 	$("#User_NumAttendees").val(0);
 
+   $("#User_Email").keypress(function(event) {
+      $(this).parent().next().remove();
+   });
+
 	// Event handler for increment button click
 	$("#inc").click(function(event) {
 		event.preventDefault(); // Prevent page reload
@@ -71,7 +75,7 @@ $(document).ready(function() {
          // Add a row to the RSVP table
 			var newField = '<tr id="attendee(' + index + ')">';
 			newField		+= '<td>';
-			newField    += '<span class="tf-header">Full Name for Attendee ' + index + '</span>';
+			newField    += '<span class="tf-header">Full Name for Guest ' + index + '</span>';
          newField    += '<div>';
          newField    += '<input id="Attendees_' + (index-1) + '__FullName" name="Attendees[' + (index-1) + '].FullName"'
                         + ' type="text" placeholder="Full Name (Required)" />';
@@ -83,7 +87,7 @@ $(document).ready(function() {
          // Add attributes relating to input validation for the attendee fields
          var input = $('input[id="Attendees_' + (index-1) + '__FullName"]');
          $(input).attr("data-val", "true");
-         $(input).attr("data-val-required", "Attendee's full name is required");
+         $(input).attr("data-val-required", "Guest's full name is required");
          $(input).attr("data-val-regex-pattern", "^([a-zA-Z]{2,20})\\s+([a-zA-Z]{2,20})$");
          $(input).attr("data-val-regex", "Invalid format for full name");
          $(input).parent().after(
@@ -115,7 +119,7 @@ $(document).ready(function() {
 		$("#User_NumAttendees").val(numAttendees);
 	});
 
-
+   // Load data stored in session storage
    var firstName = sessionStorage.getItem("FirstName");
    var lastName = sessionStorage.getItem("LastName");
    var email = sessionStorage.getItem("Email");
