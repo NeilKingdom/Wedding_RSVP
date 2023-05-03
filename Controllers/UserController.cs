@@ -15,7 +15,7 @@ namespace Wedding_RSVP.Controllers
 
       public IActionResult RsvpForm() => View();
 
-      //[NonAction]
+      [ApiExplorerSettings(IgnoreApi=true)]
       [HttpPost]
       [Route("{accepts}")]
       public async Task<IActionResult> RsvpForm(String accepts, UserAttendeesViewModel userAttendeesViewModel)
