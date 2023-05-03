@@ -1,10 +1,8 @@
-using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Wedding_RSVP.Data;
 using Wedding_RSVP.Models;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Wedding_RSVP.Controllers
 {
@@ -31,7 +29,6 @@ namespace Wedding_RSVP.Controllers
          return Ok(countUsers + countAttendees);
       }
 
-      /* RESTful endpoint for displaying list of users */
       [Authorize]
       [HttpGet]
       [ProducesResponseType(StatusCodes.Status200OK)]
@@ -42,7 +39,6 @@ namespace Wedding_RSVP.Controllers
          return Ok(await _context.Users.ToListAsync()); 
       }
 
-      /* RESTful endpoint for displaying a specific user */
       [Authorize]
       [HttpGet("{id}")]
       [ProducesResponseType(StatusCodes.Status200OK)]
@@ -57,7 +53,6 @@ namespace Wedding_RSVP.Controllers
          return Ok(user);
       }
 
-      /* RESTful endpoint for displaying gifts */
       [Authorize]
       [HttpGet]
       [ProducesResponseType(StatusCodes.Status200OK)]

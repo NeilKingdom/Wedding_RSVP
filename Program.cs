@@ -1,12 +1,8 @@
 using Wedding_RSVP.Data;
-using Wedding_RSVP.Models;
+using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.IdentityModel.Logging;
 
 namespace Wedding_RSVP
 {
@@ -67,8 +63,6 @@ namespace Wedding_RSVP
             });
          });
 
-         IdentityModelEventSource.ShowPII = true;
-
          services.AddSession();
          services.AddControllersWithViews();
          var app = builder.Build();
@@ -106,7 +100,7 @@ namespace Wedding_RSVP
          app.UseSwagger();
          app.UseSwaggerUI(c => {
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wedding RSVP API");
-            c.RoutePrefix = "api"; 
+            c.RoutePrefix = "api"; // Endpoint for accessing swagger 
          });
 
          app.UseHsts();

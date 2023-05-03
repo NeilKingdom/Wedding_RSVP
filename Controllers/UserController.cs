@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Wedding_RSVP.Data;
-using Wedding_RSVP.Models;
 using Wedding_RSVP.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Wedding_RSVP.Controllers
 {
@@ -22,6 +15,7 @@ namespace Wedding_RSVP.Controllers
 
       public IActionResult RsvpForm() => View();
 
+      //[NonAction]
       [HttpPost]
       [Route("{accepts}")]
       public async Task<IActionResult> RsvpForm(String accepts, UserAttendeesViewModel userAttendeesViewModel)
@@ -52,11 +46,12 @@ namespace Wedding_RSVP.Controllers
             }
          }
 
+         // If email already exists, the DB will throw an exception
          try 
          {
             await _context.SaveChangesAsync();
          } 
-         catch(Microsoft.EntityFrameworkCore.DbUpdateException e) 
+         catch(Microsoft.EntityFrameworkCore.DbUpdateException) 
          {
             ViewBag.EmailError = "true";
             return View();

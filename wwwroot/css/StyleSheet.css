@@ -1,5 +1,3 @@
-/* TODO: Split this css file into one CSS file per page */
-
 /* DOM root */
 html {
    margin: 0;
@@ -16,19 +14,22 @@ body {
 
 /* Banner at the top of every page */
 header {
-   /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
    justify-content: center;
    align-items: center;
 
-   /*
-      The banner should be above all
-      content since the links to the
-      other pages are top priority
-   */
-   z-index: 100;
+   z-index: 999;
    width: 100%;
+}
+
+/* Global settings for links (must override if you want something different for a specific link) */
+a:link,
+a:visited,
+a:hover,
+a:active {
+   color: #75897a;
+   text-decoration: none; /* Remove underlines on hover */
 }
 
 /* Home page logo */
@@ -48,7 +49,6 @@ header {
 
 /* Container for anchor tags belonging specifically to the header */
 .hlinks {
-   /* Flex settings */
    display: flex;
    flex-flow: row wrap;
    justify-content: center;
@@ -104,8 +104,8 @@ header {
    text-align: center;
 }
 
-/* Resize images while maintaining 16:9 aspect ratio */
-.carousel-img {
+/* Set minimum image width/height */
+.carousel-img { 
    display: inline-block;
    min-height: 45vw;
    max-height: 45vw;
@@ -115,19 +115,21 @@ header {
 
 @media only screen and (max-width: 767px) {
    .carousel-img {
+      display: inline-block;
       min-height: 56.25vw;
       max-height: 56.25vw;
+      width: auto;
+      height: auto;
    }
 }
 
 /* The default state of the control buttons */
 .slide-btn {
-   /* Flex settings */
    display: flex;
    align-items: center;
    justify-content: center;
 
-   position: absolute; /* Required to have buttons go on top of images */
+   position: absolute; 
    border: none;
    width: 10vw;
    height: auto;
@@ -137,7 +139,7 @@ header {
    opacity: 0;
    background: none;
    background-color: gainsboro;
-   z-index: 50; /* Position above images but below header */
+   z-index: 500; /* Position above images but below header */
    cursor: pointer; /* Changes cursor to indicate that the element is clickable */
 
    transition: width 1s ease, opacity 1s ease;
@@ -154,7 +156,6 @@ header {
 .slide-btn-transition {
    width: 6vw;
    opacity: 0.6;
-
    transition: width 1s ease, opacity 1s ease;
 }
 
@@ -181,16 +182,14 @@ header {
 
 /* Main page content */
 main {
-   /* Flex settings */
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
 }
 
-/* Article is primarily used for large text entries on the home page */
+/* Article is primarily used for large text entries on the Home/Details pages */
 article {
-   /* Flex settings */
    display: flex;
    flex-flow: row wrap;
    justify-content: space-evenly;
@@ -200,7 +199,7 @@ article {
    text-align: center;
 }
 
-/* Section header */
+/* The heading text for a paragraph */
 .section-header {
    margin: 2vw 0 2vw 0;
    font-size: 3vw;
@@ -215,11 +214,19 @@ article {
    }
 }
 
-/* Used for paragraph text on the main page */
+/* Used for paragraph text, generally proceeding section-header */
 .section-content {
    width: 100%;
    text-align: center;
    font-size: 2vw;
+}
+
+@media only screen and (max-width: 767px) {
+   .section-content {
+      width: 100%;
+      text-align: center;
+      font-size: 3vw;
+   }
 }
 
 /* Unordered list on Details page */
@@ -235,14 +242,7 @@ article {
    }
 }
 
-@media only screen and (max-width: 767px) {
-   .section-content {
-      width: 100%;
-      text-align: center;
-      font-size: 3vw;
-   }
-}
-
+/* Used for images on the Home page */
 .section-content > img {
    width: 75vw;
    max-width: 75vw;
@@ -250,7 +250,6 @@ article {
 
 /* Used for the circular cutouts with portraits and the text underneath */
 .profile {
-   /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
    align-items: center;
@@ -263,7 +262,6 @@ article {
 
 @media only screen and (max-width: 767px) {
    .profile {
-      /* Flex settings */
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
@@ -320,7 +318,7 @@ article {
 }
 
 /* Set the background images */
-#breena { background-image: url("../img/profiles/breena.jpg"); }
+#breena { background-image: url("../img/profiles/breena2.jpg"); }
 #daniel { background-image: url("../img/profiles/breena.jpg"); }
 #marysia { background-image: url("../img/profiles/marysia.jpg"); }
 #devan { background-image: url("../img/profiles/devan.jpg"); }
@@ -346,6 +344,7 @@ article {
    }
 }
 
+/* The timeline line the spans the left-hand-side of timeline-content */
 .timeline-line {
    position: absolute;
    width: 0.5vw;
@@ -366,33 +365,21 @@ article {
    }
 }
 
-/* The timeline line the spans the left-hand-side of timeline-content */
+/* Styling for the bullets/dots for each timeline item */
 .timeline-dots {
    margin-top: 0.5vw;
    color: #bc987e;
    z-index: 10;
 }
 
-@media only screen and (max-width: 767px) {
-   .timeline-dots {
-      margin-top: 1.2vw;
-      color: #bc987e;
-      z-index: 10;
-   }
-}
-
+/* A single text item within the timeline list */
 .timeline-item {
    display: flex;
    flex-flow: row nowrap;
    column-gap: 10vw;
 }
 
-.countdown {
-   padding-top: 5vw;
-   font-size: 3vw;
-}
-
-/* Map styling */
+/* Map styling (currently unused) */
 .map-responsive {
    overflow: hidden;
    padding-bottom: 56.25%; /* Maintain 4:3 aspect ratio */
@@ -409,7 +396,6 @@ article {
 
 /* The Gift Registry page */
 .registry {
-   /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
    justify-content: center;
@@ -421,7 +407,6 @@ article {
 
 /* The Details link and "My Gifts" button */
 .registry-header {
-   /* Flex settings */
    display: flex;
    flex-flow: row nowrap;
    align-items: center;
@@ -433,7 +418,6 @@ article {
 
 @media only screen and (max-width: 767px) {
    .registry-header {
-      /* Flex settings */
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
@@ -444,11 +428,13 @@ article {
    }
 }
 
+/* The registry header text */
 .registry-header > span {
    flex-grow: 4;
    font-size: 4vw;
 }
 
+/* The "My Gifts" button */
 .registry-header > button {
    flex-grow: 1;
 }
@@ -471,7 +457,6 @@ article {
 
 /* Container for gift info */
 .gift-container {
-   /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
    align-items: center;
@@ -484,7 +469,7 @@ article {
    width: 370px;
    height: auto;
    border-radius: 10px;
-   filter: drop-shadow(-0.2vw 0.5vw 0.2vw #C0C0C0); /* (x, y, diffusion, rgb) */
+   filter: drop-shadow(-0.2vw 0.5vw 0.2vw #C0C0C0); 
 }
 
 /* Thumbnail container (encapsulates thumbnail + enlarge text) */
@@ -502,11 +487,11 @@ img.thumbnail {
 /* Used by JQuery to toggle thumbnail opacity */
 .img-opaque {
    opacity: 0.4;
-   /* Give it a bit of a fade to match button rotation animation */
+   /* Give it a bit of a fade to align with button rotation animation */
    transition: opacity 0.09s linear;
 }
 
-/* Used for the text element that appears over thumbnails on hover */
+/* Used for the enlarge text element that appears over thumbnails on hover */
 .enlarge-text {
    position: absolute;
    top: 50%;
@@ -540,6 +525,7 @@ img.thumbnail {
    display: none;
 }
 
+/* A container within gift-container, below the thumbnail, which contains the gift description and '+' button */
 .gift-btm-container {
    display: inline-flex;
    flex-flow: row nowrap;
@@ -611,13 +597,13 @@ img.thumbnail {
 }
 
 /* Added by jQuery to animate the button */
-.cbox-icon-plus {
-   animation: rotate-cbox-bkwrd 0.09s ease-in forwards;
+.cbox-icon-x {
+   animation: rotate-cbox-frwrd 0.09s ease-in forwards;
 }
 
 /* Added by jQuery to animate the button */
-.cbox-icon-x {
-   animation: rotate-cbox-frwrd 0.09s ease-in forwards;
+.cbox-icon-plus {
+   animation: rotate-cbox-bkwrd 0.09s ease-in forwards;
 }
 
 /* RSVP page */
@@ -627,7 +613,6 @@ img.thumbnail {
 
 /* Used for the form content i.e., inputs */
 .rsvp-form {
-   /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
    justify-content: center;
@@ -642,11 +627,10 @@ img.thumbnail {
 @media only screen and (max-width: 767px) {
    .rsvp-table {
       font-size: 4vw;
-      width: 100%;
    }
 }
 
-/* Text field header */
+/* Text field heading */
 .tf-header {
    font-size: 1.5vw;
 }
@@ -659,18 +643,25 @@ img.thumbnail {
 
 /* Extend width of text input fields */
 .rsvp-table input[type="text"],
-.rsvp-table input[type="email"] {
+.rsvp-table input[type="email"],
+.rsvp-table textarea {
    width: 50vw;
 }
 
 @media only screen and (max-width: 767px) {
    .rsvp-table input[type="text"],
-   .rsvp-table input[type="email"] {
+   .rsvp-table input[type="email"],
+   .rsvp-table textarea {
       width: 75vw;
    }
 }
 
-/* Input field placeholder text size */
+/* Additional information text area */
+.rsvp-table textarea {
+   height: 25vw;
+}
+
+/* Input field placeholder text */
 .rsvp-table input::placeholder,
 .rsvp-table textarea::placeholder {
    font-size: 1.2vw;
@@ -683,28 +674,14 @@ img.thumbnail {
    }
 }
 
-/* Extend width of text area fields */
-.rsvp-table textarea {
-   width: 50vw;
-   height: 25vw;
-}
-
-@media only screen and (max-width: 767px) {
-   .rsvp-table textarea {
-      width: 75vw;
-      height: 25vw;
-   }
-}
-
-/* Number of attendees text field */
+/* Number of attendees text input */
 .attendees-input {
    position: relative;
    display: inline-block;
 }
 
-/* Custom increment/decrement buttons */
+/* Container for custom increment/decrement buttons */
 .inc-dec {
-   /* Flex settings */
    display: flex;
    flex-flow: row nowrap;
    justify-content: space-between;
@@ -719,7 +696,6 @@ img.thumbnail {
 
 @media only screen and (max-width: 767px) {
    .inc-dec {
-      /* Flex settings */
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
@@ -733,6 +709,7 @@ img.thumbnail {
    }
 }
 
+/* Custom increment/decrement buttons */
 #inc,
 #dec {
    display: flex;
@@ -765,14 +742,15 @@ img.thumbnail {
    }
 }
 
-#inc span,
-#dec span {
-   margin-right: auto;
-}
-
 #inc:hover,
 #dec:hover {
    background-color: #e2e3e4;
+}
+
+/* '+' and '-' icons */
+#inc span,
+#dec span {
+   margin-right: auto; /* Only way I could find to actually center the icons */
 }
 
 /* Submission success page */
@@ -799,9 +777,7 @@ img.thumbnail {
 }
 
 /*
-   Fontawesome icons used in the footer (fb, Insta.)
-   and override for email anchor text
-*/
+   Fontawesome icons used in the footer (fb, Insta.) and override for email anchor text */
 .fontawesome,
 .email {
    color: #90686d !important; /* Override default anchor text color */
@@ -818,7 +794,6 @@ img.thumbnail {
 
 /* The page footer */
 .myfooter {
-   /* Flex settings */
    display: flex;
    flex-flow: column nowrap;
    justify-content: center;
@@ -841,7 +816,6 @@ img.thumbnail {
 
 /* Bar spanning the very bottom of the footer */
 .footer-bar {
-   /* Flex settings */
    display: flex;
    align-content: center;
 
@@ -901,13 +875,4 @@ img.thumbnail {
 
 .decline-btn:hover {
    background: #9acad0;
-}
-
-/* Global settings for links (must override if you want something different for a specific link) */
-a:link,
-a:visited,
-a:hover,
-a:active {
-   color: #75897a;
-   text-decoration: none; /* Remove underlines on hover */
 }

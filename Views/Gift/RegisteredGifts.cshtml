@@ -4,6 +4,7 @@
 }
 
 <h1>Registered Gifts</h1>
+
 @if (!Model.Gifts.IsNullOrEmpty())
 {
    <ul>
@@ -12,19 +13,4 @@
          <li>@gift</li>  
       }
    </ul>
-}
-
-@* TODO: Move to GiftRegistry *@
-@section Scripts {
-   <script>
-      $(document).ready(function() {
-         var email = localStorage.getItem("UserEmail");
-
-         if (email === null) {
-            alert("User email has not been entered");
-         } else {
-            alert("User email is " + email);
-         }
-      });
-   </script>
 }

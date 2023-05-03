@@ -4,7 +4,6 @@
 }
 
 <div class="rsvp">
-   <br />
    <form class="rsvp-form form" asp-action="RsvpForm" method="post">
       <table class="rsvp-table table">
          <tr>
@@ -29,6 +28,7 @@
                   @if (ViewBag.EmailError == "true")
                   {
                      @Html.Raw("Email has already been taken")
+                     ViewBag.EmailError = "false";
                   }
                </span>
             </td>
@@ -74,10 +74,8 @@
 </div>
 
 @section Scripts {
-   <!-- JQuery 1.8.3, recieved from Google CDN -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
-   <script src="~/js/attendees-incdec.js"></script>
+   <script src="~/js/rsvp-form.js"></script>
    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

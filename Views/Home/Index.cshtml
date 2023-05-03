@@ -183,11 +183,12 @@
          <br />
          <div class="timeline-item">
             <i class="fa-solid fa-circle timeline-dots"></i>
-            <p>10pm - Grand exit of bride and groom.</p>
+            10pm - Grand exit of bride and groom.
          </div>
       </div>
    </div>
-   <h1 class="countdown">
+
+   <h1 class="section-header" style="padding-top: 5vw;">
       ONLY <span id="days-remaining"></span> DAYS<br />
       until we say "I do"!
    </h1>
@@ -196,36 +197,5 @@
 @section Scripts {
    <!-- Popper bundle for Boostrap (required for carousel), recieved from jsDelivr CDN -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-   <script>
-      var timeoutHandle;
-      var daysRemaining = 0;
-
-      $(document).ready(function() {
-         // Clicks the first page link in the header to make it appear selected
-         $(".hlink").first().click();
-      });
-
-      window.onload = setNumDaysRemaining();
-
-      /*
-         Adds the slide button transition animation on hover, then
-         reverses it after 5 seconds of the mouse exiting the carousel
-      */
-      $("#my-carousel").hover(function() {
-         window.clearTimeout(timeoutHandle);
-         $(".slide-btn").addClass("slide-btn-transition");
-      }, function() { // Exit hover
-         timeoutHandle = window.setTimeout(function() {
-            $(".slide-btn").removeClass("slide-btn-transition");
-         }, (5 * 1000))
-      });
-
-      // Gets the # of days until the wedding
-      function setNumDaysRemaining() {
-         var wdToMsSinceEpoch = new Date(2023, (8 - 1), 26, (12 + 2 - 1)).getTime();
-         daysRemaining = Math.round((wdToMsSinceEpoch - Date.now()) / (1000 * 60 * 60 * 24));
-         if (daysRemaining < 0) daysRemaining = 0;
-         $("#days-remaining").append(Math.trunc(daysRemaining).toString());
-      }
-   </script>
+   <script src="~/js/home-index.js"></script>
 }

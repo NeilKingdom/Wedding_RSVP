@@ -22,10 +22,10 @@
       </div>
 
       <p class="section-content">
-         Click the <a href="/User/RsvpForm">RSVP<a/> tab at the top of this page. Please write your
-         full name (this will be included in your total guest count) and the full names of everyone you
-         are bringing to the wedding in accordance with the number of reserved spots stated in
-         your invitation. Please provide an email for contact purposes and any song requests you
+         Click the <a href="" onclick="gotoRsvp(); return false;">RSVP</a> tab at the top of this page. 
+         Please write your full name (this will be included in your total guest count) and the full names 
+         of everyone you are bringing to the wedding in accordance with the number of reserved spots stated 
+         in your invitation. Please provide an email for contact purposes and any song requests you
          may like to hear during the reception. Finally, provide us with any additional information
          we should know (dietary restrictions, etc). If you run into any technical issues or have any
          concerns, feel free to get in contact with us using the contact information at the bottom
@@ -133,7 +133,6 @@
       </ul>
 
       <br />
-      <br />
 
       <p class="section-content" style="text-align: start !important;">
          <i>
@@ -150,12 +149,6 @@
 
       <p class="section-content">TBD</p>
 
-      <div id="dress-code">
-         <h1 class="section-header">Dress Code</h1>
-      </div>
-
-      <p class="section-content">The dress code is semi-formal.</p>
-
       <div id="transportation">
          <h1 class="section-header">Transportation</h1>
       </div>
@@ -169,3 +162,11 @@
       <p class="section-content">TBD</p>
    </div>
 </article>
+
+@section Scripts {
+   <script>
+      function gotoRsvp() {
+         window.location.assign($("#rsvp-link").prop("href"));
+      }
+   </script>
+}
