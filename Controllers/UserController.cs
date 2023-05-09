@@ -21,6 +21,9 @@ namespace Wedding_RSVP.Controllers
       public async Task<IActionResult> RsvpForm(String accepts, UserAttendeesViewModel userAttendeesViewModel)
       {
          if (!ModelState.IsValid) return View();
+
+         // The user RSVPing counts as 1
+         userAttendeesViewModel.User.NumAttendees++;
       
          if (accepts == "true") 
          {
@@ -37,7 +40,7 @@ namespace Wedding_RSVP.Controllers
          _context.Users.Add(userAttendeesViewModel.User);
          // Add attendees to DB as well
          if (userAttendeesViewModel.Attendees != null
-               && userAttendeesViewModel.Attendees.Count() > 0)
+               && userAttendeesViewModel.Attendees.Count() > 1)
          {
             foreach (var attendee in userAttendeesViewModel.Attendees)
             {
