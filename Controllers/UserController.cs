@@ -36,11 +36,11 @@ namespace Wedding_RSVP.Controllers
             userAttendeesViewModel.User.NumAttendees = 0;
             userAttendeesViewModel.Attendees = null;
          }
-         
          _context.Users.Add(userAttendeesViewModel.User);
+
          // Add attendees to DB as well
          if (userAttendeesViewModel.Attendees != null
-               && userAttendeesViewModel.Attendees.Count() > 1)
+               && userAttendeesViewModel.Attendees.Count() > 0)
          {
             foreach (var attendee in userAttendeesViewModel.Attendees)
             {
