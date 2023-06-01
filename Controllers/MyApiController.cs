@@ -24,9 +24,7 @@ namespace Wedding_RSVP.Controllers
       [ProducesResponseType(StatusCodes.Status500InternalServerError)]
       public async Task<ActionResult<int>> GetCount()
       {
-         int countUsers = await _context.Users.CountAsync();
-         int countAttendees = await _context.Attendees.CountAsync();
-         return Ok(countUsers + countAttendees);
+         return Ok(await _context.Users.SumAsync(c => c.NumAttendees));
       }
 
       [Authorize]
